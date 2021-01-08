@@ -1,0 +1,25 @@
+{
+  "projectsOverviewApp": {
+    "astridProject": {
+      "home": {
+        "title": "Astrid Projects",
+        "createLabel": "Create a new Astrid Project",
+        "createOrEditLabel": "Create or edit a Astrid Project",
+        "notFound": "No Astrid Projects found"
+      },
+      "created": "A new Astrid Project is created with identifier {{ param }}",
+      "updated": "A Astrid Project is updated with identifier {{ param }}",
+      "deleted": "A Astrid Project is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Astrid Project {{ id }}?"
+      },
+      "detail": {
+        "title": "Astrid Project"
+      },
+      "name": "Name",
+      "description": "Description",
+      "responsible": "Responsible",
+      "implementationTeam": "Implementation Team"
+    }
+  }
+}

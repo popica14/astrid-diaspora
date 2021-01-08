@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="astridProject">
+            <h2><span jhiTranslate="projectsOverviewApp.astridProject.detail.title">Astrid Project</span> {{ astridProject.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="projectsOverviewApp.astridProject.name">Name</span></dt>
+                <dd>
+                    <span>{{ astridProject.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="projectsOverviewApp.astridProject.description">Description</span></dt>
+                <dd>
+                    <span>{{ astridProject.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="projectsOverviewApp.astridProject.responsible">Responsible</span></dt>
+                <dd>
+                    {{ astridProject.responsibleLogin }}
+                </dd>
+                <dt><span jhiTranslate="projectsOverviewApp.astridProject.implementationTeam">Implementation Team</span></dt>
+                <dd>
+                    <span *ngFor="let implementationTeam of astridProject.implementationTeams; let last = last">
+                        {{ implementationTeam.login }}{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/astrid-project', astridProject.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
