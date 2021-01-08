@@ -1,0 +1,43 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.astrid.diaspora",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "6.10.5",
+    "applicationType": "monolith",
+    "baseName": "astrid",
+    "packageName": "com.astrid.diaspora",
+    "packageFolder": "com/astrid/diaspora",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NTBkZDdhMTU2ODU2Yzk1Y2U5MzZiNmMwOWJiMTU4MThmM2Y5ZjlhMjEyNjdhNWZlYjAyMGFiN2NlYWM0NjU5Mzc1OTgyMWQyZGJiZTQ0MmNlMDc5MWMxZTU4NTEyNDI1YzYzMDYyYWFjNDRlMTM5MzhiYjFhODE5MmY2ZjVmN2E=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "creationTimestamp": 1610125088834,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": ["en", "fr", "de", "it", "ro", "es"],
+    "blueprints": [],
+    "reactive": true
+  }
+}
