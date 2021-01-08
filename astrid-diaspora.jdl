@@ -1,19 +1,19 @@
-entity Project{
+entity AstridProject{
 	name String,
     description TextBlob,
     
 }
 
 relationship ManyToOne {
-	Project{responsible(login)} to User
+	AstridProject{responsible(login)} to User
 }
 
-relationship OneToMany {
-	Project{implementationTeam(login)} to User
+relationship ManyToMany {
+	AstridProject{implementationTeam(login)} to User
 }
 
 // Set pagination options
-paginate Project with infinite-scroll
+paginate AstridProject with infinite-scroll
 
 // Use Data Transfer Objects (DTO)
 dto * with mapstruct

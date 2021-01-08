@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import './vendor';
-import { AstridSharedModule } from 'app/shared/shared.module';
-import { AstridCoreModule } from 'app/core/core.module';
-import { AstridAppRoutingModule } from './app-routing.module';
-import { AstridHomeModule } from './home/home.module';
-import { AstridEntityModule } from './entities/entity.module';
+import { ProjectsOverviewSharedModule } from 'app/shared/shared.module';
+import { ProjectsOverviewCoreModule } from 'app/core/core.module';
+import { ProjectsOverviewAppRoutingModule } from './app-routing.module';
+import { ProjectsOverviewHomeModule } from './home/home.module';
+import { ProjectsOverviewEntityModule } from './entities/entity.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { MainComponent } from './layouts/main/main.component';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
@@ -18,14 +18,14 @@ import { ErrorComponent } from './layouts/error/error.component';
 @NgModule({
   imports: [
     BrowserModule,
-    AstridSharedModule,
-    AstridCoreModule,
-    AstridHomeModule,
+    ProjectsOverviewSharedModule,
+    ProjectsOverviewCoreModule,
+    ProjectsOverviewHomeModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
-    AstridEntityModule,
-    AstridAppRoutingModule,
+    ProjectsOverviewEntityModule,
+    ProjectsOverviewAppRoutingModule,
   ],
   declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
   bootstrap: [MainComponent],
 })
-export class AstridAppModule {}
+export class ProjectsOverviewAppModule {}

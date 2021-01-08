@@ -2,7 +2,7 @@ package com.astrid.diaspora.service;
 
 import com.astrid.diaspora.config.Constants;
 
-import com.astrid.diaspora.AstridApp;
+import com.astrid.diaspora.ProjectsOverviewApp;
 import com.astrid.diaspora.domain.User;
 import io.github.jhipster.config.JHipsterProperties;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,16 +40,11 @@ import static org.mockito.Mockito.*;
 /**
  * Integration tests for {@link MailService}.
  */
-@SpringBootTest(classes = AstridApp.class)
+@SpringBootTest(classes = ProjectsOverviewApp.class)
 public class MailServiceIT {
 
     private static final String[] languages = {
-        "en",
-        "fr",
-        "de",
-        "it",
-        "ro",
-        "es"
+        "en"
         // jhipster-needle-i18n-language-constant - JHipster will add/remove languages in this array
     };
     private static final Pattern PATTERN_LOCALE_3 = Pattern.compile("([a-z]{2})-([a-zA-Z]{4})-([a-z]{2})");

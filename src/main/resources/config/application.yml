@@ -59,7 +59,7 @@ management:
 
 spring:
   application:
-    name: astrid
+    name: projects_overview
   profiles:
     # The commented value for `active` can be replaced with valid Spring profiles to load.
     # Otherwise, it will be filled in by maven when building the JAR file
@@ -67,19 +67,43 @@ spring:
     active: #spring.profiles.active#
   jmx:
     enabled: false
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: deferred
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate.jdbc.time_zone: UTC
+      hibernate.id.new_generator_mappings: true
+      hibernate.connection.provider_disables_autocommit: true
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false
+      # modify batch size as necessary
+      hibernate.jdbc.batch_size: 25
+      hibernate.order_inserts: true
+      hibernate.order_updates: true
+      hibernate.query.fail_on_pagination_over_collection_fetch: true
+      hibernate.query.in_clause_parameter_padding: true
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
   messages:
     basename: i18n/messages
   main:
     allow-bean-definition-overriding: true
   task:
     execution:
-      thread-name-prefix: astrid-task-
+      thread-name-prefix: projects-overview-task-
       pool:
         core-size: 2
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: astrid-scheduling-
+      thread-name-prefix: projects-overview-scheduling-
       pool:
         size: 2
   thymeleaf:
@@ -107,7 +131,7 @@ info:
 
 jhipster:
   clientApp:
-    name: 'astridApp'
+    name: 'projectsOverviewApp'
   # By default CORS is disabled. Uncomment to enable.
   # cors:
   #     allowed-origins: "*"
@@ -117,11 +141,11 @@ jhipster:
   #     allow-credentials: true
   #     max-age: 1800
   mail:
-    from: astrid@localhost
+    from: projects_overview@localhost
   swagger:
     default-include-pattern: /api/.*
-    title: astrid API
-    description: astrid API documentation
+    title: projects_overview API
+    description: projects_overview API documentation
     version: 0.0.1
     terms-of-service-url:
     contact-name:

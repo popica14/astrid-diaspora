@@ -1,16 +1,16 @@
 version: '2'
 services:
-  astrid-app:
-    image: astrid
+  projects_overview-app:
+    image: projects_overview
     environment:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
       - SPRING_PROFILES_ACTIVE=prod,swagger
       - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
-      - SPRING_DATASOURCE_URL=jdbc:mysql://astrid-mysql:3306/astrid?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_URL=jdbc:mysql://projects_overview-mysql:3306/projects_overview?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
       - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
     ports:
       - 8080:8080
-  astrid-mysql:
+  projects_overview-mysql:
     extends:
       file: mysql.yml
-      service: astrid-mysql
+      service: projects_overview-mysql

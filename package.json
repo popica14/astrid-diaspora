@@ -1,7 +1,7 @@
 {
-  "name": "astrid",
+  "name": "projects-overview",
   "version": "0.0.1-SNAPSHOT",
-  "description": "Description for astrid",
+  "description": "Description for projects_overview",
   "private": true,
   "license": "UNLICENSED",
   "cacheDirectories": [

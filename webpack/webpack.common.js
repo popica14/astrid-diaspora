@@ -75,6 +75,9 @@ module.exports = (options) => ({
         }),
         new CopyWebpackPlugin({
             patterns: [
+                { from: './node_modules/swagger-ui-dist/*.{js,css,html,png}', to: 'swagger-ui', flatten: true, globOptions: { ignore: ['**/index.html'] }},
+                { from: './node_modules/axios/dist/axios.min.js', to: 'swagger-ui' },
+                { from: './src/main/webapp/swagger-ui/', to: 'swagger-ui' },
                 { from: './src/main/webapp/content/', to: 'content' },
                 { from: './src/main/webapp/favicon.ico', to: 'favicon.ico' },
                 { from: './src/main/webapp/manifest.webapp', to: 'manifest.webapp' },
@@ -85,12 +88,7 @@ module.exports = (options) => ({
         new MergeJsonWebpackPlugin({
             output: {
                 groupBy: [
-                    { pattern: "./src/main/webapp/i18n/en/*.json", fileName: "./i18n/en.json" },
-                    { pattern: "./src/main/webapp/i18n/fr/*.json", fileName: "./i18n/fr.json" },
-                    { pattern: "./src/main/webapp/i18n/de/*.json", fileName: "./i18n/de.json" },
-                    { pattern: "./src/main/webapp/i18n/it/*.json", fileName: "./i18n/it.json" },
-                    { pattern: "./src/main/webapp/i18n/ro/*.json", fileName: "./i18n/ro.json" },
-                    { pattern: "./src/main/webapp/i18n/es/*.json", fileName: "./i18n/es.json" }
+                    { pattern: "./src/main/webapp/i18n/en/*.json", fileName: "./i18n/en.json" }
                     // jhipster-needle-i18n-language-webpack - JHipster will add/remove languages in this array
                 ]
             }

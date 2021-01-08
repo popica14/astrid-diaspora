@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { AstridSharedLibsModule } from './shared-libs.module';
+import { ProjectsOverviewSharedLibsModule } from './shared-libs.module';
 import { FindLanguageFromKeyPipe } from './language/find-language-from-key.pipe';
 import { AlertComponent } from './alert/alert.component';
 import { AlertErrorComponent } from './alert/alert-error.component';
@@ -7,11 +7,11 @@ import { LoginModalComponent } from './login/login.component';
 import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
 
 @NgModule({
-  imports: [AstridSharedLibsModule],
+  imports: [ProjectsOverviewSharedLibsModule],
   declarations: [FindLanguageFromKeyPipe, AlertComponent, AlertErrorComponent, LoginModalComponent, HasAnyAuthorityDirective],
   entryComponents: [LoginModalComponent],
   exports: [
-    AstridSharedLibsModule,
+    ProjectsOverviewSharedLibsModule,
     FindLanguageFromKeyPipe,
     AlertComponent,
     AlertErrorComponent,
@@ -19,4 +19,4 @@ import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
     HasAnyAuthorityDirective,
   ],
 })
-export class AstridSharedModule {}
+export class ProjectsOverviewSharedModule {}
