@@ -8,6 +8,11 @@
       "entities": {
         "main": "Entities",
         "astridProject": "Astrid Project",
+        "beneficiary": "Beneficiary",
+        "location": "Location",
+        "projectStatus": "Project Status",
+        "entityCreation": "Entity Creation",
+        "entityLastModification": "Entity Last Modification",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

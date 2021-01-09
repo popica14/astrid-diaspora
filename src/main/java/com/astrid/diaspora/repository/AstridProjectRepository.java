@@ -20,13 +20,13 @@ public interface AstridProjectRepository extends JpaRepository<AstridProject, Lo
     @Query("select astridProject from AstridProject astridProject where astridProject.responsible.login = ?#{principal.username}")
     List<AstridProject> findByResponsibleIsCurrentUser();
 
-    @Query(value = "select distinct astridProject from AstridProject astridProject left join fetch astridProject.implementationTeams",
+    @Query(value = "select distinct astridProject from AstridProject astridProject left join fetch astridProject.implementationTeams left join fetch astridProject.beneficiaries",
         countQuery = "select count(distinct astridProject) from AstridProject astridProject")
     Page<AstridProject> findAllWithEagerRelationships(Pageable pageable);
 
-    @Query("select distinct astridProject from AstridProject astridProject left join fetch astridProject.implementationTeams")
+    @Query("select distinct astridProject from AstridProject astridProject left join fetch astridProject.implementationTeams left join fetch astridProject.beneficiaries")
     List<AstridProject> findAllWithEagerRelationships();
 
-    @Query("select astridProject from AstridProject astridProject left join fetch astridProject.implementationTeams where astridProject.id =:id")
+    @Query("select astridProject from AstridProject astridProject left join fetch astridProject.implementationTeams left join fetch astridProject.beneficiaries where astridProject.id =:id")
     Optional<AstridProject> findOneWithEagerRelationships(@Param("id") Long id);
 }

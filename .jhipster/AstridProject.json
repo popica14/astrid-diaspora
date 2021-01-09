@@ -6,12 +6,61 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "description",
+      "fieldName": "shortDescription",
       "fieldType": "byte[]",
       "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "documentation",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "neededAmount",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "currentAmount",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "currency",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "supporters",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "goal",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "statusReason",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "statusDeadline",
+      "fieldType": "ZonedDateTime"
     }
   ],
   "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "entityCreation",
+      "otherEntityRelationshipName": "astridProject",
+      "relationshipName": "entityCreation",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "entityLastModification",
+      "otherEntityRelationshipName": "astridProject",
+      "relationshipName": "entityLastModification",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
     {
       "relationshipType": "many-to-one",
       "otherEntityName": "user",
@@ -20,11 +69,33 @@
       "otherEntityField": "login"
     },
     {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "projectStatus",
+      "otherEntityRelationshipName": "astridProject",
+      "relationshipName": "status",
+      "otherEntityField": "name"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "location",
+      "otherEntityRelationshipName": "astridProject",
+      "relationshipName": "location",
+      "otherEntityField": "name"
+    },
+    {
       "relationshipType": "many-to-many",
       "otherEntityName": "user",
       "otherEntityRelationshipName": "astridProject",
       "relationshipName": "implementationTeam",
       "otherEntityField": "login",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "beneficiary",
+      "otherEntityRelationshipName": "projects",
+      "relationshipName": "beneficiaries",
+      "otherEntityField": "name",
       "ownerSide": true
     }
   ],

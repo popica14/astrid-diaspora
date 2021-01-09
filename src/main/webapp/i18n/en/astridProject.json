@@ -17,9 +17,22 @@
         "title": "Astrid Project"
       },
       "name": "Name",
-      "description": "Description",
+      "shortDescription": "Short Description",
+      "documentation": "Documentation",
+      "neededAmount": "Needed Amount",
+      "currentAmount": "Current Amount",
+      "currency": "Currency",
+      "supporters": "Supporters",
+      "goal": "Goal",
+      "statusReason": "Status Reason",
+      "statusDeadline": "Status Deadline",
+      "entityCreation": "Entity Creation",
+      "entityLastModification": "Entity Last Modification",
       "responsible": "Responsible",
-      "implementationTeam": "Implementation Team"
+      "status": "Status",
+      "location": "Location",
+      "implementationTeam": "Implementation Team",
+      "beneficiaries": "Beneficiaries"
     }
   }
 }

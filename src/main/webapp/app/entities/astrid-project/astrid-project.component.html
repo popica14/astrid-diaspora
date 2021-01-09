@@ -24,8 +24,20 @@
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="name"><span jhiTranslate="projectsOverviewApp.astridProject.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="description"><span jhiTranslate="projectsOverviewApp.astridProject.description">Description</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="shortDescription"><span jhiTranslate="projectsOverviewApp.astridProject.shortDescription">Short Description</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="documentation"><span jhiTranslate="projectsOverviewApp.astridProject.documentation">Documentation</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="neededAmount"><span jhiTranslate="projectsOverviewApp.astridProject.neededAmount">Needed Amount</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="currentAmount"><span jhiTranslate="projectsOverviewApp.astridProject.currentAmount">Current Amount</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="currency"><span jhiTranslate="projectsOverviewApp.astridProject.currency">Currency</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="supporters"><span jhiTranslate="projectsOverviewApp.astridProject.supporters">Supporters</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="goal"><span jhiTranslate="projectsOverviewApp.astridProject.goal">Goal</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="statusReason"><span jhiTranslate="projectsOverviewApp.astridProject.statusReason">Status Reason</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="statusDeadline"><span jhiTranslate="projectsOverviewApp.astridProject.statusDeadline">Status Deadline</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="entityCreationId"><span jhiTranslate="projectsOverviewApp.astridProject.entityCreation">Entity Creation</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="entityLastModificationId"><span jhiTranslate="projectsOverviewApp.astridProject.entityLastModification">Entity Last Modification</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="responsibleLogin"><span jhiTranslate="projectsOverviewApp.astridProject.responsible">Responsible</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="statusName"><span jhiTranslate="projectsOverviewApp.astridProject.status">Status</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="locationName"><span jhiTranslate="projectsOverviewApp.astridProject.location">Location</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -33,9 +45,40 @@
                 <tr *ngFor="let astridProject of astridProjects ;trackBy: trackId">
                     <td><a [routerLink]="['/astrid-project', astridProject.id, 'view']">{{ astridProject.id }}</a></td>
                     <td>{{ astridProject.name }}</td>
-                    <td>{{ astridProject.description }}</td>
+                    <td>{{ astridProject.shortDescription }}</td>
+                    <td>
+                        <a *ngIf="astridProject.documentation" (click)="openFile(astridProject.documentationContentType, astridProject.documentation)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="astridProject.documentation">{{ astridProject.documentationContentType }}, {{ byteSize(astridProject.documentation) }}</span>
+                    </td>
+                    <td>{{ astridProject.neededAmount }}</td>
+                    <td>{{ astridProject.currentAmount }}</td>
+                    <td>{{ astridProject.currency }}</td>
+                    <td>{{ astridProject.supporters }}</td>
+                    <td>{{ astridProject.goal }}</td>
+                    <td>{{ astridProject.statusReason }}</td>
+                    <td>{{ astridProject.statusDeadline | date:'medium' }}</td>
+                    <td>
+                        <div *ngIf="astridProject.entityCreationId">
+                            <a [routerLink]="['/entity-creation', astridProject.entityCreationId , 'view']" >{{ astridProject.entityCreationId }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="astridProject.entityLastModificationId">
+                            <a [routerLink]="['/entity-last-modification', astridProject.entityLastModificationId , 'view']" >{{ astridProject.entityLastModificationId }}</a>
+                        </div>
+                    </td>
                     <td>
                         {{ astridProject.responsibleLogin }}
+                    </td>
+                    <td>
+                        <div *ngIf="astridProject.statusId">
+                            <a [routerLink]="['/project-status', astridProject.statusId , 'view']" >{{ astridProject.statusName }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="astridProject.locationId">
+                            <a [routerLink]="['/location', astridProject.locationId , 'view']" >{{ astridProject.locationName }}</a>
+                        </div>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">

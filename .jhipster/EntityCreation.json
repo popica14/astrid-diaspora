@@ -1,0 +1,36 @@
+{
+  "name": "EntityCreation",
+  "fields": [
+    {
+      "fieldName": "created",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "entityCreation",
+      "relationshipName": "createdBy",
+      "otherEntityField": "login"
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "astridProject",
+      "otherEntityRelationshipName": "entityCreation",
+      "relationshipName": "astridProject",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20210109234202",
+  "entityTableName": "entity_creation",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

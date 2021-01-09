@@ -19,14 +19,54 @@
             <column name="name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="description" type="${clobType}">
+            <column name="short_description" type="${clobType}">
                 <constraints nullable="true" />
+            </column>
+            <column name="documentation" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="documentation_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="needed_amount" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="current_amount" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="currency" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="supporters" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="goal" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="status_reason" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="status_deadline" type="datetime">
+                <constraints nullable="true" />
+            </column>
+            <column name="entity_creation_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_astrid_project_entity_creation_id" />
+            </column>
+            <column name="entity_last_modification_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_astrid_project_entity_last_modification_id" />
             </column>
             <column name="responsible_id" type="bigint">
                 <constraints nullable="true" />
             </column>
+            <column name="status_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="location_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
+        <dropDefaultValue tableName="astrid_project" columnName="status_deadline" columnDataType="datetime"/>
     </changeSet>
 
     <changeSet id="20210108194026-1-relations" author="jhipster">
@@ -41,6 +81,17 @@
         </createTable>
 
         <addPrimaryKey columnNames="astrid_project_id, implementation_team_id" tableName="astrid_project_implementation_team"/>
+        
+        <createTable tableName="astrid_project_beneficiaries">
+            <column name="beneficiaries_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="astrid_project_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="astrid_project_id, beneficiaries_id" tableName="astrid_project_beneficiaries"/>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
@@ -60,7 +111,16 @@
                   tableName="astrid_project">
             <column name="id" type="numeric"/>
             <column name="name" type="string"/>
-            <column name="description" type="clob"/>
+            <column name="short_description" type="clob"/>
+            <column name="documentation" type="blob"/>
+            <column name="documentation_content_type" type="string"/>
+            <column name="needed_amount" type="string"/>
+            <column name="current_amount" type="string"/>
+            <column name="currency" type="string"/>
+            <column name="supporters" type="numeric"/>
+            <column name="goal" type="string"/>
+            <column name="status_reason" type="string"/>
+            <column name="status_deadline" type="datetime"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

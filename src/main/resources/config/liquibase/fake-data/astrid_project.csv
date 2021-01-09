@@ -1,11 +1,11 @@
-id;name;description
-1;infomediaries Thailand Electronics;../fake-data/blob/hipster.txt
-2;Buckinghamshire;../fake-data/blob/hipster.txt
-3;Planner heuristic Inverse;../fake-data/blob/hipster.txt
-4;Ergonomic Forint Texas;../fake-data/blob/hipster.txt
-5;connect Berkshire;../fake-data/blob/hipster.txt
-6;Money Market Account mesh;../fake-data/blob/hipster.txt
-7;Avon;../fake-data/blob/hipster.txt
-8;lavender Communications;../fake-data/blob/hipster.txt
-9;Fish;../fake-data/blob/hipster.txt
-10;maroon;../fake-data/blob/hipster.txt
+id;name;short_description;documentation;documentation_content_type;needed_amount;current_amount;currency;supporters;goal;status_reason;status_deadline
+1;infomediaries Thailand Electronics;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png;Buckinghamshire;Planner heuristic Inverse;Ergonomic Forint Texas;36538;Borders Berkshire Money Market Account;Gabon Avon;2021-01-08T11:37:36
+2;Representative;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png;Decentralized card;revolutionize;synthesizing Agent Dynamic;56097;approach;Kentucky circuit Organized;2021-01-08T07:21:43
+3;Implementation;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png;robust;multi-tasking Auto Loan Account Illinois;green 5th generation;70133;Industrial Awesome;back up;2021-01-08T03:54:14
+4;quantifying;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png;Walks SAS Product;withdrawal;District exploit Towels;25491;streamline Louisiana;Agent deposit Planner;2021-01-08T14:05:20
+5;Rustic Rubber Chicken;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png;zero tolerance Markets optical;Directives Functionality;Central International;85538;transmitter THX;interface Object-based;2021-01-08T17:48:34
+6;bypassing Implementation compressing;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png;Practical dedicated;attitude-oriented;Planner;9139;Pakistan synergies;Investment Account Metal;2021-01-08T04:22:56
+7;Skyway Health invoice;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png;Cambridgeshire Pizza Michigan;Branch Cotton firewall;Tanzanian Shilling;97212;Music systematic Bacon;Berkshire software Lead;2021-01-08T04:30:49
+8;Home Loan Account Avon;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png;Generic Steel Sausages Personal Loan Account;Buckinghamshire Investment Account;Accountability;94432;optical pink Tasty;PNG Turks and Caicos Islands;2021-01-08T07:35:01
+9;Mouse Sleek Concrete Sausages Graphic Interface;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png;Kyat Brunei Dollar Synergistic;Slovakia (Slovak Republic) Cotton;Berkshire;11323;New Jersey open system;US Dollar;2021-01-07T21:22:52
+10;Home Loan Account deposit;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png;Handcrafted innovative PCI;e-business;New York Markets;92023;paradigms user-facing Bypass;Metal Configuration;2021-01-07T22:13:58

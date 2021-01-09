@@ -23,9 +23,14 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Base64Utils;
 import javax.persistence.EntityManager;
+import java.time.Instant;
+import java.time.ZonedDateTime;
+import java.time.ZoneOffset;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.astrid.diaspora.web.rest.TestUtil.sameInstant;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.mockito.Mockito.*;
@@ -44,8 +49,34 @@ public class AstridProjectResourceIT {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
-    private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
+    private static final String DEFAULT_SHORT_DESCRIPTION = "AAAAAAAAAA";
+    private static final String UPDATED_SHORT_DESCRIPTION = "BBBBBBBBBB";
+
+    private static final byte[] DEFAULT_DOCUMENTATION = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_DOCUMENTATION = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_DOCUMENTATION_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_DOCUMENTATION_CONTENT_TYPE = "image/png";
+
+    private static final String DEFAULT_NEEDED_AMOUNT = "AAAAAAAAAA";
+    private static final String UPDATED_NEEDED_AMOUNT = "BBBBBBBBBB";
+
+    private static final String DEFAULT_CURRENT_AMOUNT = "AAAAAAAAAA";
+    private static final String UPDATED_CURRENT_AMOUNT = "BBBBBBBBBB";
+
+    private static final String DEFAULT_CURRENCY = "AAAAAAAAAA";
+    private static final String UPDATED_CURRENCY = "BBBBBBBBBB";
+
+    private static final Integer DEFAULT_SUPPORTERS = 1;
+    private static final Integer UPDATED_SUPPORTERS = 2;
+
+    private static final String DEFAULT_GOAL = "AAAAAAAAAA";
+    private static final String UPDATED_GOAL = "BBBBBBBBBB";
+
+    private static final String DEFAULT_STATUS_REASON = "AAAAAAAAAA";
+    private static final String UPDATED_STATUS_REASON = "BBBBBBBBBB";
+
+    private static final ZonedDateTime DEFAULT_STATUS_DEADLINE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
+    private static final ZonedDateTime UPDATED_STATUS_DEADLINE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
     @Autowired
     private AstridProjectRepository astridProjectRepository;
@@ -79,7 +110,16 @@ public class AstridProjectResourceIT {
     public static AstridProject createEntity(EntityManager em) {
         AstridProject astridProject = new AstridProject()
             .name(DEFAULT_NAME)
-            .description(DEFAULT_DESCRIPTION);
+            .shortDescription(DEFAULT_SHORT_DESCRIPTION)
+            .documentation(DEFAULT_DOCUMENTATION)
+            .documentationContentType(DEFAULT_DOCUMENTATION_CONTENT_TYPE)
+            .neededAmount(DEFAULT_NEEDED_AMOUNT)
+            .currentAmount(DEFAULT_CURRENT_AMOUNT)
+            .currency(DEFAULT_CURRENCY)
+            .supporters(DEFAULT_SUPPORTERS)
+            .goal(DEFAULT_GOAL)
+            .statusReason(DEFAULT_STATUS_REASON)
+            .statusDeadline(DEFAULT_STATUS_DEADLINE);
         return astridProject;
     }
     /**
@@ -91,7 +131,16 @@ public class AstridProjectResourceIT {
     public static AstridProject createUpdatedEntity(EntityManager em) {
         AstridProject astridProject = new AstridProject()
             .name(UPDATED_NAME)
-            .description(UPDATED_DESCRIPTION);
+            .shortDescription(UPDATED_SHORT_DESCRIPTION)
+            .documentation(UPDATED_DOCUMENTATION)
+            .documentationContentType(UPDATED_DOCUMENTATION_CONTENT_TYPE)
+            .neededAmount(UPDATED_NEEDED_AMOUNT)
+            .currentAmount(UPDATED_CURRENT_AMOUNT)
+            .currency(UPDATED_CURRENCY)
+            .supporters(UPDATED_SUPPORTERS)
+            .goal(UPDATED_GOAL)
+            .statusReason(UPDATED_STATUS_REASON)
+            .statusDeadline(UPDATED_STATUS_DEADLINE);
         return astridProject;
     }
 
@@ -116,7 +165,16 @@ public class AstridProjectResourceIT {
         assertThat(astridProjectList).hasSize(databaseSizeBeforeCreate + 1);
         AstridProject testAstridProject = astridProjectList.get(astridProjectList.size() - 1);
         assertThat(testAstridProject.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testAstridProject.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
+        assertThat(testAstridProject.getShortDescription()).isEqualTo(DEFAULT_SHORT_DESCRIPTION);
+        assertThat(testAstridProject.getDocumentation()).isEqualTo(DEFAULT_DOCUMENTATION);
+        assertThat(testAstridProject.getDocumentationContentType()).isEqualTo(DEFAULT_DOCUMENTATION_CONTENT_TYPE);
+        assertThat(testAstridProject.getNeededAmount()).isEqualTo(DEFAULT_NEEDED_AMOUNT);
+        assertThat(testAstridProject.getCurrentAmount()).isEqualTo(DEFAULT_CURRENT_AMOUNT);
+        assertThat(testAstridProject.getCurrency()).isEqualTo(DEFAULT_CURRENCY);
+        assertThat(testAstridProject.getSupporters()).isEqualTo(DEFAULT_SUPPORTERS);
+        assertThat(testAstridProject.getGoal()).isEqualTo(DEFAULT_GOAL);
+        assertThat(testAstridProject.getStatusReason()).isEqualTo(DEFAULT_STATUS_REASON);
+        assertThat(testAstridProject.getStatusDeadline()).isEqualTo(DEFAULT_STATUS_DEADLINE);
     }
 
     @Test
@@ -152,7 +210,16 @@ public class AstridProjectResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(astridProject.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
+            .andExpect(jsonPath("$.[*].shortDescription").value(hasItem(DEFAULT_SHORT_DESCRIPTION.toString())))
+            .andExpect(jsonPath("$.[*].documentationContentType").value(hasItem(DEFAULT_DOCUMENTATION_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].documentation").value(hasItem(Base64Utils.encodeToString(DEFAULT_DOCUMENTATION))))
+            .andExpect(jsonPath("$.[*].neededAmount").value(hasItem(DEFAULT_NEEDED_AMOUNT)))
+            .andExpect(jsonPath("$.[*].currentAmount").value(hasItem(DEFAULT_CURRENT_AMOUNT)))
+            .andExpect(jsonPath("$.[*].currency").value(hasItem(DEFAULT_CURRENCY)))
+            .andExpect(jsonPath("$.[*].supporters").value(hasItem(DEFAULT_SUPPORTERS)))
+            .andExpect(jsonPath("$.[*].goal").value(hasItem(DEFAULT_GOAL)))
+            .andExpect(jsonPath("$.[*].statusReason").value(hasItem(DEFAULT_STATUS_REASON)))
+            .andExpect(jsonPath("$.[*].statusDeadline").value(hasItem(sameInstant(DEFAULT_STATUS_DEADLINE))));
     }
     
     @SuppressWarnings({"unchecked"})
@@ -187,7 +254,16 @@ public class AstridProjectResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(astridProject.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
-            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()));
+            .andExpect(jsonPath("$.shortDescription").value(DEFAULT_SHORT_DESCRIPTION.toString()))
+            .andExpect(jsonPath("$.documentationContentType").value(DEFAULT_DOCUMENTATION_CONTENT_TYPE))
+            .andExpect(jsonPath("$.documentation").value(Base64Utils.encodeToString(DEFAULT_DOCUMENTATION)))
+            .andExpect(jsonPath("$.neededAmount").value(DEFAULT_NEEDED_AMOUNT))
+            .andExpect(jsonPath("$.currentAmount").value(DEFAULT_CURRENT_AMOUNT))
+            .andExpect(jsonPath("$.currency").value(DEFAULT_CURRENCY))
+            .andExpect(jsonPath("$.supporters").value(DEFAULT_SUPPORTERS))
+            .andExpect(jsonPath("$.goal").value(DEFAULT_GOAL))
+            .andExpect(jsonPath("$.statusReason").value(DEFAULT_STATUS_REASON))
+            .andExpect(jsonPath("$.statusDeadline").value(sameInstant(DEFAULT_STATUS_DEADLINE)));
     }
     @Test
     @Transactional
@@ -211,7 +287,16 @@ public class AstridProjectResourceIT {
         em.detach(updatedAstridProject);
         updatedAstridProject
             .name(UPDATED_NAME)
-            .description(UPDATED_DESCRIPTION);
+            .shortDescription(UPDATED_SHORT_DESCRIPTION)
+            .documentation(UPDATED_DOCUMENTATION)
+            .documentationContentType(UPDATED_DOCUMENTATION_CONTENT_TYPE)
+            .neededAmount(UPDATED_NEEDED_AMOUNT)
+            .currentAmount(UPDATED_CURRENT_AMOUNT)
+            .currency(UPDATED_CURRENCY)
+            .supporters(UPDATED_SUPPORTERS)
+            .goal(UPDATED_GOAL)
+            .statusReason(UPDATED_STATUS_REASON)
+            .statusDeadline(UPDATED_STATUS_DEADLINE);
         AstridProjectDTO astridProjectDTO = astridProjectMapper.toDto(updatedAstridProject);
 
         restAstridProjectMockMvc.perform(put("/api/astrid-projects")
@@ -224,7 +309,16 @@ public class AstridProjectResourceIT {
         assertThat(astridProjectList).hasSize(databaseSizeBeforeUpdate);
         AstridProject testAstridProject = astridProjectList.get(astridProjectList.size() - 1);
         assertThat(testAstridProject.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testAstridProject.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testAstridProject.getShortDescription()).isEqualTo(UPDATED_SHORT_DESCRIPTION);
+        assertThat(testAstridProject.getDocumentation()).isEqualTo(UPDATED_DOCUMENTATION);
+        assertThat(testAstridProject.getDocumentationContentType()).isEqualTo(UPDATED_DOCUMENTATION_CONTENT_TYPE);
+        assertThat(testAstridProject.getNeededAmount()).isEqualTo(UPDATED_NEEDED_AMOUNT);
+        assertThat(testAstridProject.getCurrentAmount()).isEqualTo(UPDATED_CURRENT_AMOUNT);
+        assertThat(testAstridProject.getCurrency()).isEqualTo(UPDATED_CURRENCY);
+        assertThat(testAstridProject.getSupporters()).isEqualTo(UPDATED_SUPPORTERS);
+        assertThat(testAstridProject.getGoal()).isEqualTo(UPDATED_GOAL);
+        assertThat(testAstridProject.getStatusReason()).isEqualTo(UPDATED_STATUS_REASON);
+        assertThat(testAstridProject.getStatusDeadline()).isEqualTo(UPDATED_STATUS_DEADLINE);
     }
 
     @Test

@@ -8,11 +8,35 @@
     -->
     <changeSet id="20210108194026-2" author="jhipster">
         
+        <addForeignKeyConstraint baseColumnNames="entity_creation_id"
+                                 baseTableName="astrid_project"
+                                 constraintName="fk_astrid_project_entity_creation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="entity_creation"/>
+
+        <addForeignKeyConstraint baseColumnNames="entity_last_modification_id"
+                                 baseTableName="astrid_project"
+                                 constraintName="fk_astrid_project_entity_last_modification_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="entity_last_modification"/>
+
         <addForeignKeyConstraint baseColumnNames="responsible_id"
                                  baseTableName="astrid_project"
                                  constraintName="fk_astrid_project_responsible_id"
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="status_id"
+                                 baseTableName="astrid_project"
+                                 constraintName="fk_astrid_project_status_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="project_status"/>
+
+        <addForeignKeyConstraint baseColumnNames="location_id"
+                                 baseTableName="astrid_project"
+                                 constraintName="fk_astrid_project_location_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="location"/>
 
         <addForeignKeyConstraint baseColumnNames="astrid_project_id"
                                  baseTableName="astrid_project_implementation_team"
@@ -25,6 +49,18 @@
                                  constraintName="fk_astrid_project_implementation_team_implementation_team_id"
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
+        
+        <addForeignKeyConstraint baseColumnNames="astrid_project_id"
+                                 baseTableName="astrid_project_beneficiaries"
+                                 constraintName="fk_astrid_project_beneficiaries_astrid_project_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="astrid_project"/>
+
+        <addForeignKeyConstraint baseColumnNames="beneficiaries_id"
+                                 baseTableName="astrid_project_beneficiaries"
+                                 constraintName="fk_astrid_project_beneficiaries_beneficiaries_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="beneficiary"/>
         
     </changeSet>
 </databaseChangeLog>

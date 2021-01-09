@@ -18,9 +18,87 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.description" for="field_description">Description</label>
-                    <textarea class="form-control" name="description" id="field_description"
-                              formControlName="description"></textarea>
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.shortDescription" for="field_shortDescription">Short Description</label>
+                    <textarea class="form-control" name="shortDescription" id="field_shortDescription"
+                              formControlName="shortDescription"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.documentation" for="field_documentation">Documentation</label>
+                    <div>
+                        <div *ngIf="editForm.get('documentation')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('documentationContentType')!.value, editForm.get('documentation')!.value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{ editForm.get('documentationContentType')!.value }}, {{ byteSize(editForm.get('documentation')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({documentation: null});editForm.patchValue({documentationContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_documentation" (change)="setFileData($event, 'documentation', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="documentation" id="field_documentation"
+                           formControlName="documentation"/>
+                    <input type="hidden" class="form-control" name="documentationContentType" id="field_documentationContentType"
+                           formControlName="documentationContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.neededAmount" for="field_neededAmount">Needed Amount</label>
+                    <input type="text" class="form-control" name="neededAmount" id="field_neededAmount"
+                           formControlName="neededAmount"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.currentAmount" for="field_currentAmount">Current Amount</label>
+                    <input type="text" class="form-control" name="currentAmount" id="field_currentAmount"
+                           formControlName="currentAmount"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.currency" for="field_currency">Currency</label>
+                    <input type="text" class="form-control" name="currency" id="field_currency"
+                           formControlName="currency"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.supporters" for="field_supporters">Supporters</label>
+                    <input type="number" class="form-control" name="supporters" id="field_supporters"
+                           formControlName="supporters"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.goal" for="field_goal">Goal</label>
+                    <input type="text" class="form-control" name="goal" id="field_goal"
+                           formControlName="goal"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.statusReason" for="field_statusReason">Status Reason</label>
+                    <input type="text" class="form-control" name="statusReason" id="field_statusReason"
+                           formControlName="statusReason"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.statusDeadline" for="field_statusDeadline">Status Deadline</label>
+                    <div class="d-flex">
+                        <input id="field_statusDeadline" type="datetime-local" class="form-control" name="statusDeadline" formControlName="statusDeadline" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.entityCreation" for="field_entityCreation">Entity Creation</label>
+                    <select class="form-control" id="field_entityCreation" name="entityCreation" formControlName="entityCreationId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="entityCreationOption.id" *ngFor="let entityCreationOption of entitycreations; trackBy: trackById">{{ entityCreationOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.entityLastModification" for="field_entityLastModification">Entity Last Modification</label>
+                    <select class="form-control" id="field_entityLastModification" name="entityLastModification" formControlName="entityLastModificationId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="entityLastModificationOption.id" *ngFor="let entityLastModificationOption of entitylastmodifications; trackBy: trackById">{{ entityLastModificationOption.id }}</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -32,9 +110,32 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.status" for="field_status">Status</label>
+                    <select class="form-control" id="field_status" name="status" formControlName="statusId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="projectStatusOption.id" *ngFor="let projectStatusOption of projectstatuses; trackBy: trackById">{{ projectStatusOption.name }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.location" for="field_location">Location</label>
+                    <select class="form-control" id="field_location" name="location" formControlName="locationId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="locationOption.id" *ngFor="let locationOption of locations; trackBy: trackById">{{ locationOption.name }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label jhiTranslate="projectsOverviewApp.astridProject.implementationTeam" for="field_implementationTeams">Implementation Team</label>
                     <select class="form-control" id="field_implementationTeams" multiple name="implementationTeams" formControlName="implementationTeams">
                         <option [ngValue]="getSelected(editForm.get('implementationTeams')!.value, userOption)" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label jhiTranslate="projectsOverviewApp.astridProject.beneficiaries" for="field_beneficiaries">Beneficiaries</label>
+                    <select class="form-control" id="field_beneficiaries" multiple name="beneficiaries" formControlName="beneficiaries">
+                        <option [ngValue]="getSelected(editForm.get('beneficiaries')!.value, beneficiaryOption)" *ngFor="let beneficiaryOption of beneficiaries; trackBy: trackById">{{ beneficiaryOption.name }}</option>
                     </select>
                 </div>
             </div>

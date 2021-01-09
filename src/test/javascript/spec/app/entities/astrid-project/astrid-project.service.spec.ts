@@ -1,5 +1,7 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import * as moment from 'moment';
+import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { AstridProjectService } from 'app/entities/astrid-project/astrid-project.service';
 import { IAstridProject, AstridProject } from 'app/shared/model/astrid-project.model';
 
@@ -10,6 +12,7 @@ describe('Service Tests', () => {
     let httpMock: HttpTestingController;
     let elemDefault: IAstridProject;
     let expectedResult: IAstridProject | IAstridProject[] | boolean | null;
+    let currentDate: moment.Moment;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
@@ -19,13 +22,32 @@ describe('Service Tests', () => {
       injector = getTestBed();
       service = injector.get(AstridProjectService);
       httpMock = injector.get(HttpTestingController);
+      currentDate = moment();
 
-      elemDefault = new AstridProject(0, 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new AstridProject(
+        0,
+        'AAAAAAA',
+        'AAAAAAA',
+        'image/png',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        0,
+        'AAAAAAA',
+        'AAAAAAA',
+        currentDate
+      );
     });
 
     describe('Service methods', () => {
       it('should find an element', () => {
-        const returnedFromService = Object.assign({}, elemDefault);
+        const returnedFromService = Object.assign(
+          {
+            statusDeadline: currentDate.format(DATE_TIME_FORMAT),
+          },
+          elemDefault
+        );
 
         service.find(123).subscribe(resp => (expectedResult = resp.body));
 
@@ -38,11 +60,17 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             id: 0,
+            statusDeadline: currentDate.format(DATE_TIME_FORMAT),
           },
           elemDefault
         );
 
-        const expected = Object.assign({}, returnedFromService);
+        const expected = Object.assign(
+          {
+            statusDeadline: currentDate,
+          },
+          returnedFromService
+        );
 
         service.create(new AstridProject()).subscribe(resp => (expectedResult = resp.body));
 
@@ -55,12 +83,25 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             name: 'BBBBBB',
-            description: 'BBBBBB',
+            shortDescription: 'BBBBBB',
+            documentation: 'BBBBBB',
+            neededAmount: 'BBBBBB',
+            currentAmount: 'BBBBBB',
+            currency: 'BBBBBB',
+            supporters: 1,
+            goal: 'BBBBBB',
+            statusReason: 'BBBBBB',
+            statusDeadline: currentDate.format(DATE_TIME_FORMAT),
           },
           elemDefault
         );
 
-        const expected = Object.assign({}, returnedFromService);
+        const expected = Object.assign(
+          {
+            statusDeadline: currentDate,
+          },
+          returnedFromService
+        );
 
         service.update(expected).subscribe(resp => (expectedResult = resp.body));
 
@@ -73,12 +114,25 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             name: 'BBBBBB',
-            description: 'BBBBBB',
+            shortDescription: 'BBBBBB',
+            documentation: 'BBBBBB',
+            neededAmount: 'BBBBBB',
+            currentAmount: 'BBBBBB',
+            currency: 'BBBBBB',
+            supporters: 1,
+            goal: 'BBBBBB',
+            statusReason: 'BBBBBB',
+            statusDeadline: currentDate.format(DATE_TIME_FORMAT),
           },
           elemDefault
         );
 
-        const expected = Object.assign({}, returnedFromService);
+        const expected = Object.assign(
+          {
+            statusDeadline: currentDate,
+          },
+          returnedFromService
+        );
 
         service.query().subscribe(resp => (expectedResult = resp.body));
 

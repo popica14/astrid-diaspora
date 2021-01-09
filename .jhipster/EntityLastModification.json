@@ -1,0 +1,36 @@
+{
+  "name": "EntityLastModification",
+  "fields": [
+    {
+      "fieldName": "lastModified",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "entityLastModification",
+      "relationshipName": "lastModifiedBy",
+      "otherEntityField": "login"
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "astridProject",
+      "otherEntityRelationshipName": "entityLastModification",
+      "relationshipName": "astridProject",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20210109234302",
+  "entityTableName": "entity_last_modification",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

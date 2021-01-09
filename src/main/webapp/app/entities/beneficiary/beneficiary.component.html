@@ -1,0 +1,71 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="projectsOverviewApp.beneficiary.home.title">Beneficiaries</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-beneficiary" [routerLink]="['/beneficiary/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="projectsOverviewApp.beneficiary.home.createLabel">
+            Create a new Beneficiary
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="beneficiaries?.length === 0">
+        <span jhiTranslate="projectsOverviewApp.beneficiary.home.notFound">No beneficiaries found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="beneficiaries && beneficiaries.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.beneficiary.name">Name</span></th>
+                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.beneficiary.type">Type</span></th>
+                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.beneficiary.address">Address</span></th>
+                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.beneficiary.contact">Contact</span></th>
+                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.beneficiary.contactPerson">Contact Person</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let beneficiary of beneficiaries ;trackBy: trackId">
+                    <td><a [routerLink]="['/beneficiary', beneficiary.id, 'view']">{{ beneficiary.id }}</a></td>
+                    <td>{{ beneficiary.name }}</td>
+                    <td jhiTranslate="{{ 'projectsOverviewApp.BeneficiaryType.' + beneficiary.type }}">{{ beneficiary.type }}</td>
+                    <td>{{ beneficiary.address }}</td>
+                    <td>{{ beneficiary.contact }}</td>
+                    <td>
+                        {{ beneficiary.contactPersonLogin }}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/beneficiary', beneficiary.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/beneficiary', beneficiary.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(beneficiary)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

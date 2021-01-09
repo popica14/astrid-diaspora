@@ -1,16 +1,69 @@
 entity AstridProject{
-	name String,
-    description TextBlob,
-    
+	name String
+    shortDescription TextBlob
+    documentation AnyBlob
+    neededAmount String
+    currentAmount String
+    currency String
+    supporters Integer
+    goal String
+    statusReason String
+    statusDeadline ZonedDateTime
+}
+
+
+
+entity Beneficiary{
+	name String
+    type BeneficiaryType
+    address String
+    contact String
+}
+
+entity Location{
+	name String
+    county String
+    address String
+}
+
+enum BeneficiaryType{
+	PRIVATE_PERSON, PUBLIC_INSTITUTION, PRIVATE_INSTITUTION
+}
+
+entity ProjectStatus{
+	name String
+}
+
+entity EntityCreation{
+	created ZonedDateTime
+}
+
+entity EntityLastModification{
+	lastModified ZonedDateTime
 }
 
 relationship ManyToOne {
 	AstridProject{responsible(login)} to User
+	AstridProject{status(name)} to ProjectStatus
+	Beneficiary{contactPerson(login)} to User
+	AstridProject{location(name)} to Location
+	EntityLastModification{lastModifiedBy(login)} to User
+	EntityCreation{createdBy(login)} to User
 }
 
-relationship ManyToMany {
-	AstridProject{implementationTeam(login)} to User
+/**
+ * One to one relationship.
+ */
+relationship OneToOne {
+	AstridProject to EntityCreation
+	AstridProject to EntityLastModification
 }
+
+relationship ManyToMany {	
+	AstridProject{implementationTeam(login)} to User
+	AstridProject{beneficiaries(name)} to Beneficiary{projects(name)}
+}
+
 
 // Set pagination options
 paginate AstridProject with infinite-scroll

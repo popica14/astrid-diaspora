@@ -1,0 +1,50 @@
+{
+  "name": "Beneficiary",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "BeneficiaryType",
+      "fieldValues": "PRIVATE_PERSON,PUBLIC_INSTITUTION,PRIVATE_INSTITUTION"
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "contact",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "beneficiary",
+      "relationshipName": "contactPerson",
+      "otherEntityField": "login"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "astridProject",
+      "otherEntityRelationshipName": "beneficiaries",
+      "relationshipName": "projects",
+      "otherEntityField": "name",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20210109233902",
+  "entityTableName": "beneficiary",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
