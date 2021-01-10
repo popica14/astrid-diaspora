@@ -1,0 +1,27 @@
+{
+  "projectsOverviewApp": {
+    "beneficiary": {
+      "home": {
+        "title": "Beneficiaries",
+        "createLabel": "Crear nuevo Beneficiary",
+        "createOrEditLabel": "Crear o editar Beneficiary",
+        "notFound": "Ningún Beneficiaries encontrado"
+      },
+      "created": "Un nuevo Beneficiary ha sido creado con el identificador {{ param }}",
+      "updated": "Un Beneficiary ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Beneficiary ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Beneficiary {{ id }}?"
+      },
+      "detail": {
+        "title": "Beneficiary"
+      },
+      "name": "Name",
+      "type": "Type",
+      "address": "Address",
+      "contact": "Contact",
+      "contactPerson": "Contact Person",
+      "projects": "Projects"
+    }
+  }
+}

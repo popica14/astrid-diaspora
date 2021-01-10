@@ -1,0 +1,24 @@
+{
+  "projectsOverviewApp": {
+    "entityLastModification": {
+      "home": {
+        "title": "Entity Last Modifications",
+        "createLabel": "Creeare o nouă entitate Entity Last Modification",
+        "createOrEditLabel": "Creeare sau editare Entity Last Modification",
+        "notFound": "No Entity Last Modifications found"
+      },
+      "created": "A fost creată o nouă entitate Entity Last Modification cu identificatorul {{ param }}",
+      "updated": "Entity Last Modification cu identificatorul {{ param }} a fost actualizată",
+      "deleted": "Entity Last Modification cu identificatorul {{ param }} a fost ștearsă",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți Entity Last Modification {{ id }}?"
+      },
+      "detail": {
+        "title": "Entity Last Modification"
+      },
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "astridProject": "Astrid Project"
+    }
+  }
+}

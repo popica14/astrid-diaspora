@@ -1,0 +1,38 @@
+{
+  "projectsOverviewApp": {
+    "astridProject": {
+      "home": {
+        "title": "Astrid Projects",
+        "createLabel": "Creeare o nouă entitate Astrid Project",
+        "createOrEditLabel": "Creeare sau editare Astrid Project",
+        "notFound": "No Astrid Projects found"
+      },
+      "created": "A fost creată o nouă entitate Astrid Project cu identificatorul {{ param }}",
+      "updated": "Astrid Project cu identificatorul {{ param }} a fost actualizată",
+      "deleted": "Astrid Project cu identificatorul {{ param }} a fost ștearsă",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți Astrid Project {{ id }}?"
+      },
+      "detail": {
+        "title": "Astrid Project"
+      },
+      "name": "Name",
+      "shortDescription": "Short Description",
+      "documentation": "Documentation",
+      "neededAmount": "Needed Amount",
+      "currentAmount": "Current Amount",
+      "currency": "Currency",
+      "supporters": "Supporters",
+      "goal": "Goal",
+      "statusReason": "Status Reason",
+      "statusDeadline": "Status Deadline",
+      "entityCreation": "Entity Creation",
+      "entityLastModification": "Entity Last Modification",
+      "responsible": "Responsible",
+      "status": "Status",
+      "location": "Location",
+      "implementationTeam": "Implementation Team",
+      "beneficiaries": "Beneficiaries"
+    }
+  }
+}

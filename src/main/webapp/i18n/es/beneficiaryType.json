@@ -1,0 +1,10 @@
+{
+  "projectsOverviewApp": {
+    "BeneficiaryType": {
+      "null": "",
+      "PRIVATE_PERSON": "PRIVATE_PERSON",
+      "PUBLIC_INSTITUTION": "PUBLIC_INSTITUTION",
+      "PRIVATE_INSTITUTION": "PRIVATE_INSTITUTION"
+    }
+  }
+}

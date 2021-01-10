@@ -1,0 +1,24 @@
+{
+  "projectsOverviewApp": {
+    "entityLastModification": {
+      "home": {
+        "title": "EntityLastModifications",
+        "createLabel": "Egy új Entity Last Modification létrehozása",
+        "createOrEditLabel": "Hozzon létre, vagy módosítson Entity Last Modificationt",
+        "notFound": "No Entity Last Modifications found"
+      },
+      "created": "Egy új Entity Last Modification lett létrehozva {{ param }} azonosítóval",
+      "updated": "A Entity Last Modification módosítva lett {{ param }} azonosítóval",
+      "deleted": "A Entity Last Modification törölve lett {{ param }} azonosítóval",
+      "delete": {
+        "question": "Biztos benne, hogy törölni szeretné az Entity Last Modificationt {{ id }} azonosítóval?"
+      },
+      "detail": {
+        "title": "Entity Last Modification"
+      },
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "astridProject": "Astrid Project"
+    }
+  }
+}

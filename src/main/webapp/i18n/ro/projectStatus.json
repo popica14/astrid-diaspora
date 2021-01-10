@@ -1,0 +1,22 @@
+{
+  "projectsOverviewApp": {
+    "projectStatus": {
+      "home": {
+        "title": "Project Statuses",
+        "createLabel": "Creeare o nouă entitate Project Status",
+        "createOrEditLabel": "Creeare sau editare Project Status",
+        "notFound": "No Project Statuses found"
+      },
+      "created": "A fost creată o nouă entitate Project Status cu identificatorul {{ param }}",
+      "updated": "Project Status cu identificatorul {{ param }} a fost actualizată",
+      "deleted": "Project Status cu identificatorul {{ param }} a fost ștearsă",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți Project Status {{ id }}?"
+      },
+      "detail": {
+        "title": "Project Status"
+      },
+      "name": "Name"
+    }
+  }
+}

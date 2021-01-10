@@ -1,0 +1,22 @@
+{
+  "projectsOverviewApp": {
+    "projectStatus": {
+      "home": {
+        "title": "Project Statuses",
+        "createLabel": "Skapa en ny Project Status",
+        "createOrEditLabel": "Skapa eller ändra en Project Status",
+        "notFound": "No Project Statuses found"
+      },
+      "created": "En ny Project Status är skapad med id {{ param }}",
+      "updated": "En Project Status är uppdaterad med id  {{ param }}",
+      "deleted": "En Project Status är borttagen med id  {{ param }}",
+      "delete": {
+        "question": "Är du säker på att du vill ta bort Project Status {{ id }}?"
+      },
+      "detail": {
+        "title": "Project Status"
+      },
+      "name": "Name"
+    }
+  }
+}

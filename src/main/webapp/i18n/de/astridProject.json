@@ -1,0 +1,38 @@
+{
+  "projectsOverviewApp": {
+    "astridProject": {
+      "home": {
+        "title": "Astrid Projects",
+        "createLabel": "Astrid Project erstellen",
+        "createOrEditLabel": "Astrid Project erstellen oder bearbeiten",
+        "notFound": "No Astrid Projects found"
+      },
+      "created": "Astrid Project erstellt mit ID {{ param }}",
+      "updated": "Astrid Project aktualisiert mit ID {{ param }}",
+      "deleted": "Astrid Project gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Astrid Project {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Astrid Project"
+      },
+      "name": "Name",
+      "shortDescription": "Short Description",
+      "documentation": "Documentation",
+      "neededAmount": "Needed Amount",
+      "currentAmount": "Current Amount",
+      "currency": "Currency",
+      "supporters": "Supporters",
+      "goal": "Goal",
+      "statusReason": "Status Reason",
+      "statusDeadline": "Status Deadline",
+      "entityCreation": "Entity Creation",
+      "entityLastModification": "Entity Last Modification",
+      "responsible": "Responsible",
+      "status": "Status",
+      "location": "Location",
+      "implementationTeam": "Implementation Team",
+      "beneficiaries": "Beneficiaries"
+    }
+  }
+}

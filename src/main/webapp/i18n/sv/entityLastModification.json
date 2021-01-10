@@ -1,0 +1,24 @@
+{
+  "projectsOverviewApp": {
+    "entityLastModification": {
+      "home": {
+        "title": "Entity Last Modifications",
+        "createLabel": "Skapa en ny Entity Last Modification",
+        "createOrEditLabel": "Skapa eller ändra en Entity Last Modification",
+        "notFound": "No Entity Last Modifications found"
+      },
+      "created": "En ny Entity Last Modification är skapad med id {{ param }}",
+      "updated": "En Entity Last Modification är uppdaterad med id  {{ param }}",
+      "deleted": "En Entity Last Modification är borttagen med id  {{ param }}",
+      "delete": {
+        "question": "Är du säker på att du vill ta bort Entity Last Modification {{ id }}?"
+      },
+      "detail": {
+        "title": "Entity Last Modification"
+      },
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "astridProject": "Astrid Project"
+    }
+  }
+}

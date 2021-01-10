@@ -1,0 +1,24 @@
+{
+  "projectsOverviewApp": {
+    "entityCreation": {
+      "home": {
+        "title": "Entity Creations",
+        "createLabel": "Entity Creation erstellen",
+        "createOrEditLabel": "Entity Creation erstellen oder bearbeiten",
+        "notFound": "No Entity Creations found"
+      },
+      "created": "Entity Creation erstellt mit ID {{ param }}",
+      "updated": "Entity Creation aktualisiert mit ID {{ param }}",
+      "deleted": "Entity Creation gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Entity Creation {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Entity Creation"
+      },
+      "created": "Created",
+      "createdBy": "Created By",
+      "astridProject": "Astrid Project"
+    }
+  }
+}

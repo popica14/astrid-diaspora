@@ -1,0 +1,24 @@
+{
+  "projectsOverviewApp": {
+    "entityCreation": {
+      "home": {
+        "title": "Entity Creations",
+        "createLabel": "Creeare o nouă entitate Entity Creation",
+        "createOrEditLabel": "Creeare sau editare Entity Creation",
+        "notFound": "No Entity Creations found"
+      },
+      "created": "A fost creată o nouă entitate Entity Creation cu identificatorul {{ param }}",
+      "updated": "Entity Creation cu identificatorul {{ param }} a fost actualizată",
+      "deleted": "Entity Creation cu identificatorul {{ param }} a fost ștearsă",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți Entity Creation {{ id }}?"
+      },
+      "detail": {
+        "title": "Entity Creation"
+      },
+      "created": "Created",
+      "createdBy": "Created By",
+      "astridProject": "Astrid Project"
+    }
+  }
+}

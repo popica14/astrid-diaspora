@@ -1,0 +1,22 @@
+{
+  "projectsOverviewApp": {
+    "projectStatus": {
+      "home": {
+        "title": "Project Statuses",
+        "createLabel": "Project Status erstellen",
+        "createOrEditLabel": "Project Status erstellen oder bearbeiten",
+        "notFound": "No Project Statuses found"
+      },
+      "created": "Project Status erstellt mit ID {{ param }}",
+      "updated": "Project Status aktualisiert mit ID {{ param }}",
+      "deleted": "Project Status gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Project Status {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Project Status"
+      },
+      "name": "Name"
+    }
+  }
+}

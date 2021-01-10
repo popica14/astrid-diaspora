@@ -1,0 +1,24 @@
+{
+  "projectsOverviewApp": {
+    "entityCreation": {
+      "home": {
+        "title": "EntityCreations",
+        "createLabel": "Créer un nouveau Entity Creation",
+        "createOrEditLabel": "Créer ou éditer un Entity Creation",
+        "notFound": "Aucun Entity Creation trouvé"
+      },
+      "created": "Un nouveau Entity Creation a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Entity Creation avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Entity Creation avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Entity Creation {{ id }} ?"
+      },
+      "detail": {
+        "title": "Entity Creation"
+      },
+      "created": "Created",
+      "createdBy": "Created By",
+      "astridProject": "Astrid Project"
+    }
+  }
+}

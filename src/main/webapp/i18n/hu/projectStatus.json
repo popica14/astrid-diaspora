@@ -1,0 +1,22 @@
+{
+  "projectsOverviewApp": {
+    "projectStatus": {
+      "home": {
+        "title": "ProjectStatuses",
+        "createLabel": "Egy új Project Status létrehozása",
+        "createOrEditLabel": "Hozzon létre, vagy módosítson Project Statust",
+        "notFound": "No Project Statuses found"
+      },
+      "created": "Egy új Project Status lett létrehozva {{ param }} azonosítóval",
+      "updated": "A Project Status módosítva lett {{ param }} azonosítóval",
+      "deleted": "A Project Status törölve lett {{ param }} azonosítóval",
+      "delete": {
+        "question": "Biztos benne, hogy törölni szeretné az Project Statust {{ id }} azonosítóval?"
+      },
+      "detail": {
+        "title": "Project Status"
+      },
+      "name": "Name"
+    }
+  }
+}

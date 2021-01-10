@@ -1,0 +1,27 @@
+{
+  "projectsOverviewApp": {
+    "beneficiary": {
+      "home": {
+        "title": "Beneficiaries",
+        "createLabel": "Creeare o nouă entitate Beneficiary",
+        "createOrEditLabel": "Creeare sau editare Beneficiary",
+        "notFound": "No Beneficiaries found"
+      },
+      "created": "A fost creată o nouă entitate Beneficiary cu identificatorul {{ param }}",
+      "updated": "Beneficiary cu identificatorul {{ param }} a fost actualizată",
+      "deleted": "Beneficiary cu identificatorul {{ param }} a fost ștearsă",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți Beneficiary {{ id }}?"
+      },
+      "detail": {
+        "title": "Beneficiary"
+      },
+      "name": "Name",
+      "type": "Type",
+      "address": "Address",
+      "contact": "Contact",
+      "contactPerson": "Contact Person",
+      "projects": "Projects"
+    }
+  }
+}

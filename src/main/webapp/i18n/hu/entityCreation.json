@@ -1,0 +1,24 @@
+{
+  "projectsOverviewApp": {
+    "entityCreation": {
+      "home": {
+        "title": "EntityCreations",
+        "createLabel": "Egy új Entity Creation létrehozása",
+        "createOrEditLabel": "Hozzon létre, vagy módosítson Entity Creationt",
+        "notFound": "No Entity Creations found"
+      },
+      "created": "Egy új Entity Creation lett létrehozva {{ param }} azonosítóval",
+      "updated": "A Entity Creation módosítva lett {{ param }} azonosítóval",
+      "deleted": "A Entity Creation törölve lett {{ param }} azonosítóval",
+      "delete": {
+        "question": "Biztos benne, hogy törölni szeretné az Entity Creationt {{ id }} azonosítóval?"
+      },
+      "detail": {
+        "title": "Entity Creation"
+      },
+      "created": "Created",
+      "createdBy": "Created By",
+      "astridProject": "Astrid Project"
+    }
+  }
+}
