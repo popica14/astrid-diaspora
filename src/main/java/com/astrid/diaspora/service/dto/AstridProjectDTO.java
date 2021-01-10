@@ -48,6 +48,10 @@ public class AstridProjectDTO implements Serializable {
 
     private String responsibleLogin;
 
+    private Long initiatorId;
+
+    private String initiatorLogin;
+
     private Long statusId;
 
     private String statusName;
@@ -186,6 +190,22 @@ public class AstridProjectDTO implements Serializable {
         this.responsibleLogin = userLogin;
     }
 
+    public Long getInitiatorId() {
+        return initiatorId;
+    }
+
+    public void setInitiatorId(Long userId) {
+        this.initiatorId = userId;
+    }
+
+    public String getInitiatorLogin() {
+        return initiatorLogin;
+    }
+
+    public void setInitiatorLogin(String userLogin) {
+        this.initiatorLogin = userLogin;
+    }
+
     public Long getStatusId() {
         return statusId;
     }
@@ -270,6 +290,8 @@ public class AstridProjectDTO implements Serializable {
             ", entityLastModificationId=" + getEntityLastModificationId() +
             ", responsibleId=" + getResponsibleId() +
             ", responsibleLogin='" + getResponsibleLogin() + "'" +
+            ", initiatorId=" + getInitiatorId() +
+            ", initiatorLogin='" + getInitiatorLogin() + "'" +
             ", statusId=" + getStatusId() +
             ", statusName='" + getStatusName() + "'" +
             ", locationId=" + getLocationId() +

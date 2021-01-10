@@ -26,6 +26,12 @@
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
 
+        <addForeignKeyConstraint baseColumnNames="initiator_id"
+                                 baseTableName="astrid_project"
+                                 constraintName="fk_astrid_project_initiator_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
         <addForeignKeyConstraint baseColumnNames="status_id"
                                  baseTableName="astrid_project"
                                  constraintName="fk_astrid_project_status_id"

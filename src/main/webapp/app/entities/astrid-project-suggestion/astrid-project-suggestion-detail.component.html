@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="astridProjectSuggestion">
+            <h2><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.detail.title">Astrid Project Suggestion</span> {{ astridProjectSuggestion.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.name">Name</span></dt>
+                <dd>
+                    <span>{{ astridProjectSuggestion.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.shortDescription">Short Description</span></dt>
+                <dd>
+                    <span>{{ astridProjectSuggestion.shortDescription }}</span>
+                </dd>
+                <dt><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation">Documentation</span></dt>
+                <dd>
+                    <div *ngIf="astridProjectSuggestion.documentation">
+                        <a (click)="openFile(astridProjectSuggestion.documentationContentType, astridProjectSuggestion.documentation)" jhiTranslate="entity.action.open">open</a>
+                        {{ astridProjectSuggestion.documentationContentType }}, {{ byteSize(astridProjectSuggestion.documentation) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.goal">Goal</span></dt>
+                <dd>
+                    <span>{{ astridProjectSuggestion.goal }}</span>
+                </dd>
+                <dt><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.initiator">Initiator</span></dt>
+                <dd>
+                    {{ astridProjectSuggestion.initiatorLogin }}
+                </dd>
+                <dt><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.status">Status</span></dt>
+                <dd>
+                    <div *ngIf="astridProjectSuggestion.statusId">
+                        <a [routerLink]="['/project-status', astridProjectSuggestion.statusId, 'view']">{{ astridProjectSuggestion.statusName }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/astrid-project-suggestion', astridProjectSuggestion.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

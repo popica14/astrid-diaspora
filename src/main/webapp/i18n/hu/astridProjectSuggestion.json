@@ -1,0 +1,27 @@
+{
+  "projectsOverviewApp": {
+    "astridProjectSuggestion": {
+      "home": {
+        "title": "AstridProjectSuggestions",
+        "createLabel": "Egy új Astrid Project Suggestion létrehozása",
+        "createOrEditLabel": "Hozzon létre, vagy módosítson Astrid Project Suggestiont",
+        "notFound": "No Astrid Project Suggestions found"
+      },
+      "created": "Egy új Astrid Project Suggestion lett létrehozva {{ param }} azonosítóval",
+      "updated": "A Astrid Project Suggestion módosítva lett {{ param }} azonosítóval",
+      "deleted": "A Astrid Project Suggestion törölve lett {{ param }} azonosítóval",
+      "delete": {
+        "question": "Biztos benne, hogy törölni szeretné az Astrid Project Suggestiont {{ id }} azonosítóval?"
+      },
+      "detail": {
+        "title": "Astrid Project Suggestion"
+      },
+      "name": "Name",
+      "shortDescription": "Short Description",
+      "documentation": "Documentation",
+      "goal": "Goal",
+      "initiator": "Initiator",
+      "status": "Status"
+    }
+  }
+}

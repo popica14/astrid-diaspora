@@ -126,6 +126,8 @@ public class AstridProjectResourceIT {
         em.persist(user);
         em.flush();
         astridProject.setResponsible(user);
+        // Add required entity
+        astridProject.setInitiator(user);
         return astridProject;
     }
     /**
@@ -152,6 +154,8 @@ public class AstridProjectResourceIT {
         em.persist(user);
         em.flush();
         astridProject.setResponsible(user);
+        // Add required entity
+        astridProject.setInitiator(user);
         return astridProject;
     }
 

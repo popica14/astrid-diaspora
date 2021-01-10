@@ -1,0 +1,27 @@
+{
+  "projectsOverviewApp": {
+    "astridProjectSuggestion": {
+      "home": {
+        "title": "Astrid Project Suggestions",
+        "createLabel": "Astrid Project Suggestion erstellen",
+        "createOrEditLabel": "Astrid Project Suggestion erstellen oder bearbeiten",
+        "notFound": "No Astrid Project Suggestions found"
+      },
+      "created": "Astrid Project Suggestion erstellt mit ID {{ param }}",
+      "updated": "Astrid Project Suggestion aktualisiert mit ID {{ param }}",
+      "deleted": "Astrid Project Suggestion gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Astrid Project Suggestion {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Astrid Project Suggestion"
+      },
+      "name": "Name",
+      "shortDescription": "Short Description",
+      "documentation": "Documentation",
+      "goal": "Goal",
+      "initiator": "Initiator",
+      "status": "Status"
+    }
+  }
+}

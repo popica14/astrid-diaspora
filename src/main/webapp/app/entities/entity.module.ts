@@ -29,6 +29,11 @@ import { RouterModule } from '@angular/router';
         loadChildren: () =>
           import('./entity-last-modification/entity-last-modification.module').then(m => m.ProjectsOverviewEntityLastModificationModule),
       },
+      {
+        path: 'astrid-project-suggestion',
+        loadChildren: () =>
+          import('./astrid-project-suggestion/astrid-project-suggestion.module').then(m => m.ProjectsOverviewAstridProjectSuggestionModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

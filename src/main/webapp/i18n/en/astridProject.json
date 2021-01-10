@@ -29,6 +29,7 @@
       "entityCreation": "Entity Creation",
       "entityLastModification": "Entity Last Modification",
       "responsible": "Responsible",
+      "initiator": "Initiator",
       "status": "Status",
       "location": "Location",
       "implementationTeam": "Implementation Team",

@@ -1,0 +1,80 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.home.title">Astrid Project Suggestions</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-astrid-project-suggestion" [routerLink]="['/astrid-project-suggestion/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="projectsOverviewApp.astridProjectSuggestion.home.createLabel">
+            Create a new Astrid Project Suggestion
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="astridProjectSuggestions?.length === 0">
+        <span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.home.notFound">No astridProjectSuggestions found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="astridProjectSuggestions && astridProjectSuggestions.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.name">Name</span></th>
+                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.shortDescription">Short Description</span></th>
+                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation">Documentation</span></th>
+                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.goal">Goal</span></th>
+                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.initiator">Initiator</span></th>
+                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.status">Status</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let astridProjectSuggestion of astridProjectSuggestions ;trackBy: trackId">
+                    <td><a [routerLink]="['/astrid-project-suggestion', astridProjectSuggestion.id, 'view']">{{ astridProjectSuggestion.id }}</a></td>
+                    <td>{{ astridProjectSuggestion.name }}</td>
+                    <td>{{ astridProjectSuggestion.shortDescription }}</td>
+                    <td>
+                        <a *ngIf="astridProjectSuggestion.documentation" (click)="openFile(astridProjectSuggestion.documentationContentType, astridProjectSuggestion.documentation)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="astridProjectSuggestion.documentation">{{ astridProjectSuggestion.documentationContentType }}, {{ byteSize(astridProjectSuggestion.documentation) }}</span>
+                    </td>
+                    <td>{{ astridProjectSuggestion.goal }}</td>
+                    <td>
+                        {{ astridProjectSuggestion.initiatorLogin }}
+                    </td>
+                    <td>
+                        <div *ngIf="astridProjectSuggestion.statusId">
+                            <a [routerLink]="['/project-status', astridProjectSuggestion.statusId , 'view']" >{{ astridProjectSuggestion.statusName }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/astrid-project-suggestion', astridProjectSuggestion.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/astrid-project-suggestion', astridProjectSuggestion.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(astridProjectSuggestion)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

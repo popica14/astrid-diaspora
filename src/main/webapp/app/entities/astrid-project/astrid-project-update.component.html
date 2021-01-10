@@ -128,6 +128,20 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.initiator" for="field_initiator">Initiator</label>
+                    <select class="form-control" id="field_initiator" name="initiator" formControlName="initiatorId">
+                        <option *ngIf="!editForm.get('initiatorId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('initiatorId')!.invalid && (editForm.get('initiatorId')!.dirty || editForm.get('initiatorId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('initiatorId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.status" for="field_status">Status</label>
                     <select class="form-control" id="field_status" name="status" formControlName="statusId">
                         <option [ngValue]="null"></option>

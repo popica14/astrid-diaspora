@@ -67,6 +67,10 @@
                 <dd>
                     {{ astridProject.responsibleLogin }}
                 </dd>
+                <dt><span jhiTranslate="projectsOverviewApp.astridProject.initiator">Initiator</span></dt>
+                <dd>
+                    {{ astridProject.initiatorLogin }}
+                </dd>
                 <dt><span jhiTranslate="projectsOverviewApp.astridProject.status">Status</span></dt>
                 <dd>
                     <div *ngIf="astridProject.statusId">

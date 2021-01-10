@@ -73,6 +73,14 @@
     },
     {
       "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "astridProject",
+      "relationshipValidateRules": "required",
+      "relationshipName": "initiator",
+      "otherEntityField": "login"
+    },
+    {
+      "relationshipType": "many-to-one",
       "otherEntityName": "projectStatus",
       "otherEntityRelationshipName": "astridProject",
       "relationshipName": "status",

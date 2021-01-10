@@ -36,6 +36,7 @@
                     <th scope="col"  jhiSortBy="entityCreationId"><span jhiTranslate="projectsOverviewApp.astridProject.entityCreation">Entity Creation</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="entityLastModificationId"><span jhiTranslate="projectsOverviewApp.astridProject.entityLastModification">Entity Last Modification</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="responsibleLogin"><span jhiTranslate="projectsOverviewApp.astridProject.responsible">Responsible</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="initiatorLogin"><span jhiTranslate="projectsOverviewApp.astridProject.initiator">Initiator</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="statusName"><span jhiTranslate="projectsOverviewApp.astridProject.status">Status</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="locationName"><span jhiTranslate="projectsOverviewApp.astridProject.location">Location</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
@@ -69,6 +70,9 @@
                     </td>
                     <td>
                         {{ astridProject.responsibleLogin }}
+                    </td>
+                    <td>
+                        {{ astridProject.initiatorLogin }}
                     </td>
                     <td>
                         <div *ngIf="astridProject.statusId">

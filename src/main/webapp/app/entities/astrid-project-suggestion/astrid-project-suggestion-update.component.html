@@ -1,0 +1,97 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-astrid-project-suggestion-heading" jhiTranslate="projectsOverviewApp.astridProjectSuggestion.home.createOrEditLabel">Create or edit a Astrid Project Suggestion</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProjectSuggestion.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                    <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProjectSuggestion.shortDescription" for="field_shortDescription">Short Description</label>
+                    <textarea class="form-control" name="shortDescription" id="field_shortDescription"
+                              formControlName="shortDescription"></textarea>
+                    <div *ngIf="editForm.get('shortDescription')!.invalid && (editForm.get('shortDescription')!.dirty || editForm.get('shortDescription')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('shortDescription')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation" for="field_documentation">Documentation</label>
+                    <div>
+                        <div *ngIf="editForm.get('documentation')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('documentationContentType')!.value, editForm.get('documentation')!.value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{ editForm.get('documentationContentType')!.value }}, {{ byteSize(editForm.get('documentation')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({documentation: null});editForm.patchValue({documentationContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_documentation" (change)="setFileData($event, 'documentation', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="documentation" id="field_documentation"
+                           formControlName="documentation"/>
+                    <input type="hidden" class="form-control" name="documentationContentType" id="field_documentationContentType"
+                           formControlName="documentationContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProjectSuggestion.goal" for="field_goal">Goal</label>
+                    <input type="text" class="form-control" name="goal" id="field_goal"
+                           formControlName="goal"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProjectSuggestion.initiator" for="field_initiator">Initiator</label>
+                    <select class="form-control" id="field_initiator" name="initiator" formControlName="initiatorId">
+                        <option *ngIf="!editForm.get('initiatorId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('initiatorId')!.invalid && (editForm.get('initiatorId')!.dirty || editForm.get('initiatorId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('initiatorId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProjectSuggestion.status" for="field_status">Status</label>
+                    <select class="form-control" id="field_status" name="status" formControlName="statusId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="projectStatusOption.id" *ngFor="let projectStatusOption of projectstatuses; trackBy: trackById">{{ projectStatusOption.name }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

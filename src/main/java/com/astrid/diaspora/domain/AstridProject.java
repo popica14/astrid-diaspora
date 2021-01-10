@@ -73,6 +73,11 @@ public class AstridProject implements Serializable {
     @JsonIgnoreProperties(value = "astridProjects", allowSetters = true)
     private User responsible;
 
+    @ManyToOne(optional = false)
+    @NotNull
+    @JsonIgnoreProperties(value = "astridProjects", allowSetters = true)
+    private User initiator;
+
     @ManyToOne
     @JsonIgnoreProperties(value = "astridProjects", allowSetters = true)
     private ProjectStatus status;
@@ -282,6 +287,19 @@ public class AstridProject implements Serializable {
 
     public void setResponsible(User user) {
         this.responsible = user;
+    }
+
+    public User getInitiator() {
+        return initiator;
+    }
+
+    public AstridProject initiator(User user) {
+        this.initiator = user;
+        return this;
+    }
+
+    public void setInitiator(User user) {
+        this.initiator = user;
     }
 
     public ProjectStatus getStatus() {

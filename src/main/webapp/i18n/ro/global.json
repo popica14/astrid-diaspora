@@ -16,6 +16,7 @@
         "projectStatus": "Project Status",
         "entityCreation": "Entity Creation",
         "entityLastModification": "Entity Last Modification",
+        "astridProjectSuggestion": "Astrid Project Suggestion",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

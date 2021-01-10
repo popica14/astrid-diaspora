@@ -1,0 +1,27 @@
+{
+  "projectsOverviewApp": {
+    "astridProjectSuggestion": {
+      "home": {
+        "title": "Astrid Project Suggestions",
+        "createLabel": "Creeare o nouă entitate Astrid Project Suggestion",
+        "createOrEditLabel": "Creeare sau editare Astrid Project Suggestion",
+        "notFound": "No Astrid Project Suggestions found"
+      },
+      "created": "A fost creată o nouă entitate Astrid Project Suggestion cu identificatorul {{ param }}",
+      "updated": "Astrid Project Suggestion cu identificatorul {{ param }} a fost actualizată",
+      "deleted": "Astrid Project Suggestion cu identificatorul {{ param }} a fost ștearsă",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți Astrid Project Suggestion {{ id }}?"
+      },
+      "detail": {
+        "title": "Astrid Project Suggestion"
+      },
+      "name": "Name",
+      "shortDescription": "Short Description",
+      "documentation": "Documentation",
+      "goal": "Goal",
+      "initiator": "Initiator",
+      "status": "Status"
+    }
+  }
+}

@@ -58,6 +58,9 @@
             <column name="responsible_id" type="bigint">
                 <constraints nullable="false" />
             </column>
+            <column name="initiator_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
             <column name="status_id" type="bigint">
                 <constraints nullable="true" />
             </column>
@@ -122,6 +125,7 @@
             <column name="status_reason" type="string"/>
             <column name="status_deadline" type="datetime"/>
             <column name="responsible_id" type="numeric"/>
+            <column name="initiator_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

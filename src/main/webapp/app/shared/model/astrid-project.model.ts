@@ -19,6 +19,8 @@ export interface IAstridProject {
   entityLastModificationId?: number;
   responsibleLogin?: string;
   responsibleId?: number;
+  initiatorLogin?: string;
+  initiatorId?: number;
   statusName?: string;
   statusId?: number;
   locationName?: string;
@@ -45,6 +47,8 @@ export class AstridProject implements IAstridProject {
     public entityLastModificationId?: number,
     public responsibleLogin?: string,
     public responsibleId?: number,
+    public initiatorLogin?: string,
+    public initiatorId?: number,
     public statusName?: string,
     public statusId?: number,
     public locationName?: string,
