@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
@@ -24,7 +25,8 @@ public class EntityLastModification implements Serializable {
     @Column(name = "last_modified")
     private ZonedDateTime lastModified;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties(value = "entityLastModifications", allowSetters = true)
     private User lastModifiedBy;
 

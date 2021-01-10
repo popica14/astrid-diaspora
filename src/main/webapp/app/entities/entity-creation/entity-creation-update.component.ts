@@ -22,8 +22,8 @@ export class EntityCreationUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    created: [],
-    createdById: [],
+    created: [null, [Validators.required]],
+    createdById: [null, Validators.required],
   });
 
   constructor(

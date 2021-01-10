@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -45,7 +46,7 @@ public class ProjectStatusResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/project-statuses")
-    public ResponseEntity<ProjectStatusDTO> createProjectStatus(@RequestBody ProjectStatusDTO projectStatusDTO) throws URISyntaxException {
+    public ResponseEntity<ProjectStatusDTO> createProjectStatus(@Valid @RequestBody ProjectStatusDTO projectStatusDTO) throws URISyntaxException {
         log.debug("REST request to save ProjectStatus : {}", projectStatusDTO);
         if (projectStatusDTO.getId() != null) {
             throw new BadRequestAlertException("A new projectStatus cannot already have an ID", ENTITY_NAME, "idexists");
@@ -66,7 +67,7 @@ public class ProjectStatusResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/project-statuses")
-    public ResponseEntity<ProjectStatusDTO> updateProjectStatus(@RequestBody ProjectStatusDTO projectStatusDTO) throws URISyntaxException {
+    public ResponseEntity<ProjectStatusDTO> updateProjectStatus(@Valid @RequestBody ProjectStatusDTO projectStatusDTO) throws URISyntaxException {
         log.debug("REST request to update ProjectStatus : {}", projectStatusDTO);
         if (projectStatusDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

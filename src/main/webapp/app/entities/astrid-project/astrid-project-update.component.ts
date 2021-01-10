@@ -44,8 +44,8 @@ export class AstridProjectUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    name: [],
-    shortDescription: [],
+    name: [null, [Validators.required]],
+    shortDescription: [null, [Validators.required]],
     documentation: [],
     documentationContentType: [],
     neededAmount: [],
@@ -57,7 +57,7 @@ export class AstridProjectUpdateComponent implements OnInit {
     statusDeadline: [],
     entityCreationId: [],
     entityLastModificationId: [],
-    responsibleId: [],
+    responsibleId: [null, Validators.required],
     statusId: [],
     locationId: [],
     implementationTeams: [],

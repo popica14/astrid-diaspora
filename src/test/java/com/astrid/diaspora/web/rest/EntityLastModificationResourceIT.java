@@ -2,6 +2,7 @@ package com.astrid.diaspora.web.rest;
 
 import com.astrid.diaspora.ProjectsOverviewApp;
 import com.astrid.diaspora.domain.EntityLastModification;
+import com.astrid.diaspora.domain.User;
 import com.astrid.diaspora.repository.EntityLastModificationRepository;
 import com.astrid.diaspora.service.EntityLastModificationService;
 import com.astrid.diaspora.service.dto.EntityLastModificationDTO;
@@ -66,6 +67,11 @@ public class EntityLastModificationResourceIT {
     public static EntityLastModification createEntity(EntityManager em) {
         EntityLastModification entityLastModification = new EntityLastModification()
             .lastModified(DEFAULT_LAST_MODIFIED);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        entityLastModification.setLastModifiedBy(user);
         return entityLastModification;
     }
     /**
@@ -77,6 +83,11 @@ public class EntityLastModificationResourceIT {
     public static EntityLastModification createUpdatedEntity(EntityManager em) {
         EntityLastModification entityLastModification = new EntityLastModification()
             .lastModified(UPDATED_LAST_MODIFIED);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        entityLastModification.setLastModifiedBy(user);
         return entityLastModification;
     }
 

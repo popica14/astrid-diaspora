@@ -2,6 +2,7 @@ package com.astrid.diaspora.domain;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 
@@ -18,10 +19,12 @@ public class Location implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @NotNull
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "county")
+    @NotNull
+    @Column(name = "county", nullable = false)
     private String county;
 
     @Column(name = "address")

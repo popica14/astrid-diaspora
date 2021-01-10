@@ -1,11 +1,11 @@
-id;name;type;address;contact
-1;Assistant;PRIVATE_INSTITUTION;Compatible pixel;Ergonomic Soft Computer wireless
-2;Ball Reduced;PUBLIC_INSTITUTION;SCSI bi-directional;payment invoice Danish Krone
-3;Buckinghamshire;PRIVATE_INSTITUTION;solution synergistic Liaison;Customizable
-4;Legacy;PRIVATE_INSTITUTION;grow;killer hard drive Sausages
-5;Passage Borders;PRIVATE_PERSON;Savings Account XSS;Data Soft matrix
-6;pink alarm;PRIVATE_PERSON;Tasty vertical input;Cambridgeshire
-7;Connecticut synthesizing Auto Loan Account;PRIVATE_PERSON;utilisation Equatorial Guinea Principal;invoice FTP
-8;International;PRIVATE_PERSON;Toys Handcrafted Plastic Salad;sticky blue Movies
-9;Sausages;PRIVATE_INSTITUTION;Russian Ruble;Human Avon Wyoming
-10;Beauty;PUBLIC_INSTITUTION;Solutions cultivate;invoice Cambridgeshire quantifying
+id;name;type;address;contact;contact_person_id
+1;Assistant;PRIVATE_INSTITUTION;Compatible pixel;Ergonomic Soft Computer wireless;1
+2;content-based;PRIVATE_INSTITUTION;Utah SQL;Zloty;2
+3;SMTP orange;PRIVATE_PERSON;mint green;National copying matrix;1
+4;Customizable;PRIVATE_PERSON;visualize;grow;2
+5;models China;PUBLIC_INSTITUTION;Latvian Lats;override Borders Fresh;2
+6;Data Soft matrix;PRIVATE_INSTITUTION;Savings Account driver;standardization Tasty;1
+7;input;PRIVATE_INSTITUTION;Fresh multi-byte;olive Guyana Dollar copy;2
+8;upward-trending Coordinator;PRIVATE_INSTITUTION;Dynamic Uganda parse;Awesome Toys Handcrafted Plastic Salad;2
+9;mint green Small;PRIVATE_INSTITUTION;interface Turkish Lira Shoes;Metal Rand Human;1
+10;Wyoming;PRIVATE_INSTITUTION;Functionality;parallelism Mews Solutions;1

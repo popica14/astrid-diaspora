@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -46,7 +47,7 @@ public class EntityLastModificationResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/entity-last-modifications")
-    public ResponseEntity<EntityLastModificationDTO> createEntityLastModification(@RequestBody EntityLastModificationDTO entityLastModificationDTO) throws URISyntaxException {
+    public ResponseEntity<EntityLastModificationDTO> createEntityLastModification(@Valid @RequestBody EntityLastModificationDTO entityLastModificationDTO) throws URISyntaxException {
         log.debug("REST request to save EntityLastModification : {}", entityLastModificationDTO);
         if (entityLastModificationDTO.getId() != null) {
             throw new BadRequestAlertException("A new entityLastModification cannot already have an ID", ENTITY_NAME, "idexists");
@@ -67,7 +68,7 @@ public class EntityLastModificationResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/entity-last-modifications")
-    public ResponseEntity<EntityLastModificationDTO> updateEntityLastModification(@RequestBody EntityLastModificationDTO entityLastModificationDTO) throws URISyntaxException {
+    public ResponseEntity<EntityLastModificationDTO> updateEntityLastModification(@Valid @RequestBody EntityLastModificationDTO entityLastModificationDTO) throws URISyntaxException {
         log.debug("REST request to update EntityLastModification : {}", entityLastModificationDTO);
         if (entityLastModificationDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

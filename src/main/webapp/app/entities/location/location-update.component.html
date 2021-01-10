@@ -15,12 +15,24 @@
                     <label class="form-control-label" jhiTranslate="projectsOverviewApp.location.name" for="field_name">Name</label>
                     <input type="text" class="form-control" name="name" id="field_name"
                            formControlName="name"/>
+                    <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="projectsOverviewApp.location.county" for="field_county">County</label>
                     <input type="text" class="form-control" name="county" id="field_county"
                            formControlName="county"/>
+                    <div *ngIf="editForm.get('county')!.invalid && (editForm.get('county')!.dirty || editForm.get('county')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('county')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
                 </div>
 
                 <div class="form-group">

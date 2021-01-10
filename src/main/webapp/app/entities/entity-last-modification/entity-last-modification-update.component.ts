@@ -23,7 +23,7 @@ export class EntityLastModificationUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     lastModified: [],
-    lastModifiedById: [],
+    lastModifiedById: [null, Validators.required],
   });
 
   constructor(

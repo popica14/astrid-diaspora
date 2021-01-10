@@ -1,6 +1,7 @@
 package com.astrid.diaspora.service.dto;
 
 import java.time.ZonedDateTime;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,8 +14,10 @@ public class AstridProjectDTO implements Serializable {
     
     private Long id;
 
+    @NotNull
     private String name;
 
+    
     @Lob
     private String shortDescription;
 

@@ -1,5 +1,6 @@
 package com.astrid.diaspora.service.dto;
 
+import javax.validation.constraints.*;
 import java.io.Serializable;
 
 /**
@@ -9,6 +10,7 @@ public class ProjectStatusDTO implements Serializable {
     
     private Long id;
 
+    @NotNull
     private String name;
 
     

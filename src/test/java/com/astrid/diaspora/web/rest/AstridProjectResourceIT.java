@@ -2,6 +2,7 @@ package com.astrid.diaspora.web.rest;
 
 import com.astrid.diaspora.ProjectsOverviewApp;
 import com.astrid.diaspora.domain.AstridProject;
+import com.astrid.diaspora.domain.User;
 import com.astrid.diaspora.repository.AstridProjectRepository;
 import com.astrid.diaspora.service.AstridProjectService;
 import com.astrid.diaspora.service.dto.AstridProjectDTO;
@@ -120,6 +121,11 @@ public class AstridProjectResourceIT {
             .goal(DEFAULT_GOAL)
             .statusReason(DEFAULT_STATUS_REASON)
             .statusDeadline(DEFAULT_STATUS_DEADLINE);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        astridProject.setResponsible(user);
         return astridProject;
     }
     /**
@@ -141,6 +147,11 @@ public class AstridProjectResourceIT {
             .goal(UPDATED_GOAL)
             .statusReason(UPDATED_STATUS_REASON)
             .statusDeadline(UPDATED_STATUS_DEADLINE);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        astridProject.setResponsible(user);
         return astridProject;
     }
 
@@ -197,6 +208,26 @@ public class AstridProjectResourceIT {
         assertThat(astridProjectList).hasSize(databaseSizeBeforeCreate);
     }
 
+
+    @Test
+    @Transactional
+    public void checkNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = astridProjectRepository.findAll().size();
+        // set the field null
+        astridProject.setName(null);
+
+        // Create the AstridProject, which fails.
+        AstridProjectDTO astridProjectDTO = astridProjectMapper.toDto(astridProject);
+
+
+        restAstridProjectMockMvc.perform(post("/api/astrid-projects")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(astridProjectDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<AstridProject> astridProjectList = astridProjectRepository.findAll();
+        assertThat(astridProjectList).hasSize(databaseSizeBeforeTest);
+    }
 
     @Test
     @Transactional

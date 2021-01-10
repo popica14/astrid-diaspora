@@ -3,6 +3,7 @@ package com.astrid.diaspora.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
@@ -22,11 +23,13 @@ public class AstridProject implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @NotNull
+    @Column(name = "name", nullable = false)
     private String name;
 
+    
     @Lob
-    @Column(name = "short_description")
+    @Column(name = "short_description", nullable = false)
     private String shortDescription;
 
     @Lob
@@ -65,7 +68,8 @@ public class AstridProject implements Serializable {
     @JoinColumn(unique = true)
     private EntityLastModification entityLastModification;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties(value = "astridProjects", allowSetters = true)
     private User responsible;
 

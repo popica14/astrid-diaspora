@@ -1,5 +1,6 @@
 package com.astrid.diaspora.service.dto;
 
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import com.astrid.diaspora.domain.enumeration.BeneficiaryType;
 
@@ -10,8 +11,10 @@ public class BeneficiaryDTO implements Serializable {
     
     private Long id;
 
+    @NotNull
     private String name;
 
+    @NotNull
     private BeneficiaryType type;
 
     private String address;

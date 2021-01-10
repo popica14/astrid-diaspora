@@ -3,12 +3,14 @@
   "fields": [
     {
       "fieldName": "name",
-      "fieldType": "String"
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "type",
       "fieldType": "BeneficiaryType",
-      "fieldValues": "PRIVATE_PERSON,PUBLIC_INSTITUTION,PRIVATE_INSTITUTION"
+      "fieldValues": "PRIVATE_PERSON,PUBLIC_INSTITUTION,PRIVATE_INSTITUTION",
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "address",
@@ -24,6 +26,7 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "user",
       "otherEntityRelationshipName": "beneficiary",
+      "relationshipValidateRules": "required",
       "relationshipName": "contactPerson",
       "otherEntityField": "login"
     },

@@ -1,6 +1,7 @@
 package com.astrid.diaspora.service.dto;
 
 import java.time.ZonedDateTime;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 
 /**

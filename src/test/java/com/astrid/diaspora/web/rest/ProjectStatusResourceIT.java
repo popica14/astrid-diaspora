@@ -121,6 +121,26 @@ public class ProjectStatusResourceIT {
 
     @Test
     @Transactional
+    public void checkNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = projectStatusRepository.findAll().size();
+        // set the field null
+        projectStatus.setName(null);
+
+        // Create the ProjectStatus, which fails.
+        ProjectStatusDTO projectStatusDTO = projectStatusMapper.toDto(projectStatus);
+
+
+        restProjectStatusMockMvc.perform(post("/api/project-statuses")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(projectStatusDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<ProjectStatus> projectStatusList = projectStatusRepository.findAll();
+        assertThat(projectStatusList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllProjectStatuses() throws Exception {
         // Initialize the database
         projectStatusRepository.saveAndFlush(projectStatus);

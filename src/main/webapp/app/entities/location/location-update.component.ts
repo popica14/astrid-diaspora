@@ -17,8 +17,8 @@ export class LocationUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    name: [],
-    county: [],
+    name: [null, [Validators.required]],
+    county: [null, [Validators.required]],
     address: [],
   });
 

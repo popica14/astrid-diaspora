@@ -1,5 +1,6 @@
 package com.astrid.diaspora.service.dto;
 
+import javax.validation.constraints.*;
 import java.io.Serializable;
 
 /**
@@ -9,8 +10,10 @@ public class LocationDTO implements Serializable {
     
     private Long id;
 
+    @NotNull
     private String name;
 
+    @NotNull
     private String county;
 
     private String address;

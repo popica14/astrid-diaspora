@@ -16,14 +16,30 @@
                     <div class="d-flex">
                         <input id="field_created" type="datetime-local" class="form-control" name="created" formControlName="created" placeholder="YYYY-MM-DD HH:mm"/>
                     </div>
+                    <div *ngIf="editForm.get('created')!.invalid && (editForm.get('created')!.dirty || editForm.get('created')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('created')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('created')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="projectsOverviewApp.entityCreation.createdBy" for="field_createdBy">Created By</label>
                     <select class="form-control" id="field_createdBy" name="createdBy" formControlName="createdById">
-                        <option [ngValue]="null"></option>
+                        <option *ngIf="!editForm.get('createdById')!.value" [ngValue]="null" selected></option>
                         <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
                     </select>
+                </div>
+                <div *ngIf="editForm.get('createdById')!.invalid && (editForm.get('createdById')!.dirty || editForm.get('createdById')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('createdById')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
                 </div>
             </div>
 

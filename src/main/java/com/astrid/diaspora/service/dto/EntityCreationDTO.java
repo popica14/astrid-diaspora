@@ -1,6 +1,7 @@
 package com.astrid.diaspora.service.dto;
 
 import java.time.ZonedDateTime;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 
 /**
@@ -10,6 +11,7 @@ public class EntityCreationDTO implements Serializable {
     
     private Long id;
 
+    @NotNull
     private ZonedDateTime created;
 
 

@@ -15,6 +15,12 @@
                     <label class="form-control-label" jhiTranslate="projectsOverviewApp.beneficiary.name" for="field_name">Name</label>
                     <input type="text" class="form-control" name="name" id="field_name"
                            formControlName="name"/>
+                    <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -24,6 +30,12 @@
                         <option value="PUBLIC_INSTITUTION">{{ 'projectsOverviewApp.BeneficiaryType.PUBLIC_INSTITUTION' | translate }}</option>
                         <option value="PRIVATE_INSTITUTION">{{ 'projectsOverviewApp.BeneficiaryType.PRIVATE_INSTITUTION' | translate }}</option>
                     </select>
+                    <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('type')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -41,9 +53,15 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="projectsOverviewApp.beneficiary.contactPerson" for="field_contactPerson">Contact Person</label>
                     <select class="form-control" id="field_contactPerson" name="contactPerson" formControlName="contactPersonId">
-                        <option [ngValue]="null"></option>
+                        <option *ngIf="!editForm.get('contactPersonId')!.value" [ngValue]="null" selected></option>
                         <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
                     </select>
+                </div>
+                <div *ngIf="editForm.get('contactPersonId')!.invalid && (editForm.get('contactPersonId')!.dirty || editForm.get('contactPersonId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('contactPersonId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
                 </div>
             </div>
 

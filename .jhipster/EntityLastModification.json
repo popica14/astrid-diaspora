@@ -11,6 +11,7 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "user",
       "otherEntityRelationshipName": "entityLastModification",
+      "relationshipValidateRules": "required",
       "relationshipName": "lastModifiedBy",
       "otherEntityField": "login"
     },

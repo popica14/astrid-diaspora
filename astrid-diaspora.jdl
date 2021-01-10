@@ -1,6 +1,6 @@
 entity AstridProject{
-	name String
-    shortDescription TextBlob
+	name String required
+    shortDescription TextBlob required
     documentation AnyBlob
     neededAmount String
     currentAmount String
@@ -14,15 +14,15 @@ entity AstridProject{
 
 
 entity Beneficiary{
-	name String
-    type BeneficiaryType
+	name String required
+    type BeneficiaryType required
     address String
     contact String
 }
 
 entity Location{
-	name String
-    county String
+	name String required
+    county String required
     address String
 }
 
@@ -31,11 +31,11 @@ enum BeneficiaryType{
 }
 
 entity ProjectStatus{
-	name String
+	name String required
 }
 
 entity EntityCreation{
-	created ZonedDateTime
+	created ZonedDateTime required
 }
 
 entity EntityLastModification{
@@ -43,12 +43,12 @@ entity EntityLastModification{
 }
 
 relationship ManyToOne {
-	AstridProject{responsible(login)} to User
+	AstridProject{responsible(login) required} to User 
 	AstridProject{status(name)} to ProjectStatus
-	Beneficiary{contactPerson(login)} to User
+	Beneficiary{contactPerson(login) required} to User
 	AstridProject{location(name)} to Location
-	EntityLastModification{lastModifiedBy(login)} to User
-	EntityCreation{createdBy(login)} to User
+	EntityLastModification{lastModifiedBy(login) required} to User
+	EntityCreation{createdBy(login) required} to User
 }
 
 /**

@@ -17,7 +17,7 @@ export class ProjectStatusUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    name: [],
+    name: [null, [Validators.required]],
   });
 
   constructor(protected projectStatusService: ProjectStatusService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}

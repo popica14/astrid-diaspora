@@ -2,6 +2,7 @@ package com.astrid.diaspora.domain;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 
@@ -18,7 +19,8 @@ public class ProjectStatus implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @NotNull
+    @Column(name = "name", nullable = false)
     private String name;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

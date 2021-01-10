@@ -2,6 +2,7 @@ package com.astrid.diaspora.web.rest;
 
 import com.astrid.diaspora.ProjectsOverviewApp;
 import com.astrid.diaspora.domain.EntityCreation;
+import com.astrid.diaspora.domain.User;
 import com.astrid.diaspora.repository.EntityCreationRepository;
 import com.astrid.diaspora.service.EntityCreationService;
 import com.astrid.diaspora.service.dto.EntityCreationDTO;
@@ -66,6 +67,11 @@ public class EntityCreationResourceIT {
     public static EntityCreation createEntity(EntityManager em) {
         EntityCreation entityCreation = new EntityCreation()
             .created(DEFAULT_CREATED);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        entityCreation.setCreatedBy(user);
         return entityCreation;
     }
     /**
@@ -77,6 +83,11 @@ public class EntityCreationResourceIT {
     public static EntityCreation createUpdatedEntity(EntityManager em) {
         EntityCreation entityCreation = new EntityCreation()
             .created(UPDATED_CREATED);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        entityCreation.setCreatedBy(user);
         return entityCreation;
     }
 
@@ -123,6 +134,26 @@ public class EntityCreationResourceIT {
         assertThat(entityCreationList).hasSize(databaseSizeBeforeCreate);
     }
 
+
+    @Test
+    @Transactional
+    public void checkCreatedIsRequired() throws Exception {
+        int databaseSizeBeforeTest = entityCreationRepository.findAll().size();
+        // set the field null
+        entityCreation.setCreated(null);
+
+        // Create the EntityCreation, which fails.
+        EntityCreationDTO entityCreationDTO = entityCreationMapper.toDto(entityCreation);
+
+
+        restEntityCreationMockMvc.perform(post("/api/entity-creations")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(entityCreationDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<EntityCreation> entityCreationList = entityCreationRepository.findAll();
+        assertThat(entityCreationList).hasSize(databaseSizeBeforeTest);
+    }
 
     @Test
     @Transactional

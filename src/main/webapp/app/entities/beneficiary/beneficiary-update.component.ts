@@ -20,11 +20,11 @@ export class BeneficiaryUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    name: [],
-    type: [],
+    name: [null, [Validators.required]],
+    type: [null, [Validators.required]],
     address: [],
     contact: [],
-    contactPersonId: [],
+    contactPersonId: [null, Validators.required],
   });
 
   constructor(

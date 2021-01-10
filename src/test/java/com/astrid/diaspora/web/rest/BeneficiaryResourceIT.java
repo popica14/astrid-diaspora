@@ -2,6 +2,7 @@ package com.astrid.diaspora.web.rest;
 
 import com.astrid.diaspora.ProjectsOverviewApp;
 import com.astrid.diaspora.domain.Beneficiary;
+import com.astrid.diaspora.domain.User;
 import com.astrid.diaspora.repository.BeneficiaryRepository;
 import com.astrid.diaspora.service.BeneficiaryService;
 import com.astrid.diaspora.service.dto.BeneficiaryDTO;
@@ -74,6 +75,11 @@ public class BeneficiaryResourceIT {
             .type(DEFAULT_TYPE)
             .address(DEFAULT_ADDRESS)
             .contact(DEFAULT_CONTACT);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        beneficiary.setContactPerson(user);
         return beneficiary;
     }
     /**
@@ -88,6 +94,11 @@ public class BeneficiaryResourceIT {
             .type(UPDATED_TYPE)
             .address(UPDATED_ADDRESS)
             .contact(UPDATED_CONTACT);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        beneficiary.setContactPerson(user);
         return beneficiary;
     }
 
@@ -137,6 +148,46 @@ public class BeneficiaryResourceIT {
         assertThat(beneficiaryList).hasSize(databaseSizeBeforeCreate);
     }
 
+
+    @Test
+    @Transactional
+    public void checkNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = beneficiaryRepository.findAll().size();
+        // set the field null
+        beneficiary.setName(null);
+
+        // Create the Beneficiary, which fails.
+        BeneficiaryDTO beneficiaryDTO = beneficiaryMapper.toDto(beneficiary);
+
+
+        restBeneficiaryMockMvc.perform(post("/api/beneficiaries")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(beneficiaryDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Beneficiary> beneficiaryList = beneficiaryRepository.findAll();
+        assertThat(beneficiaryList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkTypeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = beneficiaryRepository.findAll().size();
+        // set the field null
+        beneficiary.setType(null);
+
+        // Create the Beneficiary, which fails.
+        BeneficiaryDTO beneficiaryDTO = beneficiaryMapper.toDto(beneficiary);
+
+
+        restBeneficiaryMockMvc.perform(post("/api/beneficiaries")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(beneficiaryDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Beneficiary> beneficiaryList = beneficiaryRepository.findAll();
+        assertThat(beneficiaryList).hasSize(databaseSizeBeforeTest);
+    }
 
     @Test
     @Transactional

@@ -3,7 +3,8 @@
   "fields": [
     {
       "fieldName": "created",
-      "fieldType": "ZonedDateTime"
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
     }
   ],
   "relationships": [
@@ -11,6 +12,7 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "user",
       "otherEntityRelationshipName": "entityCreation",
+      "relationshipValidateRules": "required",
       "relationshipName": "createdBy",
       "otherEntityField": "login"
     },
