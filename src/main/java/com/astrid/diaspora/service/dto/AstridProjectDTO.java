@@ -32,6 +32,7 @@ public class AstridProjectDTO implements Serializable {
     @NotNull
     private String goal;
 
+    @NotNull
     private String statusReason;
 
     private ZonedDateTime statusDeadline;

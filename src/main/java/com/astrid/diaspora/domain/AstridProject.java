@@ -48,7 +48,8 @@ public class AstridProject implements Serializable {
     @Column(name = "goal", nullable = false)
     private String goal;
 
-    @Column(name = "status_reason")
+    @NotNull
+    @Column(name = "status_reason", nullable = false)
     private String statusReason;
 
     @Column(name = "status_deadline")
@@ -107,7 +108,8 @@ public class AstridProject implements Serializable {
     @JsonIgnoreProperties(value = "astridProjects", allowSetters = true)
     private User initiator;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties(value = "astridProjects", allowSetters = true)
     private ProjectStatus status;
 

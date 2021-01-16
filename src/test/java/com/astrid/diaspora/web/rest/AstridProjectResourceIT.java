@@ -3,6 +3,7 @@ package com.astrid.diaspora.web.rest;
 import com.astrid.diaspora.ProjectsOverviewApp;
 import com.astrid.diaspora.domain.AstridProject;
 import com.astrid.diaspora.domain.User;
+import com.astrid.diaspora.domain.ProjectStatus;
 import com.astrid.diaspora.repository.AstridProjectRepository;
 import com.astrid.diaspora.service.AstridProjectService;
 import com.astrid.diaspora.service.dto.AstridProjectDTO;
@@ -156,6 +157,16 @@ public class AstridProjectResourceIT {
         astridProject.setResponsible(user);
         // Add required entity
         astridProject.setInitiator(user);
+        // Add required entity
+        ProjectStatus projectStatus;
+        if (TestUtil.findAll(em, ProjectStatus.class).isEmpty()) {
+            projectStatus = ProjectStatusResourceIT.createEntity(em);
+            em.persist(projectStatus);
+            em.flush();
+        } else {
+            projectStatus = TestUtil.findAll(em, ProjectStatus.class).get(0);
+        }
+        astridProject.setStatus(projectStatus);
         return astridProject;
     }
     /**
@@ -192,6 +203,16 @@ public class AstridProjectResourceIT {
         astridProject.setResponsible(user);
         // Add required entity
         astridProject.setInitiator(user);
+        // Add required entity
+        ProjectStatus projectStatus;
+        if (TestUtil.findAll(em, ProjectStatus.class).isEmpty()) {
+            projectStatus = ProjectStatusResourceIT.createUpdatedEntity(em);
+            em.persist(projectStatus);
+            em.flush();
+        } else {
+            projectStatus = TestUtil.findAll(em, ProjectStatus.class).get(0);
+        }
+        astridProject.setStatus(projectStatus);
         return astridProject;
     }
 
@@ -283,6 +304,26 @@ public class AstridProjectResourceIT {
         int databaseSizeBeforeTest = astridProjectRepository.findAll().size();
         // set the field null
         astridProject.setGoal(null);
+
+        // Create the AstridProject, which fails.
+        AstridProjectDTO astridProjectDTO = astridProjectMapper.toDto(astridProject);
+
+
+        restAstridProjectMockMvc.perform(post("/api/astrid-projects")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(astridProjectDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<AstridProject> astridProjectList = astridProjectRepository.findAll();
+        assertThat(astridProjectList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkStatusReasonIsRequired() throws Exception {
+        int databaseSizeBeforeTest = astridProjectRepository.findAll().size();
+        // set the field null
+        astridProject.setStatusReason(null);
 
         // Create the AstridProject, which fails.
         AstridProjectDTO astridProjectDTO = astridProjectMapper.toDto(astridProject);

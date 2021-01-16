@@ -38,7 +38,7 @@
                 <constraints nullable="false" />
             </column>
             <column name="status_reason" type="varchar(255)">
-                <constraints nullable="true" />
+                <constraints nullable="false" />
             </column>
             <column name="status_deadline" type="datetime">
                 <constraints nullable="true" />
@@ -86,7 +86,7 @@
                 <constraints nullable="false" />
             </column>
             <column name="status_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="false" />
             </column>
             <column name="location_id" type="bigint">
                 <constraints nullable="true" />
@@ -158,6 +158,7 @@
             <column name="documentation_5_content_type" type="string"/>
             <column name="responsible_id" type="numeric"/>
             <column name="initiator_id" type="numeric"/>
+            <column name="status_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>
