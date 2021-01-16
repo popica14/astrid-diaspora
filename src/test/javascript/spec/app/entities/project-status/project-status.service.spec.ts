@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(ProjectStatusService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new ProjectStatus(0, 'AAAAAAA', 0);
+      elemDefault = new ProjectStatus(0, 'AAAAAAA', 0, 0);
     });
 
     describe('Service methods', () => {
@@ -56,6 +56,7 @@ describe('Service Tests', () => {
           {
             name: 'BBBBBB',
             daysToNotification: 1,
+            order: 1,
           },
           elemDefault
         );
@@ -74,6 +75,7 @@ describe('Service Tests', () => {
           {
             name: 'BBBBBB',
             daysToNotification: 1,
+            order: 1,
           },
           elemDefault
         );

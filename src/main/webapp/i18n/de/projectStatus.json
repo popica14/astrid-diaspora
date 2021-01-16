@@ -17,7 +17,8 @@
         "title": "Project Status"
       },
       "name": "Name",
-      "daysToNotification": "Days To Notification"
+      "daysToNotification": "Days To Notification",
+      "order": "Order"
     }
   }
 }

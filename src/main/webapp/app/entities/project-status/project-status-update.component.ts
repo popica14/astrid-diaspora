@@ -19,6 +19,7 @@ export class ProjectStatusUpdateComponent implements OnInit {
     id: [],
     name: [null, [Validators.required]],
     daysToNotification: [null, [Validators.required]],
+    order: [null, [Validators.required]],
   });
 
   constructor(protected projectStatusService: ProjectStatusService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
@@ -34,6 +35,7 @@ export class ProjectStatusUpdateComponent implements OnInit {
       id: projectStatus.id,
       name: projectStatus.name,
       daysToNotification: projectStatus.daysToNotification,
+      order: projectStatus.order,
     });
   }
 
@@ -57,6 +59,7 @@ export class ProjectStatusUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
       daysToNotification: this.editForm.get(['daysToNotification'])!.value,
+      order: this.editForm.get(['order'])!.value,
     };
   }
 

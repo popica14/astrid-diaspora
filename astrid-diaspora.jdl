@@ -69,6 +69,7 @@ enum BeneficiaryType{
 entity ProjectStatus{
 	name String required
     daysToNotification Integer required
+    order Integer required
 }
 
 entity EntityCreation{

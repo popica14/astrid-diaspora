@@ -16,6 +16,9 @@ public class ProjectStatusDTO implements Serializable {
     @NotNull
     private Integer daysToNotification;
 
+    @NotNull
+    private Integer order;
+
     
     public Long getId() {
         return id;
@@ -39,6 +42,14 @@ public class ProjectStatusDTO implements Serializable {
 
     public void setDaysToNotification(Integer daysToNotification) {
         this.daysToNotification = daysToNotification;
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
     }
 
     @Override
@@ -65,6 +76,7 @@ public class ProjectStatusDTO implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", daysToNotification=" + getDaysToNotification() +
+            ", order=" + getOrder() +
             "}";
     }
 }

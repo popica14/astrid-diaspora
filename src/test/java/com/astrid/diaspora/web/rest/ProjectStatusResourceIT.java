@@ -38,6 +38,9 @@ public class ProjectStatusResourceIT {
     private static final Integer DEFAULT_DAYS_TO_NOTIFICATION = 1;
     private static final Integer UPDATED_DAYS_TO_NOTIFICATION = 2;
 
+    private static final Integer DEFAULT_ORDER = 1;
+    private static final Integer UPDATED_ORDER = 2;
+
     @Autowired
     private ProjectStatusRepository projectStatusRepository;
 
@@ -64,7 +67,8 @@ public class ProjectStatusResourceIT {
     public static ProjectStatus createEntity(EntityManager em) {
         ProjectStatus projectStatus = new ProjectStatus()
             .name(DEFAULT_NAME)
-            .daysToNotification(DEFAULT_DAYS_TO_NOTIFICATION);
+            .daysToNotification(DEFAULT_DAYS_TO_NOTIFICATION)
+            .order(DEFAULT_ORDER);
         return projectStatus;
     }
     /**
@@ -76,7 +80,8 @@ public class ProjectStatusResourceIT {
     public static ProjectStatus createUpdatedEntity(EntityManager em) {
         ProjectStatus projectStatus = new ProjectStatus()
             .name(UPDATED_NAME)
-            .daysToNotification(UPDATED_DAYS_TO_NOTIFICATION);
+            .daysToNotification(UPDATED_DAYS_TO_NOTIFICATION)
+            .order(UPDATED_ORDER);
         return projectStatus;
     }
 
@@ -102,6 +107,7 @@ public class ProjectStatusResourceIT {
         ProjectStatus testProjectStatus = projectStatusList.get(projectStatusList.size() - 1);
         assertThat(testProjectStatus.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testProjectStatus.getDaysToNotification()).isEqualTo(DEFAULT_DAYS_TO_NOTIFICATION);
+        assertThat(testProjectStatus.getOrder()).isEqualTo(DEFAULT_ORDER);
     }
 
     @Test
@@ -167,6 +173,26 @@ public class ProjectStatusResourceIT {
 
     @Test
     @Transactional
+    public void checkOrderIsRequired() throws Exception {
+        int databaseSizeBeforeTest = projectStatusRepository.findAll().size();
+        // set the field null
+        projectStatus.setOrder(null);
+
+        // Create the ProjectStatus, which fails.
+        ProjectStatusDTO projectStatusDTO = projectStatusMapper.toDto(projectStatus);
+
+
+        restProjectStatusMockMvc.perform(post("/api/project-statuses")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(projectStatusDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<ProjectStatus> projectStatusList = projectStatusRepository.findAll();
+        assertThat(projectStatusList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllProjectStatuses() throws Exception {
         // Initialize the database
         projectStatusRepository.saveAndFlush(projectStatus);
@@ -177,7 +203,8 @@ public class ProjectStatusResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(projectStatus.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
-            .andExpect(jsonPath("$.[*].daysToNotification").value(hasItem(DEFAULT_DAYS_TO_NOTIFICATION)));
+            .andExpect(jsonPath("$.[*].daysToNotification").value(hasItem(DEFAULT_DAYS_TO_NOTIFICATION)))
+            .andExpect(jsonPath("$.[*].order").value(hasItem(DEFAULT_ORDER)));
     }
     
     @Test
@@ -192,7 +219,8 @@ public class ProjectStatusResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(projectStatus.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
-            .andExpect(jsonPath("$.daysToNotification").value(DEFAULT_DAYS_TO_NOTIFICATION));
+            .andExpect(jsonPath("$.daysToNotification").value(DEFAULT_DAYS_TO_NOTIFICATION))
+            .andExpect(jsonPath("$.order").value(DEFAULT_ORDER));
     }
     @Test
     @Transactional
@@ -216,7 +244,8 @@ public class ProjectStatusResourceIT {
         em.detach(updatedProjectStatus);
         updatedProjectStatus
             .name(UPDATED_NAME)
-            .daysToNotification(UPDATED_DAYS_TO_NOTIFICATION);
+            .daysToNotification(UPDATED_DAYS_TO_NOTIFICATION)
+            .order(UPDATED_ORDER);
         ProjectStatusDTO projectStatusDTO = projectStatusMapper.toDto(updatedProjectStatus);
 
         restProjectStatusMockMvc.perform(put("/api/project-statuses")
@@ -230,6 +259,7 @@ public class ProjectStatusResourceIT {
         ProjectStatus testProjectStatus = projectStatusList.get(projectStatusList.size() - 1);
         assertThat(testProjectStatus.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testProjectStatus.getDaysToNotification()).isEqualTo(UPDATED_DAYS_TO_NOTIFICATION);
+        assertThat(testProjectStatus.getOrder()).isEqualTo(UPDATED_ORDER);
     }
 
     @Test
