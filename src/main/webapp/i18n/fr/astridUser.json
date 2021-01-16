@@ -1,0 +1,23 @@
+{
+  "projectsOverviewApp": {
+    "astridUser": {
+      "home": {
+        "title": "AstridUsers",
+        "createLabel": "Créer un nouveau Astrid User",
+        "createOrEditLabel": "Créer ou éditer un Astrid User",
+        "notFound": "Aucun Astrid User trouvé"
+      },
+      "created": "Un nouveau Astrid User a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Astrid User avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Astrid User avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Astrid User {{ id }} ?"
+      },
+      "detail": {
+        "title": "Astrid User"
+      },
+      "phoneNumber": "Phone Number",
+      "user": "User"
+    }
+  }
+}

@@ -20,6 +20,11 @@
       "shortDescription": "Short Description",
       "documentation": "Documentation",
       "goal": "Goal",
+      "documentation1": "Documentation 1",
+      "documentation2": "Documentation 2",
+      "documentation3": "Documentation 3",
+      "documentation4": "Documentation 4",
+      "documentation5": "Documentation 5",
       "initiator": "Initiator",
       "status": "Status"
     }

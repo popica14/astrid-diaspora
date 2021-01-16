@@ -2,7 +2,6 @@ package com.astrid.diaspora.web.rest;
 
 import com.astrid.diaspora.ProjectsOverviewApp;
 import com.astrid.diaspora.domain.Beneficiary;
-import com.astrid.diaspora.domain.User;
 import com.astrid.diaspora.repository.BeneficiaryRepository;
 import com.astrid.diaspora.service.BeneficiaryService;
 import com.astrid.diaspora.service.dto.BeneficiaryDTO;
@@ -43,8 +42,14 @@ public class BeneficiaryResourceIT {
     private static final String DEFAULT_ADDRESS = "AAAAAAAAAA";
     private static final String UPDATED_ADDRESS = "BBBBBBBBBB";
 
-    private static final String DEFAULT_CONTACT = "AAAAAAAAAA";
-    private static final String UPDATED_CONTACT = "BBBBBBBBBB";
+    private static final String DEFAULT_PHONE_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_PHONE_NUMBER = "BBBBBBBBBB";
+
+    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
+    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
+
+    private static final String DEFAULT_CONTACT_PERSON = "AAAAAAAAAA";
+    private static final String UPDATED_CONTACT_PERSON = "BBBBBBBBBB";
 
     @Autowired
     private BeneficiaryRepository beneficiaryRepository;
@@ -74,12 +79,9 @@ public class BeneficiaryResourceIT {
             .name(DEFAULT_NAME)
             .type(DEFAULT_TYPE)
             .address(DEFAULT_ADDRESS)
-            .contact(DEFAULT_CONTACT);
-        // Add required entity
-        User user = UserResourceIT.createEntity(em);
-        em.persist(user);
-        em.flush();
-        beneficiary.setContactPerson(user);
+            .phoneNumber(DEFAULT_PHONE_NUMBER)
+            .email(DEFAULT_EMAIL)
+            .contactPerson(DEFAULT_CONTACT_PERSON);
         return beneficiary;
     }
     /**
@@ -93,12 +95,9 @@ public class BeneficiaryResourceIT {
             .name(UPDATED_NAME)
             .type(UPDATED_TYPE)
             .address(UPDATED_ADDRESS)
-            .contact(UPDATED_CONTACT);
-        // Add required entity
-        User user = UserResourceIT.createEntity(em);
-        em.persist(user);
-        em.flush();
-        beneficiary.setContactPerson(user);
+            .phoneNumber(UPDATED_PHONE_NUMBER)
+            .email(UPDATED_EMAIL)
+            .contactPerson(UPDATED_CONTACT_PERSON);
         return beneficiary;
     }
 
@@ -125,7 +124,9 @@ public class BeneficiaryResourceIT {
         assertThat(testBeneficiary.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testBeneficiary.getType()).isEqualTo(DEFAULT_TYPE);
         assertThat(testBeneficiary.getAddress()).isEqualTo(DEFAULT_ADDRESS);
-        assertThat(testBeneficiary.getContact()).isEqualTo(DEFAULT_CONTACT);
+        assertThat(testBeneficiary.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
+        assertThat(testBeneficiary.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testBeneficiary.getContactPerson()).isEqualTo(DEFAULT_CONTACT_PERSON);
     }
 
     @Test
@@ -191,6 +192,46 @@ public class BeneficiaryResourceIT {
 
     @Test
     @Transactional
+    public void checkPhoneNumberIsRequired() throws Exception {
+        int databaseSizeBeforeTest = beneficiaryRepository.findAll().size();
+        // set the field null
+        beneficiary.setPhoneNumber(null);
+
+        // Create the Beneficiary, which fails.
+        BeneficiaryDTO beneficiaryDTO = beneficiaryMapper.toDto(beneficiary);
+
+
+        restBeneficiaryMockMvc.perform(post("/api/beneficiaries")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(beneficiaryDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Beneficiary> beneficiaryList = beneficiaryRepository.findAll();
+        assertThat(beneficiaryList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkEmailIsRequired() throws Exception {
+        int databaseSizeBeforeTest = beneficiaryRepository.findAll().size();
+        // set the field null
+        beneficiary.setEmail(null);
+
+        // Create the Beneficiary, which fails.
+        BeneficiaryDTO beneficiaryDTO = beneficiaryMapper.toDto(beneficiary);
+
+
+        restBeneficiaryMockMvc.perform(post("/api/beneficiaries")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(beneficiaryDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Beneficiary> beneficiaryList = beneficiaryRepository.findAll();
+        assertThat(beneficiaryList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllBeneficiaries() throws Exception {
         // Initialize the database
         beneficiaryRepository.saveAndFlush(beneficiary);
@@ -203,7 +244,9 @@ public class BeneficiaryResourceIT {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
             .andExpect(jsonPath("$.[*].address").value(hasItem(DEFAULT_ADDRESS)))
-            .andExpect(jsonPath("$.[*].contact").value(hasItem(DEFAULT_CONTACT)));
+            .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER)))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
+            .andExpect(jsonPath("$.[*].contactPerson").value(hasItem(DEFAULT_CONTACT_PERSON)));
     }
     
     @Test
@@ -220,7 +263,9 @@ public class BeneficiaryResourceIT {
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
             .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
             .andExpect(jsonPath("$.address").value(DEFAULT_ADDRESS))
-            .andExpect(jsonPath("$.contact").value(DEFAULT_CONTACT));
+            .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER))
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
+            .andExpect(jsonPath("$.contactPerson").value(DEFAULT_CONTACT_PERSON));
     }
     @Test
     @Transactional
@@ -246,7 +291,9 @@ public class BeneficiaryResourceIT {
             .name(UPDATED_NAME)
             .type(UPDATED_TYPE)
             .address(UPDATED_ADDRESS)
-            .contact(UPDATED_CONTACT);
+            .phoneNumber(UPDATED_PHONE_NUMBER)
+            .email(UPDATED_EMAIL)
+            .contactPerson(UPDATED_CONTACT_PERSON);
         BeneficiaryDTO beneficiaryDTO = beneficiaryMapper.toDto(updatedBeneficiary);
 
         restBeneficiaryMockMvc.perform(put("/api/beneficiaries")
@@ -261,7 +308,9 @@ public class BeneficiaryResourceIT {
         assertThat(testBeneficiary.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testBeneficiary.getType()).isEqualTo(UPDATED_TYPE);
         assertThat(testBeneficiary.getAddress()).isEqualTo(UPDATED_ADDRESS);
-        assertThat(testBeneficiary.getContact()).isEqualTo(UPDATED_CONTACT);
+        assertThat(testBeneficiary.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
+        assertThat(testBeneficiary.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testBeneficiary.getContactPerson()).isEqualTo(UPDATED_CONTACT_PERSON);
     }
 
     @Test

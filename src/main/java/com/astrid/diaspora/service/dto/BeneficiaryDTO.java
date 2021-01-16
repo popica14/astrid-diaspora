@@ -19,12 +19,14 @@ public class BeneficiaryDTO implements Serializable {
 
     private String address;
 
-    private String contact;
+    @NotNull
+    private String phoneNumber;
 
+    @NotNull
+    private String email;
 
-    private Long contactPersonId;
+    private String contactPerson;
 
-    private String contactPersonLogin;
     
     public Long getId() {
         return id;
@@ -58,28 +60,28 @@ public class BeneficiaryDTO implements Serializable {
         this.address = address;
     }
 
-    public String getContact() {
-        return contact;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public Long getContactPersonId() {
-        return contactPersonId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setContactPersonId(Long userId) {
-        this.contactPersonId = userId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getContactPersonLogin() {
-        return contactPersonLogin;
+    public String getContactPerson() {
+        return contactPerson;
     }
 
-    public void setContactPersonLogin(String userLogin) {
-        this.contactPersonLogin = userLogin;
+    public void setContactPerson(String contactPerson) {
+        this.contactPerson = contactPerson;
     }
 
     @Override
@@ -107,9 +109,9 @@ public class BeneficiaryDTO implements Serializable {
             ", name='" + getName() + "'" +
             ", type='" + getType() + "'" +
             ", address='" + getAddress() + "'" +
-            ", contact='" + getContact() + "'" +
-            ", contactPersonId=" + getContactPersonId() +
-            ", contactPersonLogin='" + getContactPersonLogin() + "'" +
+            ", phoneNumber='" + getPhoneNumber() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", contactPerson='" + getContactPerson() + "'" +
             "}";
     }
 }

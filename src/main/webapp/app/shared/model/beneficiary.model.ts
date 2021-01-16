@@ -6,9 +6,9 @@ export interface IBeneficiary {
   name?: string;
   type?: BeneficiaryType;
   address?: string;
-  contact?: string;
-  contactPersonLogin?: string;
-  contactPersonId?: number;
+  phoneNumber?: string;
+  email?: string;
+  contactPerson?: string;
   projects?: IAstridProject[];
 }
 
@@ -18,9 +18,9 @@ export class Beneficiary implements IBeneficiary {
     public name?: string,
     public type?: BeneficiaryType,
     public address?: string,
-    public contact?: string,
-    public contactPersonLogin?: string,
-    public contactPersonId?: number,
+    public phoneNumber?: string,
+    public email?: string,
+    public contactPerson?: string,
     public projects?: IAstridProject[]
   ) {}
 }

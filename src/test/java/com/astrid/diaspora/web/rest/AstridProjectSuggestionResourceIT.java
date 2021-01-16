@@ -48,6 +48,31 @@ public class AstridProjectSuggestionResourceIT {
     private static final String DEFAULT_GOAL = "AAAAAAAAAA";
     private static final String UPDATED_GOAL = "BBBBBBBBBB";
 
+    private static final byte[] DEFAULT_DOCUMENTATION_1 = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_DOCUMENTATION_1 = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_DOCUMENTATION_1_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_DOCUMENTATION_1_CONTENT_TYPE = "image/png";
+
+    private static final byte[] DEFAULT_DOCUMENTATION_2 = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_DOCUMENTATION_2 = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_DOCUMENTATION_2_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_DOCUMENTATION_2_CONTENT_TYPE = "image/png";
+
+    private static final byte[] DEFAULT_DOCUMENTATION_3 = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_DOCUMENTATION_3 = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_DOCUMENTATION_3_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_DOCUMENTATION_3_CONTENT_TYPE = "image/png";
+
+    private static final byte[] DEFAULT_DOCUMENTATION_4 = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_DOCUMENTATION_4 = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_DOCUMENTATION_4_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_DOCUMENTATION_4_CONTENT_TYPE = "image/png";
+
+    private static final byte[] DEFAULT_DOCUMENTATION_5 = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_DOCUMENTATION_5 = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_DOCUMENTATION_5_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_DOCUMENTATION_5_CONTENT_TYPE = "image/png";
+
     @Autowired
     private AstridProjectSuggestionRepository astridProjectSuggestionRepository;
 
@@ -77,7 +102,17 @@ public class AstridProjectSuggestionResourceIT {
             .shortDescription(DEFAULT_SHORT_DESCRIPTION)
             .documentation(DEFAULT_DOCUMENTATION)
             .documentationContentType(DEFAULT_DOCUMENTATION_CONTENT_TYPE)
-            .goal(DEFAULT_GOAL);
+            .goal(DEFAULT_GOAL)
+            .documentation1(DEFAULT_DOCUMENTATION_1)
+            .documentation1ContentType(DEFAULT_DOCUMENTATION_1_CONTENT_TYPE)
+            .documentation2(DEFAULT_DOCUMENTATION_2)
+            .documentation2ContentType(DEFAULT_DOCUMENTATION_2_CONTENT_TYPE)
+            .documentation3(DEFAULT_DOCUMENTATION_3)
+            .documentation3ContentType(DEFAULT_DOCUMENTATION_3_CONTENT_TYPE)
+            .documentation4(DEFAULT_DOCUMENTATION_4)
+            .documentation4ContentType(DEFAULT_DOCUMENTATION_4_CONTENT_TYPE)
+            .documentation5(DEFAULT_DOCUMENTATION_5)
+            .documentation5ContentType(DEFAULT_DOCUMENTATION_5_CONTENT_TYPE);
         // Add required entity
         User user = UserResourceIT.createEntity(em);
         em.persist(user);
@@ -97,7 +132,17 @@ public class AstridProjectSuggestionResourceIT {
             .shortDescription(UPDATED_SHORT_DESCRIPTION)
             .documentation(UPDATED_DOCUMENTATION)
             .documentationContentType(UPDATED_DOCUMENTATION_CONTENT_TYPE)
-            .goal(UPDATED_GOAL);
+            .goal(UPDATED_GOAL)
+            .documentation1(UPDATED_DOCUMENTATION_1)
+            .documentation1ContentType(UPDATED_DOCUMENTATION_1_CONTENT_TYPE)
+            .documentation2(UPDATED_DOCUMENTATION_2)
+            .documentation2ContentType(UPDATED_DOCUMENTATION_2_CONTENT_TYPE)
+            .documentation3(UPDATED_DOCUMENTATION_3)
+            .documentation3ContentType(UPDATED_DOCUMENTATION_3_CONTENT_TYPE)
+            .documentation4(UPDATED_DOCUMENTATION_4)
+            .documentation4ContentType(UPDATED_DOCUMENTATION_4_CONTENT_TYPE)
+            .documentation5(UPDATED_DOCUMENTATION_5)
+            .documentation5ContentType(UPDATED_DOCUMENTATION_5_CONTENT_TYPE);
         // Add required entity
         User user = UserResourceIT.createEntity(em);
         em.persist(user);
@@ -131,6 +176,16 @@ public class AstridProjectSuggestionResourceIT {
         assertThat(testAstridProjectSuggestion.getDocumentation()).isEqualTo(DEFAULT_DOCUMENTATION);
         assertThat(testAstridProjectSuggestion.getDocumentationContentType()).isEqualTo(DEFAULT_DOCUMENTATION_CONTENT_TYPE);
         assertThat(testAstridProjectSuggestion.getGoal()).isEqualTo(DEFAULT_GOAL);
+        assertThat(testAstridProjectSuggestion.getDocumentation1()).isEqualTo(DEFAULT_DOCUMENTATION_1);
+        assertThat(testAstridProjectSuggestion.getDocumentation1ContentType()).isEqualTo(DEFAULT_DOCUMENTATION_1_CONTENT_TYPE);
+        assertThat(testAstridProjectSuggestion.getDocumentation2()).isEqualTo(DEFAULT_DOCUMENTATION_2);
+        assertThat(testAstridProjectSuggestion.getDocumentation2ContentType()).isEqualTo(DEFAULT_DOCUMENTATION_2_CONTENT_TYPE);
+        assertThat(testAstridProjectSuggestion.getDocumentation3()).isEqualTo(DEFAULT_DOCUMENTATION_3);
+        assertThat(testAstridProjectSuggestion.getDocumentation3ContentType()).isEqualTo(DEFAULT_DOCUMENTATION_3_CONTENT_TYPE);
+        assertThat(testAstridProjectSuggestion.getDocumentation4()).isEqualTo(DEFAULT_DOCUMENTATION_4);
+        assertThat(testAstridProjectSuggestion.getDocumentation4ContentType()).isEqualTo(DEFAULT_DOCUMENTATION_4_CONTENT_TYPE);
+        assertThat(testAstridProjectSuggestion.getDocumentation5()).isEqualTo(DEFAULT_DOCUMENTATION_5);
+        assertThat(testAstridProjectSuggestion.getDocumentation5ContentType()).isEqualTo(DEFAULT_DOCUMENTATION_5_CONTENT_TYPE);
     }
 
     @Test
@@ -176,6 +231,26 @@ public class AstridProjectSuggestionResourceIT {
 
     @Test
     @Transactional
+    public void checkGoalIsRequired() throws Exception {
+        int databaseSizeBeforeTest = astridProjectSuggestionRepository.findAll().size();
+        // set the field null
+        astridProjectSuggestion.setGoal(null);
+
+        // Create the AstridProjectSuggestion, which fails.
+        AstridProjectSuggestionDTO astridProjectSuggestionDTO = astridProjectSuggestionMapper.toDto(astridProjectSuggestion);
+
+
+        restAstridProjectSuggestionMockMvc.perform(post("/api/astrid-project-suggestions")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(astridProjectSuggestionDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<AstridProjectSuggestion> astridProjectSuggestionList = astridProjectSuggestionRepository.findAll();
+        assertThat(astridProjectSuggestionList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllAstridProjectSuggestions() throws Exception {
         // Initialize the database
         astridProjectSuggestionRepository.saveAndFlush(astridProjectSuggestion);
@@ -189,7 +264,17 @@ public class AstridProjectSuggestionResourceIT {
             .andExpect(jsonPath("$.[*].shortDescription").value(hasItem(DEFAULT_SHORT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].documentationContentType").value(hasItem(DEFAULT_DOCUMENTATION_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].documentation").value(hasItem(Base64Utils.encodeToString(DEFAULT_DOCUMENTATION))))
-            .andExpect(jsonPath("$.[*].goal").value(hasItem(DEFAULT_GOAL)));
+            .andExpect(jsonPath("$.[*].goal").value(hasItem(DEFAULT_GOAL)))
+            .andExpect(jsonPath("$.[*].documentation1ContentType").value(hasItem(DEFAULT_DOCUMENTATION_1_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].documentation1").value(hasItem(Base64Utils.encodeToString(DEFAULT_DOCUMENTATION_1))))
+            .andExpect(jsonPath("$.[*].documentation2ContentType").value(hasItem(DEFAULT_DOCUMENTATION_2_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].documentation2").value(hasItem(Base64Utils.encodeToString(DEFAULT_DOCUMENTATION_2))))
+            .andExpect(jsonPath("$.[*].documentation3ContentType").value(hasItem(DEFAULT_DOCUMENTATION_3_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].documentation3").value(hasItem(Base64Utils.encodeToString(DEFAULT_DOCUMENTATION_3))))
+            .andExpect(jsonPath("$.[*].documentation4ContentType").value(hasItem(DEFAULT_DOCUMENTATION_4_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].documentation4").value(hasItem(Base64Utils.encodeToString(DEFAULT_DOCUMENTATION_4))))
+            .andExpect(jsonPath("$.[*].documentation5ContentType").value(hasItem(DEFAULT_DOCUMENTATION_5_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].documentation5").value(hasItem(Base64Utils.encodeToString(DEFAULT_DOCUMENTATION_5))));
     }
     
     @Test
@@ -207,7 +292,17 @@ public class AstridProjectSuggestionResourceIT {
             .andExpect(jsonPath("$.shortDescription").value(DEFAULT_SHORT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.documentationContentType").value(DEFAULT_DOCUMENTATION_CONTENT_TYPE))
             .andExpect(jsonPath("$.documentation").value(Base64Utils.encodeToString(DEFAULT_DOCUMENTATION)))
-            .andExpect(jsonPath("$.goal").value(DEFAULT_GOAL));
+            .andExpect(jsonPath("$.goal").value(DEFAULT_GOAL))
+            .andExpect(jsonPath("$.documentation1ContentType").value(DEFAULT_DOCUMENTATION_1_CONTENT_TYPE))
+            .andExpect(jsonPath("$.documentation1").value(Base64Utils.encodeToString(DEFAULT_DOCUMENTATION_1)))
+            .andExpect(jsonPath("$.documentation2ContentType").value(DEFAULT_DOCUMENTATION_2_CONTENT_TYPE))
+            .andExpect(jsonPath("$.documentation2").value(Base64Utils.encodeToString(DEFAULT_DOCUMENTATION_2)))
+            .andExpect(jsonPath("$.documentation3ContentType").value(DEFAULT_DOCUMENTATION_3_CONTENT_TYPE))
+            .andExpect(jsonPath("$.documentation3").value(Base64Utils.encodeToString(DEFAULT_DOCUMENTATION_3)))
+            .andExpect(jsonPath("$.documentation4ContentType").value(DEFAULT_DOCUMENTATION_4_CONTENT_TYPE))
+            .andExpect(jsonPath("$.documentation4").value(Base64Utils.encodeToString(DEFAULT_DOCUMENTATION_4)))
+            .andExpect(jsonPath("$.documentation5ContentType").value(DEFAULT_DOCUMENTATION_5_CONTENT_TYPE))
+            .andExpect(jsonPath("$.documentation5").value(Base64Utils.encodeToString(DEFAULT_DOCUMENTATION_5)));
     }
     @Test
     @Transactional
@@ -234,7 +329,17 @@ public class AstridProjectSuggestionResourceIT {
             .shortDescription(UPDATED_SHORT_DESCRIPTION)
             .documentation(UPDATED_DOCUMENTATION)
             .documentationContentType(UPDATED_DOCUMENTATION_CONTENT_TYPE)
-            .goal(UPDATED_GOAL);
+            .goal(UPDATED_GOAL)
+            .documentation1(UPDATED_DOCUMENTATION_1)
+            .documentation1ContentType(UPDATED_DOCUMENTATION_1_CONTENT_TYPE)
+            .documentation2(UPDATED_DOCUMENTATION_2)
+            .documentation2ContentType(UPDATED_DOCUMENTATION_2_CONTENT_TYPE)
+            .documentation3(UPDATED_DOCUMENTATION_3)
+            .documentation3ContentType(UPDATED_DOCUMENTATION_3_CONTENT_TYPE)
+            .documentation4(UPDATED_DOCUMENTATION_4)
+            .documentation4ContentType(UPDATED_DOCUMENTATION_4_CONTENT_TYPE)
+            .documentation5(UPDATED_DOCUMENTATION_5)
+            .documentation5ContentType(UPDATED_DOCUMENTATION_5_CONTENT_TYPE);
         AstridProjectSuggestionDTO astridProjectSuggestionDTO = astridProjectSuggestionMapper.toDto(updatedAstridProjectSuggestion);
 
         restAstridProjectSuggestionMockMvc.perform(put("/api/astrid-project-suggestions")
@@ -251,6 +356,16 @@ public class AstridProjectSuggestionResourceIT {
         assertThat(testAstridProjectSuggestion.getDocumentation()).isEqualTo(UPDATED_DOCUMENTATION);
         assertThat(testAstridProjectSuggestion.getDocumentationContentType()).isEqualTo(UPDATED_DOCUMENTATION_CONTENT_TYPE);
         assertThat(testAstridProjectSuggestion.getGoal()).isEqualTo(UPDATED_GOAL);
+        assertThat(testAstridProjectSuggestion.getDocumentation1()).isEqualTo(UPDATED_DOCUMENTATION_1);
+        assertThat(testAstridProjectSuggestion.getDocumentation1ContentType()).isEqualTo(UPDATED_DOCUMENTATION_1_CONTENT_TYPE);
+        assertThat(testAstridProjectSuggestion.getDocumentation2()).isEqualTo(UPDATED_DOCUMENTATION_2);
+        assertThat(testAstridProjectSuggestion.getDocumentation2ContentType()).isEqualTo(UPDATED_DOCUMENTATION_2_CONTENT_TYPE);
+        assertThat(testAstridProjectSuggestion.getDocumentation3()).isEqualTo(UPDATED_DOCUMENTATION_3);
+        assertThat(testAstridProjectSuggestion.getDocumentation3ContentType()).isEqualTo(UPDATED_DOCUMENTATION_3_CONTENT_TYPE);
+        assertThat(testAstridProjectSuggestion.getDocumentation4()).isEqualTo(UPDATED_DOCUMENTATION_4);
+        assertThat(testAstridProjectSuggestion.getDocumentation4ContentType()).isEqualTo(UPDATED_DOCUMENTATION_4_CONTENT_TYPE);
+        assertThat(testAstridProjectSuggestion.getDocumentation5()).isEqualTo(UPDATED_DOCUMENTATION_5);
+        assertThat(testAstridProjectSuggestion.getDocumentation5ContentType()).isEqualTo(UPDATED_DOCUMENTATION_5_CONTENT_TYPE);
     }
 
     @Test

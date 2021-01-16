@@ -1,0 +1,23 @@
+{
+  "projectsOverviewApp": {
+    "astridUser": {
+      "home": {
+        "title": "Astrid Users",
+        "createLabel": "Creeare o nouă entitate Astrid User",
+        "createOrEditLabel": "Creeare sau editare Astrid User",
+        "notFound": "No Astrid Users found"
+      },
+      "created": "A fost creată o nouă entitate Astrid User cu identificatorul {{ param }}",
+      "updated": "Astrid User cu identificatorul {{ param }} a fost actualizată",
+      "deleted": "Astrid User cu identificatorul {{ param }} a fost ștearsă",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți Astrid User {{ id }}?"
+      },
+      "detail": {
+        "title": "Astrid User"
+      },
+      "phoneNumber": "Phone Number",
+      "user": "User"
+    }
+  }
+}

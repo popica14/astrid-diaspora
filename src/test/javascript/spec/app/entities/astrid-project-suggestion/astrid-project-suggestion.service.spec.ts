@@ -20,7 +20,24 @@ describe('Service Tests', () => {
       service = injector.get(AstridProjectSuggestionService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new AstridProjectSuggestion(0, 'AAAAAAA', 'AAAAAAA', 'image/png', 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new AstridProjectSuggestion(
+        0,
+        'AAAAAAA',
+        'AAAAAAA',
+        'image/png',
+        'AAAAAAA',
+        'AAAAAAA',
+        'image/png',
+        'AAAAAAA',
+        'image/png',
+        'AAAAAAA',
+        'image/png',
+        'AAAAAAA',
+        'image/png',
+        'AAAAAAA',
+        'image/png',
+        'AAAAAAA'
+      );
     });
 
     describe('Service methods', () => {
@@ -58,6 +75,11 @@ describe('Service Tests', () => {
             shortDescription: 'BBBBBB',
             documentation: 'BBBBBB',
             goal: 'BBBBBB',
+            documentation1: 'BBBBBB',
+            documentation2: 'BBBBBB',
+            documentation3: 'BBBBBB',
+            documentation4: 'BBBBBB',
+            documentation5: 'BBBBBB',
           },
           elemDefault
         );
@@ -78,6 +100,11 @@ describe('Service Tests', () => {
             shortDescription: 'BBBBBB',
             documentation: 'BBBBBB',
             goal: 'BBBBBB',
+            documentation1: 'BBBBBB',
+            documentation2: 'BBBBBB',
+            documentation3: 'BBBBBB',
+            documentation4: 'BBBBBB',
+            documentation5: 'BBBBBB',
           },
           elemDefault
         );

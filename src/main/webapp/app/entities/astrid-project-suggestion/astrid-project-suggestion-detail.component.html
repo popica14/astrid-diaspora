@@ -27,6 +27,41 @@
                 <dd>
                     <span>{{ astridProjectSuggestion.goal }}</span>
                 </dd>
+                <dt><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation1">Documentation 1</span></dt>
+                <dd>
+                    <div *ngIf="astridProjectSuggestion.documentation1">
+                        <a (click)="openFile(astridProjectSuggestion.documentation1ContentType, astridProjectSuggestion.documentation1)" jhiTranslate="entity.action.open">open</a>
+                        {{ astridProjectSuggestion.documentation1ContentType }}, {{ byteSize(astridProjectSuggestion.documentation1) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation2">Documentation 2</span></dt>
+                <dd>
+                    <div *ngIf="astridProjectSuggestion.documentation2">
+                        <a (click)="openFile(astridProjectSuggestion.documentation2ContentType, astridProjectSuggestion.documentation2)" jhiTranslate="entity.action.open">open</a>
+                        {{ astridProjectSuggestion.documentation2ContentType }}, {{ byteSize(astridProjectSuggestion.documentation2) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation3">Documentation 3</span></dt>
+                <dd>
+                    <div *ngIf="astridProjectSuggestion.documentation3">
+                        <a (click)="openFile(astridProjectSuggestion.documentation3ContentType, astridProjectSuggestion.documentation3)" jhiTranslate="entity.action.open">open</a>
+                        {{ astridProjectSuggestion.documentation3ContentType }}, {{ byteSize(astridProjectSuggestion.documentation3) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation4">Documentation 4</span></dt>
+                <dd>
+                    <div *ngIf="astridProjectSuggestion.documentation4">
+                        <a (click)="openFile(astridProjectSuggestion.documentation4ContentType, astridProjectSuggestion.documentation4)" jhiTranslate="entity.action.open">open</a>
+                        {{ astridProjectSuggestion.documentation4ContentType }}, {{ byteSize(astridProjectSuggestion.documentation4) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation5">Documentation 5</span></dt>
+                <dd>
+                    <div *ngIf="astridProjectSuggestion.documentation5">
+                        <a (click)="openFile(astridProjectSuggestion.documentation5ContentType, astridProjectSuggestion.documentation5)" jhiTranslate="entity.action.open">open</a>
+                        {{ astridProjectSuggestion.documentation5ContentType }}, {{ byteSize(astridProjectSuggestion.documentation5) }}
+                    </div>
+                </dd>
                 <dt><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.initiator">Initiator</span></dt>
                 <dd>
                     {{ astridProjectSuggestion.initiatorLogin }}

@@ -13,11 +13,6 @@
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "documentation",
-      "fieldType": "byte[]",
-      "fieldTypeBlobContent": "any"
-    },
-    {
       "fieldName": "neededAmount",
       "fieldType": "String"
     },
@@ -35,7 +30,8 @@
     },
     {
       "fieldName": "goal",
-      "fieldType": "String"
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "statusReason",
@@ -44,6 +40,31 @@
     {
       "fieldName": "statusDeadline",
       "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "documentation1",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "documentation2",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "documentation3",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "documentation4",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "documentation5",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
     }
   ],
   "relationships": [

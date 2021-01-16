@@ -9,14 +9,10 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Beneficiary} and its DTO {@link BeneficiaryDTO}.
  */
-@Mapper(componentModel = "spring", uses = {UserMapper.class})
+@Mapper(componentModel = "spring", uses = {})
 public interface BeneficiaryMapper extends EntityMapper<BeneficiaryDTO, Beneficiary> {
 
-    @Mapping(source = "contactPerson.id", target = "contactPersonId")
-    @Mapping(source = "contactPerson.login", target = "contactPersonLogin")
-    BeneficiaryDTO toDto(Beneficiary beneficiary);
 
-    @Mapping(source = "contactPersonId", target = "contactPerson")
     @Mapping(target = "projects", ignore = true)
     @Mapping(target = "removeProjects", ignore = true)
     Beneficiary toEntity(BeneficiaryDTO beneficiaryDTO);

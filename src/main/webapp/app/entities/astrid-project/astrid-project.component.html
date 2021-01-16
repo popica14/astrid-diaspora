@@ -25,7 +25,6 @@
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="name"><span jhiTranslate="projectsOverviewApp.astridProject.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="shortDescription"><span jhiTranslate="projectsOverviewApp.astridProject.shortDescription">Short Description</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="documentation"><span jhiTranslate="projectsOverviewApp.astridProject.documentation">Documentation</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="neededAmount"><span jhiTranslate="projectsOverviewApp.astridProject.neededAmount">Needed Amount</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="currentAmount"><span jhiTranslate="projectsOverviewApp.astridProject.currentAmount">Current Amount</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="currency"><span jhiTranslate="projectsOverviewApp.astridProject.currency">Currency</span> <fa-icon icon="sort"></fa-icon></th>
@@ -33,6 +32,11 @@
                     <th scope="col"  jhiSortBy="goal"><span jhiTranslate="projectsOverviewApp.astridProject.goal">Goal</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="statusReason"><span jhiTranslate="projectsOverviewApp.astridProject.statusReason">Status Reason</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="statusDeadline"><span jhiTranslate="projectsOverviewApp.astridProject.statusDeadline">Status Deadline</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="documentation1"><span jhiTranslate="projectsOverviewApp.astridProject.documentation1">Documentation 1</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="documentation2"><span jhiTranslate="projectsOverviewApp.astridProject.documentation2">Documentation 2</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="documentation3"><span jhiTranslate="projectsOverviewApp.astridProject.documentation3">Documentation 3</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="documentation4"><span jhiTranslate="projectsOverviewApp.astridProject.documentation4">Documentation 4</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="documentation5"><span jhiTranslate="projectsOverviewApp.astridProject.documentation5">Documentation 5</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="entityCreationId"><span jhiTranslate="projectsOverviewApp.astridProject.entityCreation">Entity Creation</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="entityLastModificationId"><span jhiTranslate="projectsOverviewApp.astridProject.entityLastModification">Entity Last Modification</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="responsibleLogin"><span jhiTranslate="projectsOverviewApp.astridProject.responsible">Responsible</span> <fa-icon icon="sort"></fa-icon></th>
@@ -47,10 +51,6 @@
                     <td><a [routerLink]="['/astrid-project', astridProject.id, 'view']">{{ astridProject.id }}</a></td>
                     <td>{{ astridProject.name }}</td>
                     <td>{{ astridProject.shortDescription }}</td>
-                    <td>
-                        <a *ngIf="astridProject.documentation" (click)="openFile(astridProject.documentationContentType, astridProject.documentation)" jhiTranslate="entity.action.open">open</a>
-                        <span *ngIf="astridProject.documentation">{{ astridProject.documentationContentType }}, {{ byteSize(astridProject.documentation) }}</span>
-                    </td>
                     <td>{{ astridProject.neededAmount }}</td>
                     <td>{{ astridProject.currentAmount }}</td>
                     <td>{{ astridProject.currency }}</td>
@@ -58,6 +58,26 @@
                     <td>{{ astridProject.goal }}</td>
                     <td>{{ astridProject.statusReason }}</td>
                     <td>{{ astridProject.statusDeadline | date:'medium' }}</td>
+                    <td>
+                        <a *ngIf="astridProject.documentation1" (click)="openFile(astridProject.documentation1ContentType, astridProject.documentation1)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="astridProject.documentation1">{{ astridProject.documentation1ContentType }}, {{ byteSize(astridProject.documentation1) }}</span>
+                    </td>
+                    <td>
+                        <a *ngIf="astridProject.documentation2" (click)="openFile(astridProject.documentation2ContentType, astridProject.documentation2)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="astridProject.documentation2">{{ astridProject.documentation2ContentType }}, {{ byteSize(astridProject.documentation2) }}</span>
+                    </td>
+                    <td>
+                        <a *ngIf="astridProject.documentation3" (click)="openFile(astridProject.documentation3ContentType, astridProject.documentation3)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="astridProject.documentation3">{{ astridProject.documentation3ContentType }}, {{ byteSize(astridProject.documentation3) }}</span>
+                    </td>
+                    <td>
+                        <a *ngIf="astridProject.documentation4" (click)="openFile(astridProject.documentation4ContentType, astridProject.documentation4)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="astridProject.documentation4">{{ astridProject.documentation4ContentType }}, {{ byteSize(astridProject.documentation4) }}</span>
+                    </td>
+                    <td>
+                        <a *ngIf="astridProject.documentation5" (click)="openFile(astridProject.documentation5ContentType, astridProject.documentation5)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="astridProject.documentation5">{{ astridProject.documentation5ContentType }}, {{ byteSize(astridProject.documentation5) }}</span>
+                    </td>
                     <td>
                         <div *ngIf="astridProject.entityCreationId">
                             <a [routerLink]="['/entity-creation', astridProject.entityCreationId , 'view']" >{{ astridProject.entityCreationId }}</a>

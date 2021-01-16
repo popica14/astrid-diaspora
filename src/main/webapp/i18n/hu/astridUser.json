@@ -1,0 +1,23 @@
+{
+  "projectsOverviewApp": {
+    "astridUser": {
+      "home": {
+        "title": "AstridUsers",
+        "createLabel": "Egy új Astrid User létrehozása",
+        "createOrEditLabel": "Hozzon létre, vagy módosítson Astrid Usert",
+        "notFound": "No Astrid Users found"
+      },
+      "created": "Egy új Astrid User lett létrehozva {{ param }} azonosítóval",
+      "updated": "A Astrid User módosítva lett {{ param }} azonosítóval",
+      "deleted": "A Astrid User törölve lett {{ param }} azonosítóval",
+      "delete": {
+        "question": "Biztos benne, hogy törölni szeretné az Astrid Usert {{ id }} azonosítóval?"
+      },
+      "detail": {
+        "title": "Astrid User"
+      },
+      "phoneNumber": "Phone Number",
+      "user": "User"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="projectsOverviewApp.astridUser.home.title">Astrid Users</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-astrid-user" [routerLink]="['/astrid-user/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="projectsOverviewApp.astridUser.home.createLabel">
+            Create a new Astrid User
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="astridUsers?.length === 0">
+        <span jhiTranslate="projectsOverviewApp.astridUser.home.notFound">No astridUsers found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="astridUsers && astridUsers.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridUser.phoneNumber">Phone Number</span></th>
+                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridUser.user">User</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let astridUser of astridUsers ;trackBy: trackId">
+                    <td><a [routerLink]="['/astrid-user', astridUser.id, 'view']">{{ astridUser.id }}</a></td>
+                    <td>{{ astridUser.phoneNumber }}</td>
+                    <td>
+                        {{ astridUser.userId }}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/astrid-user', astridUser.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/astrid-user', astridUser.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(astridUser)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

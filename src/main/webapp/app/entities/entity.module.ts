@@ -34,6 +34,10 @@ import { RouterModule } from '@angular/router';
         loadChildren: () =>
           import('./astrid-project-suggestion/astrid-project-suggestion.module').then(m => m.ProjectsOverviewAstridProjectSuggestionModule),
       },
+      {
+        path: 'astrid-user',
+        loadChildren: () => import('./astrid-user/astrid-user.module').then(m => m.ProjectsOverviewAstridUserModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

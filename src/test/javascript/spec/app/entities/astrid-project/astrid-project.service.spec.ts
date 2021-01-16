@@ -28,15 +28,23 @@ describe('Service Tests', () => {
         0,
         'AAAAAAA',
         'AAAAAAA',
-        'image/png',
-        'AAAAAAA',
         'AAAAAAA',
         'AAAAAAA',
         'AAAAAAA',
         0,
         'AAAAAAA',
         'AAAAAAA',
-        currentDate
+        currentDate,
+        'image/png',
+        'AAAAAAA',
+        'image/png',
+        'AAAAAAA',
+        'image/png',
+        'AAAAAAA',
+        'image/png',
+        'AAAAAAA',
+        'image/png',
+        'AAAAAAA'
       );
     });
 
@@ -84,7 +92,6 @@ describe('Service Tests', () => {
           {
             name: 'BBBBBB',
             shortDescription: 'BBBBBB',
-            documentation: 'BBBBBB',
             neededAmount: 'BBBBBB',
             currentAmount: 'BBBBBB',
             currency: 'BBBBBB',
@@ -92,6 +99,11 @@ describe('Service Tests', () => {
             goal: 'BBBBBB',
             statusReason: 'BBBBBB',
             statusDeadline: currentDate.format(DATE_TIME_FORMAT),
+            documentation1: 'BBBBBB',
+            documentation2: 'BBBBBB',
+            documentation3: 'BBBBBB',
+            documentation4: 'BBBBBB',
+            documentation5: 'BBBBBB',
           },
           elemDefault
         );
@@ -115,7 +127,6 @@ describe('Service Tests', () => {
           {
             name: 'BBBBBB',
             shortDescription: 'BBBBBB',
-            documentation: 'BBBBBB',
             neededAmount: 'BBBBBB',
             currentAmount: 'BBBBBB',
             currency: 'BBBBBB',
@@ -123,6 +134,11 @@ describe('Service Tests', () => {
             goal: 'BBBBBB',
             statusReason: 'BBBBBB',
             statusDeadline: currentDate.format(DATE_TIME_FORMAT),
+            documentation1: 'BBBBBB',
+            documentation2: 'BBBBBB',
+            documentation3: 'BBBBBB',
+            documentation4: 'BBBBBB',
+            documentation5: 'BBBBBB',
           },
           elemDefault
         );

@@ -7,8 +7,6 @@ import { Observable } from 'rxjs';
 
 import { IBeneficiary, Beneficiary } from 'app/shared/model/beneficiary.model';
 import { BeneficiaryService } from './beneficiary.service';
-import { IUser } from 'app/core/user/user.model';
-import { UserService } from 'app/core/user/user.service';
 
 @Component({
   selector: 'jhi-beneficiary-update',
@@ -16,29 +14,22 @@ import { UserService } from 'app/core/user/user.service';
 })
 export class BeneficiaryUpdateComponent implements OnInit {
   isSaving = false;
-  users: IUser[] = [];
 
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
     type: [null, [Validators.required]],
     address: [],
-    contact: [],
-    contactPersonId: [null, Validators.required],
+    phoneNumber: [null, [Validators.required]],
+    email: [null, [Validators.required]],
+    contactPerson: [],
   });
 
-  constructor(
-    protected beneficiaryService: BeneficiaryService,
-    protected userService: UserService,
-    protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
-  ) {}
+  constructor(protected beneficiaryService: BeneficiaryService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ beneficiary }) => {
       this.updateForm(beneficiary);
-
-      this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
     });
   }
 
@@ -48,8 +39,9 @@ export class BeneficiaryUpdateComponent implements OnInit {
       name: beneficiary.name,
       type: beneficiary.type,
       address: beneficiary.address,
-      contact: beneficiary.contact,
-      contactPersonId: beneficiary.contactPersonId,
+      phoneNumber: beneficiary.phoneNumber,
+      email: beneficiary.email,
+      contactPerson: beneficiary.contactPerson,
     });
   }
 
@@ -74,8 +66,9 @@ export class BeneficiaryUpdateComponent implements OnInit {
       name: this.editForm.get(['name'])!.value,
       type: this.editForm.get(['type'])!.value,
       address: this.editForm.get(['address'])!.value,
-      contact: this.editForm.get(['contact'])!.value,
-      contactPersonId: this.editForm.get(['contactPersonId'])!.value,
+      phoneNumber: this.editForm.get(['phoneNumber'])!.value,
+      email: this.editForm.get(['email'])!.value,
+      contactPerson: this.editForm.get(['contactPerson'])!.value,
     };
   }
 
@@ -93,9 +86,5 @@ export class BeneficiaryUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
-  }
-
-  trackById(index: number, item: IUser): any {
-    return item.id;
   }
 }

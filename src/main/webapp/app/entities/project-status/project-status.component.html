@@ -24,6 +24,7 @@
                 <tr>
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
                     <th scope="col" ><span jhiTranslate="projectsOverviewApp.projectStatus.name">Name</span></th>
+                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.projectStatus.daysToNotification">Days To Notification</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -31,6 +32,7 @@
                 <tr *ngFor="let projectStatus of projectStatuses ;trackBy: trackId">
                     <td><a [routerLink]="['/project-status', projectStatus.id, 'view']">{{ projectStatus.id }}</a></td>
                     <td>{{ projectStatus.name }}</td>
+                    <td>{{ projectStatus.daysToNotification }}</td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

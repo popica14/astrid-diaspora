@@ -23,6 +23,10 @@ public class ProjectStatus implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @NotNull
+    @Column(name = "days_to_notification", nullable = false)
+    private Integer daysToNotification;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -43,6 +47,19 @@ public class ProjectStatus implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getDaysToNotification() {
+        return daysToNotification;
+    }
+
+    public ProjectStatus daysToNotification(Integer daysToNotification) {
+        this.daysToNotification = daysToNotification;
+        return this;
+    }
+
+    public void setDaysToNotification(Integer daysToNotification) {
+        this.daysToNotification = daysToNotification;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
@@ -68,6 +85,7 @@ public class ProjectStatus implements Serializable {
         return "ProjectStatus{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", daysToNotification=" + getDaysToNotification() +
             "}";
     }
 }

@@ -19,7 +19,8 @@
       "name": "Name",
       "type": "Type",
       "address": "Address",
-      "contact": "Contact",
+      "phoneNumber": "Phone Number",
+      "email": "Email",
       "contactPerson": "Contact Person",
       "projects": "Projects"
     }

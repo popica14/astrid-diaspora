@@ -16,13 +16,6 @@
                 <dd>
                     <span>{{ astridProject.shortDescription }}</span>
                 </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.documentation">Documentation</span></dt>
-                <dd>
-                    <div *ngIf="astridProject.documentation">
-                        <a (click)="openFile(astridProject.documentationContentType, astridProject.documentation)" jhiTranslate="entity.action.open">open</a>
-                        {{ astridProject.documentationContentType }}, {{ byteSize(astridProject.documentation) }}
-                    </div>
-                </dd>
                 <dt><span jhiTranslate="projectsOverviewApp.astridProject.neededAmount">Needed Amount</span></dt>
                 <dd>
                     <span>{{ astridProject.neededAmount }}</span>
@@ -50,6 +43,41 @@
                 <dt><span jhiTranslate="projectsOverviewApp.astridProject.statusDeadline">Status Deadline</span></dt>
                 <dd>
                     <span>{{ astridProject.statusDeadline }}</span>
+                </dd>
+                <dt><span jhiTranslate="projectsOverviewApp.astridProject.documentation1">Documentation 1</span></dt>
+                <dd>
+                    <div *ngIf="astridProject.documentation1">
+                        <a (click)="openFile(astridProject.documentation1ContentType, astridProject.documentation1)" jhiTranslate="entity.action.open">open</a>
+                        {{ astridProject.documentation1ContentType }}, {{ byteSize(astridProject.documentation1) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="projectsOverviewApp.astridProject.documentation2">Documentation 2</span></dt>
+                <dd>
+                    <div *ngIf="astridProject.documentation2">
+                        <a (click)="openFile(astridProject.documentation2ContentType, astridProject.documentation2)" jhiTranslate="entity.action.open">open</a>
+                        {{ astridProject.documentation2ContentType }}, {{ byteSize(astridProject.documentation2) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="projectsOverviewApp.astridProject.documentation3">Documentation 3</span></dt>
+                <dd>
+                    <div *ngIf="astridProject.documentation3">
+                        <a (click)="openFile(astridProject.documentation3ContentType, astridProject.documentation3)" jhiTranslate="entity.action.open">open</a>
+                        {{ astridProject.documentation3ContentType }}, {{ byteSize(astridProject.documentation3) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="projectsOverviewApp.astridProject.documentation4">Documentation 4</span></dt>
+                <dd>
+                    <div *ngIf="astridProject.documentation4">
+                        <a (click)="openFile(astridProject.documentation4ContentType, astridProject.documentation4)" jhiTranslate="entity.action.open">open</a>
+                        {{ astridProject.documentation4ContentType }}, {{ byteSize(astridProject.documentation4) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="projectsOverviewApp.astridProject.documentation5">Documentation 5</span></dt>
+                <dd>
+                    <div *ngIf="astridProject.documentation5">
+                        <a (click)="openFile(astridProject.documentation5ContentType, astridProject.documentation5)" jhiTranslate="entity.action.open">open</a>
+                        {{ astridProject.documentation5ContentType }}, {{ byteSize(astridProject.documentation5) }}
+                    </div>
                 </dd>
                 <dt><span jhiTranslate="projectsOverviewApp.astridProject.entityCreation">Entity Creation</span></dt>
                 <dd>

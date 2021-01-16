@@ -1,7 +1,6 @@
 package com.astrid.diaspora.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -37,13 +36,16 @@ public class Beneficiary implements Serializable {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "contact")
-    private String contact;
-
-    @ManyToOne(optional = false)
     @NotNull
-    @JsonIgnoreProperties(value = "beneficiaries", allowSetters = true)
-    private User contactPerson;
+    @Column(name = "phone_number", nullable = false)
+    private String phoneNumber;
+
+    @NotNull
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    @Column(name = "contact_person")
+    private String contactPerson;
 
     @ManyToMany(mappedBy = "beneficiaries")
     @JsonIgnore
@@ -97,30 +99,43 @@ public class Beneficiary implements Serializable {
         this.address = address;
     }
 
-    public String getContact() {
-        return contact;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public Beneficiary contact(String contact) {
-        this.contact = contact;
+    public Beneficiary phoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
         return this;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public User getContactPerson() {
+    public String getEmail() {
+        return email;
+    }
+
+    public Beneficiary email(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getContactPerson() {
         return contactPerson;
     }
 
-    public Beneficiary contactPerson(User user) {
-        this.contactPerson = user;
+    public Beneficiary contactPerson(String contactPerson) {
+        this.contactPerson = contactPerson;
         return this;
     }
 
-    public void setContactPerson(User user) {
-        this.contactPerson = user;
+    public void setContactPerson(String contactPerson) {
+        this.contactPerson = contactPerson;
     }
 
     public Set<AstridProject> getProjects() {
@@ -173,7 +188,9 @@ public class Beneficiary implements Serializable {
             ", name='" + getName() + "'" +
             ", type='" + getType() + "'" +
             ", address='" + getAddress() + "'" +
-            ", contact='" + getContact() + "'" +
+            ", phoneNumber='" + getPhoneNumber() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", contactPerson='" + getContactPerson() + "'" +
             "}";
     }
 }

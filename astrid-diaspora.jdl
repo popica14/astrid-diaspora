@@ -1,21 +1,34 @@
 entity AstridProject{
 	name String required
     shortDescription TextBlob required
-    documentation AnyBlob
     neededAmount String
     currentAmount String
     currency String
     supporters Integer
-    goal String
+    goal String required
     statusReason String
     statusDeadline ZonedDateTime
+    documentation1 AnyBlob
+    documentation2 AnyBlob
+    documentation3 AnyBlob
+    documentation4 AnyBlob
+    documentation5 AnyBlob
 }
 
 entity AstridProjectSuggestion{
 	name String required
     shortDescription TextBlob required
     documentation AnyBlob
-    goal String
+    goal String required
+    documentation1 AnyBlob
+    documentation2 AnyBlob
+    documentation3 AnyBlob
+    documentation4 AnyBlob
+    documentation5 AnyBlob
+}
+
+entity AstridUser{
+	phoneNumber String required pattern(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/)
 }
 
 
@@ -24,7 +37,9 @@ entity Beneficiary{
 	name String required
     type BeneficiaryType required
     address String
-    contact String
+    phoneNumber String required
+    email String required
+    contactPerson String 
 }
 
 entity Location{
@@ -37,8 +52,24 @@ enum BeneficiaryType{
 	PRIVATE_PERSON, PUBLIC_INSTITUTION, PRIVATE_INSTITUTION
 }
 
+// enum Gender{
+// 	FEMALE, MALE, PREFER_NOT_TO_ANSWER
+// }
+
+// enum Education{
+	
+//     DOCTORATE,
+//     NO_FORMAL_EDUCATION,
+//     BACHELOR,
+//     PRIMARY,
+//     SECONDARY_HIGH_SCHOOL,
+//     MASTER,
+//     PREFER_NOT_TO_ANSWER
+// }
+
 entity ProjectStatus{
 	name String required
+    daysToNotification Integer required
 }
 
 entity EntityCreation{
@@ -55,7 +86,6 @@ relationship ManyToOne {
 	AstridProjectSuggestion{initiator(login) required} to User 
 	AstridProject{status(name)} to ProjectStatus
 	AstridProjectSuggestion{status(name)} to ProjectStatus
-	Beneficiary{contactPerson(login) required} to User
 	AstridProject{location(name)} to Location
 	EntityLastModification{lastModifiedBy(login) required} to User
 	EntityCreation{createdBy(login) required} to User
@@ -67,6 +97,7 @@ relationship ManyToOne {
 relationship OneToOne {
 	AstridProject to EntityCreation
 	AstridProject to EntityLastModification
+    AstridUser to User
 }
 
 relationship ManyToMany {	

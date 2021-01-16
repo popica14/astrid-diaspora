@@ -26,7 +26,8 @@
                     <th scope="col" ><span jhiTranslate="projectsOverviewApp.beneficiary.name">Name</span></th>
                     <th scope="col" ><span jhiTranslate="projectsOverviewApp.beneficiary.type">Type</span></th>
                     <th scope="col" ><span jhiTranslate="projectsOverviewApp.beneficiary.address">Address</span></th>
-                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.beneficiary.contact">Contact</span></th>
+                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.beneficiary.phoneNumber">Phone Number</span></th>
+                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.beneficiary.email">Email</span></th>
                     <th scope="col" ><span jhiTranslate="projectsOverviewApp.beneficiary.contactPerson">Contact Person</span></th>
                     <th scope="col"></th>
                 </tr>
@@ -37,10 +38,9 @@
                     <td>{{ beneficiary.name }}</td>
                     <td jhiTranslate="{{ 'projectsOverviewApp.BeneficiaryType.' + beneficiary.type }}">{{ beneficiary.type }}</td>
                     <td>{{ beneficiary.address }}</td>
-                    <td>{{ beneficiary.contact }}</td>
-                    <td>
-                        {{ beneficiary.contactPersonLogin }}
-                    </td>
+                    <td>{{ beneficiary.phoneNumber }}</td>
+                    <td>{{ beneficiary.email }}</td>
+                    <td>{{ beneficiary.contactPerson }}</td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

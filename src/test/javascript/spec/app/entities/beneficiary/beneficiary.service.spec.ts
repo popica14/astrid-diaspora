@@ -21,7 +21,7 @@ describe('Service Tests', () => {
       service = injector.get(BeneficiaryService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Beneficiary(0, 'AAAAAAA', BeneficiaryType.PRIVATE_PERSON, 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new Beneficiary(0, 'AAAAAAA', BeneficiaryType.PRIVATE_PERSON, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -58,7 +58,9 @@ describe('Service Tests', () => {
             name: 'BBBBBB',
             type: 'BBBBBB',
             address: 'BBBBBB',
-            contact: 'BBBBBB',
+            phoneNumber: 'BBBBBB',
+            email: 'BBBBBB',
+            contactPerson: 'BBBBBB',
           },
           elemDefault
         );
@@ -78,7 +80,9 @@ describe('Service Tests', () => {
             name: 'BBBBBB',
             type: 'BBBBBB',
             address: 'BBBBBB',
-            contact: 'BBBBBB',
+            phoneNumber: 'BBBBBB',
+            email: 'BBBBBB',
+            contactPerson: 'BBBBBB',
           },
           elemDefault
         );

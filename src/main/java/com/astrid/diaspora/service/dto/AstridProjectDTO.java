@@ -21,10 +21,6 @@ public class AstridProjectDTO implements Serializable {
     @Lob
     private String shortDescription;
 
-    @Lob
-    private byte[] documentation;
-
-    private String documentationContentType;
     private String neededAmount;
 
     private String currentAmount;
@@ -33,12 +29,33 @@ public class AstridProjectDTO implements Serializable {
 
     private Integer supporters;
 
+    @NotNull
     private String goal;
 
     private String statusReason;
 
     private ZonedDateTime statusDeadline;
 
+    @Lob
+    private byte[] documentation1;
+
+    private String documentation1ContentType;
+    @Lob
+    private byte[] documentation2;
+
+    private String documentation2ContentType;
+    @Lob
+    private byte[] documentation3;
+
+    private String documentation3ContentType;
+    @Lob
+    private byte[] documentation4;
+
+    private String documentation4ContentType;
+    @Lob
+    private byte[] documentation5;
+
+    private String documentation5ContentType;
 
     private Long entityCreationId;
 
@@ -84,22 +101,6 @@ public class AstridProjectDTO implements Serializable {
 
     public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
-    }
-
-    public byte[] getDocumentation() {
-        return documentation;
-    }
-
-    public void setDocumentation(byte[] documentation) {
-        this.documentation = documentation;
-    }
-
-    public String getDocumentationContentType() {
-        return documentationContentType;
-    }
-
-    public void setDocumentationContentType(String documentationContentType) {
-        this.documentationContentType = documentationContentType;
     }
 
     public String getNeededAmount() {
@@ -156,6 +157,86 @@ public class AstridProjectDTO implements Serializable {
 
     public void setStatusDeadline(ZonedDateTime statusDeadline) {
         this.statusDeadline = statusDeadline;
+    }
+
+    public byte[] getDocumentation1() {
+        return documentation1;
+    }
+
+    public void setDocumentation1(byte[] documentation1) {
+        this.documentation1 = documentation1;
+    }
+
+    public String getDocumentation1ContentType() {
+        return documentation1ContentType;
+    }
+
+    public void setDocumentation1ContentType(String documentation1ContentType) {
+        this.documentation1ContentType = documentation1ContentType;
+    }
+
+    public byte[] getDocumentation2() {
+        return documentation2;
+    }
+
+    public void setDocumentation2(byte[] documentation2) {
+        this.documentation2 = documentation2;
+    }
+
+    public String getDocumentation2ContentType() {
+        return documentation2ContentType;
+    }
+
+    public void setDocumentation2ContentType(String documentation2ContentType) {
+        this.documentation2ContentType = documentation2ContentType;
+    }
+
+    public byte[] getDocumentation3() {
+        return documentation3;
+    }
+
+    public void setDocumentation3(byte[] documentation3) {
+        this.documentation3 = documentation3;
+    }
+
+    public String getDocumentation3ContentType() {
+        return documentation3ContentType;
+    }
+
+    public void setDocumentation3ContentType(String documentation3ContentType) {
+        this.documentation3ContentType = documentation3ContentType;
+    }
+
+    public byte[] getDocumentation4() {
+        return documentation4;
+    }
+
+    public void setDocumentation4(byte[] documentation4) {
+        this.documentation4 = documentation4;
+    }
+
+    public String getDocumentation4ContentType() {
+        return documentation4ContentType;
+    }
+
+    public void setDocumentation4ContentType(String documentation4ContentType) {
+        this.documentation4ContentType = documentation4ContentType;
+    }
+
+    public byte[] getDocumentation5() {
+        return documentation5;
+    }
+
+    public void setDocumentation5(byte[] documentation5) {
+        this.documentation5 = documentation5;
+    }
+
+    public String getDocumentation5ContentType() {
+        return documentation5ContentType;
+    }
+
+    public void setDocumentation5ContentType(String documentation5ContentType) {
+        this.documentation5ContentType = documentation5ContentType;
     }
 
     public Long getEntityCreationId() {
@@ -278,7 +359,6 @@ public class AstridProjectDTO implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", shortDescription='" + getShortDescription() + "'" +
-            ", documentation='" + getDocumentation() + "'" +
             ", neededAmount='" + getNeededAmount() + "'" +
             ", currentAmount='" + getCurrentAmount() + "'" +
             ", currency='" + getCurrency() + "'" +
@@ -286,6 +366,11 @@ public class AstridProjectDTO implements Serializable {
             ", goal='" + getGoal() + "'" +
             ", statusReason='" + getStatusReason() + "'" +
             ", statusDeadline='" + getStatusDeadline() + "'" +
+            ", documentation1='" + getDocumentation1() + "'" +
+            ", documentation2='" + getDocumentation2() + "'" +
+            ", documentation3='" + getDocumentation3() + "'" +
+            ", documentation4='" + getDocumentation4() + "'" +
+            ", documentation5='" + getDocumentation5() + "'" +
             ", entityCreationId=" + getEntityCreationId() +
             ", entityLastModificationId=" + getEntityLastModificationId() +
             ", responsibleId=" + getResponsibleId() +

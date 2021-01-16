@@ -13,6 +13,9 @@ public class ProjectStatusDTO implements Serializable {
     @NotNull
     private String name;
 
+    @NotNull
+    private Integer daysToNotification;
+
     
     public Long getId() {
         return id;
@@ -28,6 +31,14 @@ public class ProjectStatusDTO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getDaysToNotification() {
+        return daysToNotification;
+    }
+
+    public void setDaysToNotification(Integer daysToNotification) {
+        this.daysToNotification = daysToNotification;
     }
 
     @Override
@@ -53,6 +64,7 @@ public class ProjectStatusDTO implements Serializable {
         return "ProjectStatusDTO{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", daysToNotification=" + getDaysToNotification() +
             "}";
     }
 }

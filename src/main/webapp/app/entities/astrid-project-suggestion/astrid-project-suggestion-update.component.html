@@ -58,6 +58,107 @@
                     <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProjectSuggestion.goal" for="field_goal">Goal</label>
                     <input type="text" class="form-control" name="goal" id="field_goal"
                            formControlName="goal"/>
+                    <div *ngIf="editForm.get('goal')!.invalid && (editForm.get('goal')!.dirty || editForm.get('goal')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('goal')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation1" for="field_documentation1">Documentation 1</label>
+                    <div>
+                        <div *ngIf="editForm.get('documentation1')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('documentation1ContentType')!.value, editForm.get('documentation1')!.value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{ editForm.get('documentation1ContentType')!.value }}, {{ byteSize(editForm.get('documentation1')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({documentation1: null});editForm.patchValue({documentation1ContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_documentation1" (change)="setFileData($event, 'documentation1', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="documentation1" id="field_documentation1"
+                           formControlName="documentation1"/>
+                    <input type="hidden" class="form-control" name="documentation1ContentType" id="field_documentation1ContentType"
+                           formControlName="documentation1ContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation2" for="field_documentation2">Documentation 2</label>
+                    <div>
+                        <div *ngIf="editForm.get('documentation2')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('documentation2ContentType')!.value, editForm.get('documentation2')!.value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{ editForm.get('documentation2ContentType')!.value }}, {{ byteSize(editForm.get('documentation2')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({documentation2: null});editForm.patchValue({documentation2ContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_documentation2" (change)="setFileData($event, 'documentation2', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="documentation2" id="field_documentation2"
+                           formControlName="documentation2"/>
+                    <input type="hidden" class="form-control" name="documentation2ContentType" id="field_documentation2ContentType"
+                           formControlName="documentation2ContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation3" for="field_documentation3">Documentation 3</label>
+                    <div>
+                        <div *ngIf="editForm.get('documentation3')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('documentation3ContentType')!.value, editForm.get('documentation3')!.value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{ editForm.get('documentation3ContentType')!.value }}, {{ byteSize(editForm.get('documentation3')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({documentation3: null});editForm.patchValue({documentation3ContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_documentation3" (change)="setFileData($event, 'documentation3', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="documentation3" id="field_documentation3"
+                           formControlName="documentation3"/>
+                    <input type="hidden" class="form-control" name="documentation3ContentType" id="field_documentation3ContentType"
+                           formControlName="documentation3ContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation4" for="field_documentation4">Documentation 4</label>
+                    <div>
+                        <div *ngIf="editForm.get('documentation4')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('documentation4ContentType')!.value, editForm.get('documentation4')!.value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{ editForm.get('documentation4ContentType')!.value }}, {{ byteSize(editForm.get('documentation4')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({documentation4: null});editForm.patchValue({documentation4ContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_documentation4" (change)="setFileData($event, 'documentation4', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="documentation4" id="field_documentation4"
+                           formControlName="documentation4"/>
+                    <input type="hidden" class="form-control" name="documentation4ContentType" id="field_documentation4ContentType"
+                           formControlName="documentation4ContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation5" for="field_documentation5">Documentation 5</label>
+                    <div>
+                        <div *ngIf="editForm.get('documentation5')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('documentation5ContentType')!.value, editForm.get('documentation5')!.value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{ editForm.get('documentation5ContentType')!.value }}, {{ byteSize(editForm.get('documentation5')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({documentation5: null});editForm.patchValue({documentation5ContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_documentation5" (change)="setFileData($event, 'documentation5', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="documentation5" id="field_documentation5"
+                           formControlName="documentation5"/>
+                    <input type="hidden" class="form-control" name="documentation5ContentType" id="field_documentation5ContentType"
+                           formControlName="documentation5ContentType" />
                 </div>
 
                 <div class="form-group">

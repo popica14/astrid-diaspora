@@ -17,19 +17,21 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "contact",
+      "fieldName": "phoneNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "contactPerson",
       "fieldType": "String"
     }
   ],
   "relationships": [
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "user",
-      "otherEntityRelationshipName": "beneficiary",
-      "relationshipValidateRules": "required",
-      "relationshipName": "contactPerson",
-      "otherEntityField": "login"
-    },
     {
       "relationshipType": "many-to-many",
       "otherEntityName": "astridProject",

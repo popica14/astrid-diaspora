@@ -36,8 +36,44 @@ public class AstridProjectSuggestion implements Serializable {
     @Column(name = "documentation_content_type")
     private String documentationContentType;
 
-    @Column(name = "goal")
+    @NotNull
+    @Column(name = "goal", nullable = false)
     private String goal;
+
+    @Lob
+    @Column(name = "documentation_1")
+    private byte[] documentation1;
+
+    @Column(name = "documentation_1_content_type")
+    private String documentation1ContentType;
+
+    @Lob
+    @Column(name = "documentation_2")
+    private byte[] documentation2;
+
+    @Column(name = "documentation_2_content_type")
+    private String documentation2ContentType;
+
+    @Lob
+    @Column(name = "documentation_3")
+    private byte[] documentation3;
+
+    @Column(name = "documentation_3_content_type")
+    private String documentation3ContentType;
+
+    @Lob
+    @Column(name = "documentation_4")
+    private byte[] documentation4;
+
+    @Column(name = "documentation_4_content_type")
+    private String documentation4ContentType;
+
+    @Lob
+    @Column(name = "documentation_5")
+    private byte[] documentation5;
+
+    @Column(name = "documentation_5_content_type")
+    private String documentation5ContentType;
 
     @ManyToOne(optional = false)
     @NotNull
@@ -122,6 +158,136 @@ public class AstridProjectSuggestion implements Serializable {
         this.goal = goal;
     }
 
+    public byte[] getDocumentation1() {
+        return documentation1;
+    }
+
+    public AstridProjectSuggestion documentation1(byte[] documentation1) {
+        this.documentation1 = documentation1;
+        return this;
+    }
+
+    public void setDocumentation1(byte[] documentation1) {
+        this.documentation1 = documentation1;
+    }
+
+    public String getDocumentation1ContentType() {
+        return documentation1ContentType;
+    }
+
+    public AstridProjectSuggestion documentation1ContentType(String documentation1ContentType) {
+        this.documentation1ContentType = documentation1ContentType;
+        return this;
+    }
+
+    public void setDocumentation1ContentType(String documentation1ContentType) {
+        this.documentation1ContentType = documentation1ContentType;
+    }
+
+    public byte[] getDocumentation2() {
+        return documentation2;
+    }
+
+    public AstridProjectSuggestion documentation2(byte[] documentation2) {
+        this.documentation2 = documentation2;
+        return this;
+    }
+
+    public void setDocumentation2(byte[] documentation2) {
+        this.documentation2 = documentation2;
+    }
+
+    public String getDocumentation2ContentType() {
+        return documentation2ContentType;
+    }
+
+    public AstridProjectSuggestion documentation2ContentType(String documentation2ContentType) {
+        this.documentation2ContentType = documentation2ContentType;
+        return this;
+    }
+
+    public void setDocumentation2ContentType(String documentation2ContentType) {
+        this.documentation2ContentType = documentation2ContentType;
+    }
+
+    public byte[] getDocumentation3() {
+        return documentation3;
+    }
+
+    public AstridProjectSuggestion documentation3(byte[] documentation3) {
+        this.documentation3 = documentation3;
+        return this;
+    }
+
+    public void setDocumentation3(byte[] documentation3) {
+        this.documentation3 = documentation3;
+    }
+
+    public String getDocumentation3ContentType() {
+        return documentation3ContentType;
+    }
+
+    public AstridProjectSuggestion documentation3ContentType(String documentation3ContentType) {
+        this.documentation3ContentType = documentation3ContentType;
+        return this;
+    }
+
+    public void setDocumentation3ContentType(String documentation3ContentType) {
+        this.documentation3ContentType = documentation3ContentType;
+    }
+
+    public byte[] getDocumentation4() {
+        return documentation4;
+    }
+
+    public AstridProjectSuggestion documentation4(byte[] documentation4) {
+        this.documentation4 = documentation4;
+        return this;
+    }
+
+    public void setDocumentation4(byte[] documentation4) {
+        this.documentation4 = documentation4;
+    }
+
+    public String getDocumentation4ContentType() {
+        return documentation4ContentType;
+    }
+
+    public AstridProjectSuggestion documentation4ContentType(String documentation4ContentType) {
+        this.documentation4ContentType = documentation4ContentType;
+        return this;
+    }
+
+    public void setDocumentation4ContentType(String documentation4ContentType) {
+        this.documentation4ContentType = documentation4ContentType;
+    }
+
+    public byte[] getDocumentation5() {
+        return documentation5;
+    }
+
+    public AstridProjectSuggestion documentation5(byte[] documentation5) {
+        this.documentation5 = documentation5;
+        return this;
+    }
+
+    public void setDocumentation5(byte[] documentation5) {
+        this.documentation5 = documentation5;
+    }
+
+    public String getDocumentation5ContentType() {
+        return documentation5ContentType;
+    }
+
+    public AstridProjectSuggestion documentation5ContentType(String documentation5ContentType) {
+        this.documentation5ContentType = documentation5ContentType;
+        return this;
+    }
+
+    public void setDocumentation5ContentType(String documentation5ContentType) {
+        this.documentation5ContentType = documentation5ContentType;
+    }
+
     public User getInitiator() {
         return initiator;
     }
@@ -175,6 +341,16 @@ public class AstridProjectSuggestion implements Serializable {
             ", documentation='" + getDocumentation() + "'" +
             ", documentationContentType='" + getDocumentationContentType() + "'" +
             ", goal='" + getGoal() + "'" +
+            ", documentation1='" + getDocumentation1() + "'" +
+            ", documentation1ContentType='" + getDocumentation1ContentType() + "'" +
+            ", documentation2='" + getDocumentation2() + "'" +
+            ", documentation2ContentType='" + getDocumentation2ContentType() + "'" +
+            ", documentation3='" + getDocumentation3() + "'" +
+            ", documentation3ContentType='" + getDocumentation3ContentType() + "'" +
+            ", documentation4='" + getDocumentation4() + "'" +
+            ", documentation4ContentType='" + getDocumentation4ContentType() + "'" +
+            ", documentation5='" + getDocumentation5() + "'" +
+            ", documentation5ContentType='" + getDocumentation5ContentType() + "'" +
             "}";
     }
 }
