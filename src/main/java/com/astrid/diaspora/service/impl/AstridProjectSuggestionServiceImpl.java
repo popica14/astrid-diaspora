@@ -1,9 +1,13 @@
 package com.astrid.diaspora.service.impl;
 
+import com.astrid.diaspora.domain.ProjectStatus;
+import com.astrid.diaspora.repository.ProjectStatusRepository;
 import com.astrid.diaspora.service.AstridProjectSuggestionService;
 import com.astrid.diaspora.domain.AstridProjectSuggestion;
 import com.astrid.diaspora.repository.AstridProjectSuggestionRepository;
+import com.astrid.diaspora.service.ProjectStatusService;
 import com.astrid.diaspora.service.dto.AstridProjectSuggestionDTO;
+import com.astrid.diaspora.service.dto.ProjectStatusDTO;
 import com.astrid.diaspora.service.mapper.AstridProjectSuggestionMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,15 +33,24 @@ public class AstridProjectSuggestionServiceImpl implements AstridProjectSuggesti
 
     private final AstridProjectSuggestionMapper astridProjectSuggestionMapper;
 
-    public AstridProjectSuggestionServiceImpl(AstridProjectSuggestionRepository astridProjectSuggestionRepository, AstridProjectSuggestionMapper astridProjectSuggestionMapper) {
+    private final ProjectStatusRepository projectStatusRepository;
+
+    public AstridProjectSuggestionServiceImpl(AstridProjectSuggestionRepository astridProjectSuggestionRepository,
+                                              AstridProjectSuggestionMapper astridProjectSuggestionMapper,
+                                              ProjectStatusRepository projectStatusRepository) {
         this.astridProjectSuggestionRepository = astridProjectSuggestionRepository;
         this.astridProjectSuggestionMapper = astridProjectSuggestionMapper;
+        this.projectStatusRepository = projectStatusRepository;
     }
 
     @Override
     public AstridProjectSuggestionDTO save(AstridProjectSuggestionDTO astridProjectSuggestionDTO) {
         log.debug("Request to save AstridProjectSuggestion : {}", astridProjectSuggestionDTO);
         AstridProjectSuggestion astridProjectSuggestion = astridProjectSuggestionMapper.toEntity(astridProjectSuggestionDTO);
+        if (astridProjectSuggestion.getId() == null) {
+            ProjectStatus newProjectStatus = projectStatusRepository.getOne(1L);
+            astridProjectSuggestion.setStatus(newProjectStatus);
+        }
         astridProjectSuggestion = astridProjectSuggestionRepository.save(astridProjectSuggestion);
         return astridProjectSuggestionMapper.toDto(astridProjectSuggestion);
     }
@@ -50,7 +63,6 @@ public class AstridProjectSuggestionServiceImpl implements AstridProjectSuggesti
             .map(astridProjectSuggestionMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
     }
-
 
     @Override
     @Transactional(readOnly = true)

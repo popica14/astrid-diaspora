@@ -1,0 +1,4 @@
+id;name;days_to_notification
+1;new;30
+2;review;30
+3;closed;30

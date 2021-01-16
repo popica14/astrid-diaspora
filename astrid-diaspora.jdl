@@ -18,7 +18,6 @@ entity AstridProject{
 entity AstridProjectSuggestion{
 	name String required
     shortDescription TextBlob required
-    documentation AnyBlob
     goal String required
     documentation1 AnyBlob
     documentation2 AnyBlob

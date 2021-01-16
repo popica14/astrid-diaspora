@@ -4,23 +4,24 @@
     {
       "fieldName": "name",
       "fieldType": "String",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": [
+        "required"
+      ]
     },
     {
       "fieldName": "shortDescription",
       "fieldType": "byte[]",
       "fieldTypeBlobContent": "text",
-      "fieldValidateRules": ["required"]
-    },
-    {
-      "fieldName": "documentation",
-      "fieldType": "byte[]",
-      "fieldTypeBlobContent": "any"
+      "fieldValidateRules": [
+        "required"
+      ]
     },
     {
       "fieldName": "goal",
       "fieldType": "String",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": [
+        "required"
+      ]
     },
     {
       "fieldName": "documentation1",
