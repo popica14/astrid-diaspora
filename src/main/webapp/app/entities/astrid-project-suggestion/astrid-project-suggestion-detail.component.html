@@ -16,13 +16,6 @@
                 <dd>
                     <span>{{ astridProjectSuggestion.shortDescription }}</span>
                 </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation">Documentation</span></dt>
-                <dd>
-                    <div *ngIf="astridProjectSuggestion.documentation">
-                        <a (click)="openFile(astridProjectSuggestion.documentationContentType, astridProjectSuggestion.documentation)" jhiTranslate="entity.action.open">open</a>
-                        {{ astridProjectSuggestion.documentationContentType }}, {{ byteSize(astridProjectSuggestion.documentation) }}
-                    </div>
-                </dd>
                 <dt><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.goal">Goal</span></dt>
                 <dd>
                     <span>{{ astridProjectSuggestion.goal }}</span>

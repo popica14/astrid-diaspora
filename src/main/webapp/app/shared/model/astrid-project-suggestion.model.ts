@@ -2,8 +2,6 @@ export interface IAstridProjectSuggestion {
   id?: number;
   name?: string;
   shortDescription?: any;
-  documentationContentType?: string;
-  documentation?: any;
   goal?: string;
   documentation1ContentType?: string;
   documentation1?: any;
@@ -26,8 +24,6 @@ export class AstridProjectSuggestion implements IAstridProjectSuggestion {
     public id?: number,
     public name?: string,
     public shortDescription?: any,
-    public documentationContentType?: string,
-    public documentation?: any,
     public goal?: string,
     public documentation1ContentType?: string,
     public documentation1?: any,

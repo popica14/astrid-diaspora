@@ -18,10 +18,6 @@ public class AstridProjectSuggestionDTO implements Serializable {
     @Lob
     private String shortDescription;
 
-    @Lob
-    private byte[] documentation;
-
-    private String documentationContentType;
     @NotNull
     private String goal;
 
@@ -76,22 +72,6 @@ public class AstridProjectSuggestionDTO implements Serializable {
 
     public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
-    }
-
-    public byte[] getDocumentation() {
-        return documentation;
-    }
-
-    public void setDocumentation(byte[] documentation) {
-        this.documentation = documentation;
-    }
-
-    public String getDocumentationContentType() {
-        return documentationContentType;
-    }
-
-    public void setDocumentationContentType(String documentationContentType) {
-        this.documentationContentType = documentationContentType;
     }
 
     public String getGoal() {
@@ -238,7 +218,6 @@ public class AstridProjectSuggestionDTO implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", shortDescription='" + getShortDescription() + "'" +
-            ", documentation='" + getDocumentation() + "'" +
             ", goal='" + getGoal() + "'" +
             ", documentation1='" + getDocumentation1() + "'" +
             ", documentation2='" + getDocumentation2() + "'" +

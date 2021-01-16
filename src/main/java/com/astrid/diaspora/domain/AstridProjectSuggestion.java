@@ -29,13 +29,6 @@ public class AstridProjectSuggestion implements Serializable {
     @Column(name = "short_description", nullable = false)
     private String shortDescription;
 
-    @Lob
-    @Column(name = "documentation")
-    private byte[] documentation;
-
-    @Column(name = "documentation_content_type")
-    private String documentationContentType;
-
     @NotNull
     @Column(name = "goal", nullable = false)
     private String goal;
@@ -117,32 +110,6 @@ public class AstridProjectSuggestion implements Serializable {
 
     public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
-    }
-
-    public byte[] getDocumentation() {
-        return documentation;
-    }
-
-    public AstridProjectSuggestion documentation(byte[] documentation) {
-        this.documentation = documentation;
-        return this;
-    }
-
-    public void setDocumentation(byte[] documentation) {
-        this.documentation = documentation;
-    }
-
-    public String getDocumentationContentType() {
-        return documentationContentType;
-    }
-
-    public AstridProjectSuggestion documentationContentType(String documentationContentType) {
-        this.documentationContentType = documentationContentType;
-        return this;
-    }
-
-    public void setDocumentationContentType(String documentationContentType) {
-        this.documentationContentType = documentationContentType;
     }
 
     public String getGoal() {
@@ -338,8 +305,6 @@ public class AstridProjectSuggestion implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", shortDescription='" + getShortDescription() + "'" +
-            ", documentation='" + getDocumentation() + "'" +
-            ", documentationContentType='" + getDocumentationContentType() + "'" +
             ", goal='" + getGoal() + "'" +
             ", documentation1='" + getDocumentation1() + "'" +
             ", documentation1ContentType='" + getDocumentation1ContentType() + "'" +

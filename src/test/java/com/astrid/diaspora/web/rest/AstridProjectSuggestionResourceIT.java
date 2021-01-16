@@ -40,11 +40,6 @@ public class AstridProjectSuggestionResourceIT {
     private static final String DEFAULT_SHORT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_SHORT_DESCRIPTION = "BBBBBBBBBB";
 
-    private static final byte[] DEFAULT_DOCUMENTATION = TestUtil.createByteArray(1, "0");
-    private static final byte[] UPDATED_DOCUMENTATION = TestUtil.createByteArray(1, "1");
-    private static final String DEFAULT_DOCUMENTATION_CONTENT_TYPE = "image/jpg";
-    private static final String UPDATED_DOCUMENTATION_CONTENT_TYPE = "image/png";
-
     private static final String DEFAULT_GOAL = "AAAAAAAAAA";
     private static final String UPDATED_GOAL = "BBBBBBBBBB";
 
@@ -100,8 +95,6 @@ public class AstridProjectSuggestionResourceIT {
         AstridProjectSuggestion astridProjectSuggestion = new AstridProjectSuggestion()
             .name(DEFAULT_NAME)
             .shortDescription(DEFAULT_SHORT_DESCRIPTION)
-            .documentation(DEFAULT_DOCUMENTATION)
-            .documentationContentType(DEFAULT_DOCUMENTATION_CONTENT_TYPE)
             .goal(DEFAULT_GOAL)
             .documentation1(DEFAULT_DOCUMENTATION_1)
             .documentation1ContentType(DEFAULT_DOCUMENTATION_1_CONTENT_TYPE)
@@ -130,8 +123,6 @@ public class AstridProjectSuggestionResourceIT {
         AstridProjectSuggestion astridProjectSuggestion = new AstridProjectSuggestion()
             .name(UPDATED_NAME)
             .shortDescription(UPDATED_SHORT_DESCRIPTION)
-            .documentation(UPDATED_DOCUMENTATION)
-            .documentationContentType(UPDATED_DOCUMENTATION_CONTENT_TYPE)
             .goal(UPDATED_GOAL)
             .documentation1(UPDATED_DOCUMENTATION_1)
             .documentation1ContentType(UPDATED_DOCUMENTATION_1_CONTENT_TYPE)
@@ -173,8 +164,6 @@ public class AstridProjectSuggestionResourceIT {
         AstridProjectSuggestion testAstridProjectSuggestion = astridProjectSuggestionList.get(astridProjectSuggestionList.size() - 1);
         assertThat(testAstridProjectSuggestion.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testAstridProjectSuggestion.getShortDescription()).isEqualTo(DEFAULT_SHORT_DESCRIPTION);
-        assertThat(testAstridProjectSuggestion.getDocumentation()).isEqualTo(DEFAULT_DOCUMENTATION);
-        assertThat(testAstridProjectSuggestion.getDocumentationContentType()).isEqualTo(DEFAULT_DOCUMENTATION_CONTENT_TYPE);
         assertThat(testAstridProjectSuggestion.getGoal()).isEqualTo(DEFAULT_GOAL);
         assertThat(testAstridProjectSuggestion.getDocumentation1()).isEqualTo(DEFAULT_DOCUMENTATION_1);
         assertThat(testAstridProjectSuggestion.getDocumentation1ContentType()).isEqualTo(DEFAULT_DOCUMENTATION_1_CONTENT_TYPE);
@@ -262,8 +251,6 @@ public class AstridProjectSuggestionResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(astridProjectSuggestion.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
             .andExpect(jsonPath("$.[*].shortDescription").value(hasItem(DEFAULT_SHORT_DESCRIPTION.toString())))
-            .andExpect(jsonPath("$.[*].documentationContentType").value(hasItem(DEFAULT_DOCUMENTATION_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].documentation").value(hasItem(Base64Utils.encodeToString(DEFAULT_DOCUMENTATION))))
             .andExpect(jsonPath("$.[*].goal").value(hasItem(DEFAULT_GOAL)))
             .andExpect(jsonPath("$.[*].documentation1ContentType").value(hasItem(DEFAULT_DOCUMENTATION_1_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].documentation1").value(hasItem(Base64Utils.encodeToString(DEFAULT_DOCUMENTATION_1))))
@@ -290,8 +277,6 @@ public class AstridProjectSuggestionResourceIT {
             .andExpect(jsonPath("$.id").value(astridProjectSuggestion.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
             .andExpect(jsonPath("$.shortDescription").value(DEFAULT_SHORT_DESCRIPTION.toString()))
-            .andExpect(jsonPath("$.documentationContentType").value(DEFAULT_DOCUMENTATION_CONTENT_TYPE))
-            .andExpect(jsonPath("$.documentation").value(Base64Utils.encodeToString(DEFAULT_DOCUMENTATION)))
             .andExpect(jsonPath("$.goal").value(DEFAULT_GOAL))
             .andExpect(jsonPath("$.documentation1ContentType").value(DEFAULT_DOCUMENTATION_1_CONTENT_TYPE))
             .andExpect(jsonPath("$.documentation1").value(Base64Utils.encodeToString(DEFAULT_DOCUMENTATION_1)))
@@ -327,8 +312,6 @@ public class AstridProjectSuggestionResourceIT {
         updatedAstridProjectSuggestion
             .name(UPDATED_NAME)
             .shortDescription(UPDATED_SHORT_DESCRIPTION)
-            .documentation(UPDATED_DOCUMENTATION)
-            .documentationContentType(UPDATED_DOCUMENTATION_CONTENT_TYPE)
             .goal(UPDATED_GOAL)
             .documentation1(UPDATED_DOCUMENTATION_1)
             .documentation1ContentType(UPDATED_DOCUMENTATION_1_CONTENT_TYPE)
@@ -353,8 +336,6 @@ public class AstridProjectSuggestionResourceIT {
         AstridProjectSuggestion testAstridProjectSuggestion = astridProjectSuggestionList.get(astridProjectSuggestionList.size() - 1);
         assertThat(testAstridProjectSuggestion.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testAstridProjectSuggestion.getShortDescription()).isEqualTo(UPDATED_SHORT_DESCRIPTION);
-        assertThat(testAstridProjectSuggestion.getDocumentation()).isEqualTo(UPDATED_DOCUMENTATION);
-        assertThat(testAstridProjectSuggestion.getDocumentationContentType()).isEqualTo(UPDATED_DOCUMENTATION_CONTENT_TYPE);
         assertThat(testAstridProjectSuggestion.getGoal()).isEqualTo(UPDATED_GOAL);
         assertThat(testAstridProjectSuggestion.getDocumentation1()).isEqualTo(UPDATED_DOCUMENTATION_1);
         assertThat(testAstridProjectSuggestion.getDocumentation1ContentType()).isEqualTo(UPDATED_DOCUMENTATION_1_CONTENT_TYPE);

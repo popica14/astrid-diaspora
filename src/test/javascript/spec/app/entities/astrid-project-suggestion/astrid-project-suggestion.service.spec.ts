@@ -24,8 +24,6 @@ describe('Service Tests', () => {
         0,
         'AAAAAAA',
         'AAAAAAA',
-        'image/png',
-        'AAAAAAA',
         'AAAAAAA',
         'image/png',
         'AAAAAAA',
@@ -73,7 +71,6 @@ describe('Service Tests', () => {
           {
             name: 'BBBBBB',
             shortDescription: 'BBBBBB',
-            documentation: 'BBBBBB',
             goal: 'BBBBBB',
             documentation1: 'BBBBBB',
             documentation2: 'BBBBBB',
@@ -98,7 +95,6 @@ describe('Service Tests', () => {
           {
             name: 'BBBBBB',
             shortDescription: 'BBBBBB',
-            documentation: 'BBBBBB',
             goal: 'BBBBBB',
             documentation1: 'BBBBBB',
             documentation2: 'BBBBBB',

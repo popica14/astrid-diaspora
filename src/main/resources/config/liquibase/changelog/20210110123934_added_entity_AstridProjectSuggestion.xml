@@ -22,12 +22,6 @@
             <column name="short_description" type="${clobType}">
                 <constraints nullable="false" />
             </column>
-            <column name="documentation" type="longblob">
-                <constraints nullable="true" />
-            </column>
-            <column name="documentation_content_type" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
             <column name="goal" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
@@ -92,8 +86,6 @@
             <column name="id" type="numeric"/>
             <column name="name" type="string"/>
             <column name="short_description" type="clob"/>
-            <column name="documentation" type="blob"/>
-            <column name="documentation_content_type" type="string"/>
             <column name="goal" type="string"/>
             <column name="documentation_1" type="blob"/>
             <column name="documentation_1_content_type" type="string"/>

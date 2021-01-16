@@ -25,7 +25,6 @@
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
                     <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.name">Name</span></th>
                     <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.shortDescription">Short Description</span></th>
-                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation">Documentation</span></th>
                     <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.goal">Goal</span></th>
                     <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation1">Documentation 1</span></th>
                     <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation2">Documentation 2</span></th>
@@ -42,10 +41,6 @@
                     <td><a [routerLink]="['/astrid-project-suggestion', astridProjectSuggestion.id, 'view']">{{ astridProjectSuggestion.id }}</a></td>
                     <td>{{ astridProjectSuggestion.name }}</td>
                     <td>{{ astridProjectSuggestion.shortDescription }}</td>
-                    <td>
-                        <a *ngIf="astridProjectSuggestion.documentation" (click)="openFile(astridProjectSuggestion.documentationContentType, astridProjectSuggestion.documentation)" jhiTranslate="entity.action.open">open</a>
-                        <span *ngIf="astridProjectSuggestion.documentation">{{ astridProjectSuggestion.documentationContentType }}, {{ byteSize(astridProjectSuggestion.documentation) }}</span>
-                    </td>
                     <td>{{ astridProjectSuggestion.goal }}</td>
                     <td>
                         <a *ngIf="astridProjectSuggestion.documentation1" (click)="openFile(astridProjectSuggestion.documentation1ContentType, astridProjectSuggestion.documentation1)" jhiTranslate="entity.action.open">open</a>
