@@ -4,13 +4,17 @@
     {
       "fieldName": "name",
       "fieldType": "String",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": [
+        "required"
+      ]
     },
     {
       "fieldName": "shortDescription",
       "fieldType": "byte[]",
       "fieldTypeBlobContent": "text",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": [
+        "required"
+      ]
     },
     {
       "fieldName": "neededAmount",
@@ -31,11 +35,16 @@
     {
       "fieldName": "goal",
       "fieldType": "String",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": [
+        "required"
+      ]
     },
     {
       "fieldName": "statusReason",
-      "fieldType": "String"
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
     },
     {
       "fieldName": "statusDeadline",
@@ -104,6 +113,7 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "projectStatus",
       "otherEntityRelationshipName": "astridProject",
+      "relationshipValidateRules": "required",
       "relationshipName": "status",
       "otherEntityField": "name"
     },

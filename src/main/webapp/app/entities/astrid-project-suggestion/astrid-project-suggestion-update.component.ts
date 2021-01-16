@@ -42,7 +42,7 @@ export class AstridProjectSuggestionUpdateComponent implements OnInit {
     documentation4ContentType: [],
     documentation5: [],
     documentation5ContentType: [],
-    initiatorId: [null, Validators.required],
+    initiatorId: [],
     statusId: [],
   });
   currentAccount: Account | undefined;
@@ -90,7 +90,7 @@ export class AstridProjectSuggestionUpdateComponent implements OnInit {
       documentation4ContentType: astridProjectSuggestion.documentation4ContentType,
       documentation5: astridProjectSuggestion.documentation5,
       documentation5ContentType: astridProjectSuggestion.documentation5ContentType,
-      initiatorId: astridProjectSuggestion.initiatorId,
+      initiatorId: astridProjectSuggestion.initiatorLogin,
       statusId: astridProjectSuggestion.statusId,
     });
   }

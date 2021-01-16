@@ -6,7 +6,7 @@ entity AstridProject{
     currency String
     supporters Integer
     goal String required
-    statusReason String
+    statusReason String required
     statusDeadline ZonedDateTime
     documentation1 AnyBlob
     documentation2 AnyBlob
@@ -84,7 +84,7 @@ relationship ManyToOne {
 	AstridProject{responsible(login) required} to User 
 	AstridProject{initiator(login) required} to User 
 	AstridProjectSuggestion{initiator(login) required} to User 
-	AstridProject{status(name)} to ProjectStatus
+	AstridProject{status(name) required} to ProjectStatus 
 	AstridProjectSuggestion{status(name)} to ProjectStatus
 	AstridProject{location(name)} to Location
 	EntityLastModification{lastModifiedBy(login) required} to User

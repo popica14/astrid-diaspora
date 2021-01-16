@@ -24,6 +24,8 @@ import { ILocation } from 'app/shared/model/location.model';
 import { LocationService } from 'app/entities/location/location.service';
 import { IBeneficiary } from 'app/shared/model/beneficiary.model';
 import { BeneficiaryService } from 'app/entities/beneficiary/beneficiary.service';
+import { AccountService } from 'app/core/auth/account.service';
+import { Account } from 'app/core/user/account.model';
 
 type SelectableEntity = IEntityCreation | IEntityLastModification | IUser | IProjectStatus | ILocation | IBeneficiary;
 
@@ -66,12 +68,14 @@ export class AstridProjectUpdateComponent implements OnInit {
     entityCreationId: [],
     entityLastModificationId: [],
     responsibleId: [null, Validators.required],
-    initiatorId: [null, Validators.required],
+    initiatorId: [],
     statusId: [],
     locationId: [],
     implementationTeams: [],
     beneficiaries: [],
   });
+
+  currentAccount: Account | undefined;
 
   constructor(
     protected dataUtils: JhiDataUtils,
@@ -84,7 +88,8 @@ export class AstridProjectUpdateComponent implements OnInit {
     protected locationService: LocationService,
     protected beneficiaryService: BeneficiaryService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    protected accountService: AccountService
   ) {}
 
   ngOnInit(): void {
@@ -117,6 +122,12 @@ export class AstridProjectUpdateComponent implements OnInit {
               .subscribe((concatRes: IEntityCreation[]) => (this.entitycreations = concatRes));
           }
         });
+
+      this.accountService.identity().subscribe(account => {
+        if (account) {
+          this.currentAccount = account;
+        }
+      });
 
       this.entityLastModificationService
         .query({ filter: 'astridproject-is-null' })
@@ -175,7 +186,7 @@ export class AstridProjectUpdateComponent implements OnInit {
       entityCreationId: astridProject.entityCreationId,
       entityLastModificationId: astridProject.entityLastModificationId,
       responsibleId: astridProject.responsibleId,
-      initiatorId: astridProject.initiatorId,
+      initiatorId: astridProject.initiatorLogin,
       statusId: astridProject.statusId,
       locationId: astridProject.locationId,
       implementationTeams: astridProject.implementationTeams,
@@ -241,7 +252,7 @@ export class AstridProjectUpdateComponent implements OnInit {
       entityCreationId: this.editForm.get(['entityCreationId'])!.value,
       entityLastModificationId: this.editForm.get(['entityLastModificationId'])!.value,
       responsibleId: this.editForm.get(['responsibleId'])!.value,
-      initiatorId: this.editForm.get(['initiatorId'])!.value,
+      initiatorId: this.users.find(e => e.login === this.currentAccount?.login)?.id,
       statusId: this.editForm.get(['statusId'])!.value,
       locationId: this.editForm.get(['locationId'])!.value,
       implementationTeams: this.editForm.get(['implementationTeams'])!.value,

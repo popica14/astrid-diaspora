@@ -48,7 +48,7 @@ public class AstridProjectSuggestionServiceImpl implements AstridProjectSuggesti
         log.debug("Request to save AstridProjectSuggestion : {}", astridProjectSuggestionDTO);
         AstridProjectSuggestion astridProjectSuggestion = astridProjectSuggestionMapper.toEntity(astridProjectSuggestionDTO);
         if (astridProjectSuggestion.getId() == null) {
-            ProjectStatus newProjectStatus = projectStatusRepository.getOne(1L);
+            ProjectStatus newProjectStatus = projectStatusRepository.findByOrder(1);
             astridProjectSuggestion.setStatus(newProjectStatus);
         }
         astridProjectSuggestion = astridProjectSuggestionRepository.save(astridProjectSuggestion);
