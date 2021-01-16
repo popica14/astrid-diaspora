@@ -156,8 +156,6 @@ public class AstridProjectResourceIT {
         em.flush();
         astridProject.setResponsible(user);
         // Add required entity
-        astridProject.setInitiator(user);
-        // Add required entity
         ProjectStatus projectStatus;
         if (TestUtil.findAll(em, ProjectStatus.class).isEmpty()) {
             projectStatus = ProjectStatusResourceIT.createEntity(em);
@@ -201,8 +199,6 @@ public class AstridProjectResourceIT {
         em.persist(user);
         em.flush();
         astridProject.setResponsible(user);
-        // Add required entity
-        astridProject.setInitiator(user);
         // Add required entity
         ProjectStatus projectStatus;
         if (TestUtil.findAll(em, ProjectStatus.class).isEmpty()) {

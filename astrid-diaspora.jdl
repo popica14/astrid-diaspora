@@ -82,8 +82,8 @@ entity EntityLastModification{
 
 relationship ManyToOne {
 	AstridProject{responsible(login) required} to User 
-	AstridProject{initiator(login) required} to User 
-	AstridProjectSuggestion{initiator(login) required} to User 
+	AstridProject{initiator(login)} to User 
+	AstridProjectSuggestion{initiator(login)} to User 
 	AstridProject{status(name) required} to ProjectStatus 
 	AstridProjectSuggestion{status(name)} to ProjectStatus
 	AstridProject{location(name)} to Location

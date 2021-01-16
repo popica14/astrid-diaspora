@@ -48,7 +48,6 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "user",
       "otherEntityRelationshipName": "astridProjectSuggestion",
-      "relationshipValidateRules": "required",
       "relationshipName": "initiator",
       "otherEntityField": "login"
     },

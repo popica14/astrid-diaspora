@@ -83,7 +83,7 @@
                 <constraints nullable="false" />
             </column>
             <column name="initiator_id" type="bigint">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
             <column name="status_id" type="bigint">
                 <constraints nullable="false" />
@@ -157,7 +157,6 @@
             <column name="documentation_5" type="blob"/>
             <column name="documentation_5_content_type" type="string"/>
             <column name="responsible_id" type="numeric"/>
-            <column name="initiator_id" type="numeric"/>
             <column name="status_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>

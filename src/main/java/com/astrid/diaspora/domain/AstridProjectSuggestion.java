@@ -68,8 +68,7 @@ public class AstridProjectSuggestion implements Serializable {
     @Column(name = "documentation_5_content_type")
     private String documentation5ContentType;
 
-    @ManyToOne(optional = false)
-    @NotNull
+    @ManyToOne
     @JsonIgnoreProperties(value = "astridProjectSuggestions", allowSetters = true)
     private User initiator;
 

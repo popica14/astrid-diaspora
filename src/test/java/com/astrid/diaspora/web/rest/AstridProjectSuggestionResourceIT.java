@@ -2,7 +2,6 @@ package com.astrid.diaspora.web.rest;
 
 import com.astrid.diaspora.ProjectsOverviewApp;
 import com.astrid.diaspora.domain.AstridProjectSuggestion;
-import com.astrid.diaspora.domain.User;
 import com.astrid.diaspora.repository.AstridProjectSuggestionRepository;
 import com.astrid.diaspora.service.AstridProjectSuggestionService;
 import com.astrid.diaspora.service.dto.AstridProjectSuggestionDTO;
@@ -106,11 +105,6 @@ public class AstridProjectSuggestionResourceIT {
             .documentation4ContentType(DEFAULT_DOCUMENTATION_4_CONTENT_TYPE)
             .documentation5(DEFAULT_DOCUMENTATION_5)
             .documentation5ContentType(DEFAULT_DOCUMENTATION_5_CONTENT_TYPE);
-        // Add required entity
-        User user = UserResourceIT.createEntity(em);
-        em.persist(user);
-        em.flush();
-        astridProjectSuggestion.setInitiator(user);
         return astridProjectSuggestion;
     }
     /**
@@ -134,11 +128,6 @@ public class AstridProjectSuggestionResourceIT {
             .documentation4ContentType(UPDATED_DOCUMENTATION_4_CONTENT_TYPE)
             .documentation5(UPDATED_DOCUMENTATION_5)
             .documentation5ContentType(UPDATED_DOCUMENTATION_5_CONTENT_TYPE);
-        // Add required entity
-        User user = UserResourceIT.createEntity(em);
-        em.persist(user);
-        em.flush();
-        astridProjectSuggestion.setInitiator(user);
         return astridProjectSuggestion;
     }
 

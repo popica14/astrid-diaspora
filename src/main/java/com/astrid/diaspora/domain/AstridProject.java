@@ -103,8 +103,7 @@ public class AstridProject implements Serializable {
     @JsonIgnoreProperties(value = "astridProjects", allowSetters = true)
     private User responsible;
 
-    @ManyToOne(optional = false)
-    @NotNull
+    @ManyToOne
     @JsonIgnoreProperties(value = "astridProjects", allowSetters = true)
     private User initiator;
 

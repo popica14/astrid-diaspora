@@ -97,7 +97,6 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "user",
       "otherEntityRelationshipName": "astridProject",
-      "relationshipValidateRules": "required",
       "relationshipName": "initiator",
       "otherEntityField": "login"
     },
