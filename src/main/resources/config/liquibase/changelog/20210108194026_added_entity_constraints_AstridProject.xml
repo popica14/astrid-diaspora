@@ -44,6 +44,12 @@
                                  referencedColumnNames="id"
                                  referencedTableName="location"/>
 
+        <addForeignKeyConstraint baseColumnNames="currency_id"
+                                 baseTableName="astrid_project"
+                                 constraintName="fk_astrid_project_currency_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="currency"/>
+
         <addForeignKeyConstraint baseColumnNames="astrid_project_id"
                                  baseTableName="astrid_project_implementation_team"
                                  constraintName="fk_astrid_project_implementation_team_astrid_project_id"

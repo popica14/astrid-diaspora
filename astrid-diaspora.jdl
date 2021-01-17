@@ -3,7 +3,6 @@ entity AstridProject{
     shortDescription TextBlob required
     neededAmount String
     currentAmount String
-    currency String
     supporters Integer
     goal String required
     statusReason String required
@@ -76,6 +75,11 @@ entity EntityCreation{
 	created ZonedDateTime required
 }
 
+entity Currency{
+	name String
+    symbol String
+}
+
 entity EntityLastModification{
 	lastModified ZonedDateTime
 }
@@ -89,6 +93,7 @@ relationship ManyToOne {
 	AstridProject{location(name)} to Location
 	EntityLastModification{lastModifiedBy(login) required} to User
 	EntityCreation{createdBy(login) required} to User
+	AstridProject{currency(name) required} to Currency
 }
 
 /**

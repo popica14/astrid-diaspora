@@ -27,7 +27,6 @@
                     <th scope="col"  jhiSortBy="shortDescription"><span jhiTranslate="projectsOverviewApp.astridProject.shortDescription">Short Description</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="neededAmount"><span jhiTranslate="projectsOverviewApp.astridProject.neededAmount">Needed Amount</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="currentAmount"><span jhiTranslate="projectsOverviewApp.astridProject.currentAmount">Current Amount</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="currency"><span jhiTranslate="projectsOverviewApp.astridProject.currency">Currency</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="supporters"><span jhiTranslate="projectsOverviewApp.astridProject.supporters">Supporters</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="goal"><span jhiTranslate="projectsOverviewApp.astridProject.goal">Goal</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="statusReason"><span jhiTranslate="projectsOverviewApp.astridProject.statusReason">Status Reason</span> <fa-icon icon="sort"></fa-icon></th>
@@ -43,6 +42,7 @@
                     <th scope="col"  jhiSortBy="initiatorLogin"><span jhiTranslate="projectsOverviewApp.astridProject.initiator">Initiator</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="statusName"><span jhiTranslate="projectsOverviewApp.astridProject.status">Status</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="locationName"><span jhiTranslate="projectsOverviewApp.astridProject.location">Location</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="currencyName"><span jhiTranslate="projectsOverviewApp.astridProject.currency">Currency</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -53,7 +53,6 @@
                     <td>{{ astridProject.shortDescription }}</td>
                     <td>{{ astridProject.neededAmount }}</td>
                     <td>{{ astridProject.currentAmount }}</td>
-                    <td>{{ astridProject.currency }}</td>
                     <td>{{ astridProject.supporters }}</td>
                     <td>{{ astridProject.goal }}</td>
                     <td>{{ astridProject.statusReason }}</td>
@@ -102,6 +101,11 @@
                     <td>
                         <div *ngIf="astridProject.locationId">
                             <a [routerLink]="['/location', astridProject.locationId , 'view']" >{{ astridProject.locationName }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="astridProject.currencyId">
+                            <a [routerLink]="['/currency', astridProject.currencyId , 'view']" >{{ astridProject.currencyName }}</a>
                         </div>
                     </td>
                     <td class="text-right">

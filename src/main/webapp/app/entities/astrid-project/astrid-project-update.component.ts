@@ -26,8 +26,10 @@ import { IBeneficiary } from 'app/shared/model/beneficiary.model';
 import { BeneficiaryService } from 'app/entities/beneficiary/beneficiary.service';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
+import { ICurrency } from 'app/shared/model/currency.model';
+import { CurrencyService } from '../currency/currency.service';
 
-type SelectableEntity = IEntityCreation | IEntityLastModification | IUser | IProjectStatus | ILocation | IBeneficiary;
+type SelectableEntity = IEntityCreation | IEntityLastModification | IUser | IProjectStatus | ICurrency | ILocation | IBeneficiary;
 
 type SelectableManyToManyEntity = IUser | IBeneficiary;
 
@@ -42,6 +44,7 @@ export class AstridProjectUpdateComponent implements OnInit {
   users: IUser[] = [];
   projectstatuses: IProjectStatus[] = [];
   locations: ILocation[] = [];
+  currencies: ICurrency[] = [];
   beneficiaries: IBeneficiary[] = [];
 
   editForm = this.fb.group({
@@ -50,7 +53,7 @@ export class AstridProjectUpdateComponent implements OnInit {
     shortDescription: [null, [Validators.required]],
     neededAmount: [],
     currentAmount: [],
-    currency: [],
+    currencyId: [null, Validators.required],
     supporters: [],
     goal: [null, [Validators.required]],
     statusReason: [null, Validators.required],
@@ -88,6 +91,7 @@ export class AstridProjectUpdateComponent implements OnInit {
     protected locationService: LocationService,
     protected beneficiaryService: BeneficiaryService,
     protected activatedRoute: ActivatedRoute,
+    protected currencyService: CurrencyService,
     private fb: FormBuilder,
     protected accountService: AccountService
   ) {}
@@ -158,6 +162,8 @@ export class AstridProjectUpdateComponent implements OnInit {
       this.locationService.query().subscribe((res: HttpResponse<ILocation[]>) => (this.locations = res.body || []));
 
       this.beneficiaryService.query().subscribe((res: HttpResponse<IBeneficiary[]>) => (this.beneficiaries = res.body || []));
+
+      this.currencyService.query().subscribe((res: HttpResponse<ICurrency[]>) => (this.currencies = res.body || []));
     });
   }
 
@@ -168,7 +174,7 @@ export class AstridProjectUpdateComponent implements OnInit {
       shortDescription: astridProject.shortDescription,
       neededAmount: astridProject.neededAmount,
       currentAmount: astridProject.currentAmount,
-      currency: astridProject.currency,
+      currencyId: astridProject.currencyId,
       supporters: astridProject.supporters,
       goal: astridProject.goal,
       statusReason: astridProject.statusReason,
@@ -232,7 +238,7 @@ export class AstridProjectUpdateComponent implements OnInit {
       shortDescription: this.editForm.get(['shortDescription'])!.value,
       neededAmount: this.editForm.get(['neededAmount'])!.value,
       currentAmount: this.editForm.get(['currentAmount'])!.value,
-      currency: this.editForm.get(['currency'])!.value,
+      currencyId: this.editForm.get(['currencyId'])!.value,
       supporters: this.editForm.get(['supporters'])!.value,
       goal: this.editForm.get(['goal'])!.value,
       statusReason: this.editForm.get(['statusReason'])!.value,

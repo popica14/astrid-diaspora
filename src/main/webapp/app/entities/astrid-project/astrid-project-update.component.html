@@ -54,10 +54,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.currency"
-                        for="field_currency">Currency</label>
-                    <input type="text" class="form-control" name="currency" id="field_currency"
-                        formControlName="currency" />
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.currency" for="field_currency">Currency</label>
+                    <select class="form-control" id="field_currency" name="currency" formControlName="currencyId">
+                        <option *ngIf="!editForm.get('currencyId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="currencyOption.id" *ngFor="let currencyOption of currencies; trackBy: trackById">{{ currencyOption.name }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('currencyId')!.invalid && (editForm.get('currencyId')!.dirty || editForm.get('currencyId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('currencyId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
                 </div>
 
                 <div class="form-group">

@@ -24,10 +24,6 @@
                 <dd>
                     <span>{{ astridProject.currentAmount }}</span>
                 </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.currency">Currency</span></dt>
-                <dd>
-                    <span>{{ astridProject.currency }}</span>
-                </dd>
                 <dt><span jhiTranslate="projectsOverviewApp.astridProject.supporters">Supporters</span></dt>
                 <dd>
                     <span>{{ astridProject.supporters }}</span>
@@ -109,6 +105,12 @@
                 <dd>
                     <div *ngIf="astridProject.locationId">
                         <a [routerLink]="['/location', astridProject.locationId, 'view']">{{ astridProject.locationName }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="projectsOverviewApp.astridProject.currency">Currency</span></dt>
+                <dd>
+                    <div *ngIf="astridProject.currencyId">
+                        <a [routerLink]="['/currency', astridProject.currencyId, 'view']">{{ astridProject.currencyName }}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="projectsOverviewApp.astridProject.implementationTeam">Implementation Team</span></dt>

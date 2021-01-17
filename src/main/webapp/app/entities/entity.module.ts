@@ -38,6 +38,10 @@ import { RouterModule } from '@angular/router';
         path: 'astrid-user',
         loadChildren: () => import('./astrid-user/astrid-user.module').then(m => m.ProjectsOverviewAstridUserModule),
       },
+      {
+        path: 'currency',
+        loadChildren: () => import('./currency/currency.module').then(m => m.ProjectsOverviewCurrencyModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

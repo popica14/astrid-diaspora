@@ -1,0 +1,23 @@
+{
+  "projectsOverviewApp": {
+    "currency": {
+      "home": {
+        "title": "Currencies",
+        "createLabel": "Genera un nuovo Currency",
+        "createOrEditLabel": "Genera o modifica un Currency",
+        "notFound": "No Currencies found"
+      },
+      "created": "&Egrave; stato generato un nuovo Currency con identificatore {{ param }}",
+      "updated": "&Egrave; stato aggiornato Currency identificato da {{ param }}",
+      "deleted": "&Egrave; stato eliminato Currency con identificatore {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare Currency {{ id }}?"
+      },
+      "detail": {
+        "title": "Currency"
+      },
+      "name": "Name",
+      "symbol": "Symbol"
+    }
+  }
+}

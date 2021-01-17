@@ -1,0 +1,23 @@
+{
+  "projectsOverviewApp": {
+    "currency": {
+      "home": {
+        "title": "Currencies",
+        "createLabel": "Creeare o nouă entitate Currency",
+        "createOrEditLabel": "Creeare sau editare Currency",
+        "notFound": "No Currencies found"
+      },
+      "created": "A fost creată o nouă entitate Currency cu identificatorul {{ param }}",
+      "updated": "Currency cu identificatorul {{ param }} a fost actualizată",
+      "deleted": "Currency cu identificatorul {{ param }} a fost ștearsă",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți Currency {{ id }}?"
+      },
+      "detail": {
+        "title": "Currency"
+      },
+      "name": "Name",
+      "symbol": "Symbol"
+    }
+  }
+}

@@ -4,6 +4,7 @@ import com.astrid.diaspora.ProjectsOverviewApp;
 import com.astrid.diaspora.domain.AstridProject;
 import com.astrid.diaspora.domain.User;
 import com.astrid.diaspora.domain.ProjectStatus;
+import com.astrid.diaspora.domain.Currency;
 import com.astrid.diaspora.repository.AstridProjectRepository;
 import com.astrid.diaspora.service.AstridProjectService;
 import com.astrid.diaspora.service.dto.AstridProjectDTO;
@@ -59,9 +60,6 @@ public class AstridProjectResourceIT {
 
     private static final String DEFAULT_CURRENT_AMOUNT = "AAAAAAAAAA";
     private static final String UPDATED_CURRENT_AMOUNT = "BBBBBBBBBB";
-
-    private static final String DEFAULT_CURRENCY = "AAAAAAAAAA";
-    private static final String UPDATED_CURRENCY = "BBBBBBBBBB";
 
     private static final Integer DEFAULT_SUPPORTERS = 1;
     private static final Integer UPDATED_SUPPORTERS = 2;
@@ -135,7 +133,6 @@ public class AstridProjectResourceIT {
             .shortDescription(DEFAULT_SHORT_DESCRIPTION)
             .neededAmount(DEFAULT_NEEDED_AMOUNT)
             .currentAmount(DEFAULT_CURRENT_AMOUNT)
-            .currency(DEFAULT_CURRENCY)
             .supporters(DEFAULT_SUPPORTERS)
             .goal(DEFAULT_GOAL)
             .statusReason(DEFAULT_STATUS_REASON)
@@ -165,6 +162,16 @@ public class AstridProjectResourceIT {
             projectStatus = TestUtil.findAll(em, ProjectStatus.class).get(0);
         }
         astridProject.setStatus(projectStatus);
+        // Add required entity
+        Currency currency;
+        if (TestUtil.findAll(em, Currency.class).isEmpty()) {
+            currency = CurrencyResourceIT.createEntity(em);
+            em.persist(currency);
+            em.flush();
+        } else {
+            currency = TestUtil.findAll(em, Currency.class).get(0);
+        }
+        astridProject.setCurrency(currency);
         return astridProject;
     }
     /**
@@ -179,7 +186,6 @@ public class AstridProjectResourceIT {
             .shortDescription(UPDATED_SHORT_DESCRIPTION)
             .neededAmount(UPDATED_NEEDED_AMOUNT)
             .currentAmount(UPDATED_CURRENT_AMOUNT)
-            .currency(UPDATED_CURRENCY)
             .supporters(UPDATED_SUPPORTERS)
             .goal(UPDATED_GOAL)
             .statusReason(UPDATED_STATUS_REASON)
@@ -209,6 +215,16 @@ public class AstridProjectResourceIT {
             projectStatus = TestUtil.findAll(em, ProjectStatus.class).get(0);
         }
         astridProject.setStatus(projectStatus);
+        // Add required entity
+        Currency currency;
+        if (TestUtil.findAll(em, Currency.class).isEmpty()) {
+            currency = CurrencyResourceIT.createUpdatedEntity(em);
+            em.persist(currency);
+            em.flush();
+        } else {
+            currency = TestUtil.findAll(em, Currency.class).get(0);
+        }
+        astridProject.setCurrency(currency);
         return astridProject;
     }
 
@@ -236,7 +252,6 @@ public class AstridProjectResourceIT {
         assertThat(testAstridProject.getShortDescription()).isEqualTo(DEFAULT_SHORT_DESCRIPTION);
         assertThat(testAstridProject.getNeededAmount()).isEqualTo(DEFAULT_NEEDED_AMOUNT);
         assertThat(testAstridProject.getCurrentAmount()).isEqualTo(DEFAULT_CURRENT_AMOUNT);
-        assertThat(testAstridProject.getCurrency()).isEqualTo(DEFAULT_CURRENCY);
         assertThat(testAstridProject.getSupporters()).isEqualTo(DEFAULT_SUPPORTERS);
         assertThat(testAstridProject.getGoal()).isEqualTo(DEFAULT_GOAL);
         assertThat(testAstridProject.getStatusReason()).isEqualTo(DEFAULT_STATUS_REASON);
@@ -349,7 +364,6 @@ public class AstridProjectResourceIT {
             .andExpect(jsonPath("$.[*].shortDescription").value(hasItem(DEFAULT_SHORT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].neededAmount").value(hasItem(DEFAULT_NEEDED_AMOUNT)))
             .andExpect(jsonPath("$.[*].currentAmount").value(hasItem(DEFAULT_CURRENT_AMOUNT)))
-            .andExpect(jsonPath("$.[*].currency").value(hasItem(DEFAULT_CURRENCY)))
             .andExpect(jsonPath("$.[*].supporters").value(hasItem(DEFAULT_SUPPORTERS)))
             .andExpect(jsonPath("$.[*].goal").value(hasItem(DEFAULT_GOAL)))
             .andExpect(jsonPath("$.[*].statusReason").value(hasItem(DEFAULT_STATUS_REASON)))
@@ -401,7 +415,6 @@ public class AstridProjectResourceIT {
             .andExpect(jsonPath("$.shortDescription").value(DEFAULT_SHORT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.neededAmount").value(DEFAULT_NEEDED_AMOUNT))
             .andExpect(jsonPath("$.currentAmount").value(DEFAULT_CURRENT_AMOUNT))
-            .andExpect(jsonPath("$.currency").value(DEFAULT_CURRENCY))
             .andExpect(jsonPath("$.supporters").value(DEFAULT_SUPPORTERS))
             .andExpect(jsonPath("$.goal").value(DEFAULT_GOAL))
             .andExpect(jsonPath("$.statusReason").value(DEFAULT_STATUS_REASON))
@@ -442,7 +455,6 @@ public class AstridProjectResourceIT {
             .shortDescription(UPDATED_SHORT_DESCRIPTION)
             .neededAmount(UPDATED_NEEDED_AMOUNT)
             .currentAmount(UPDATED_CURRENT_AMOUNT)
-            .currency(UPDATED_CURRENCY)
             .supporters(UPDATED_SUPPORTERS)
             .goal(UPDATED_GOAL)
             .statusReason(UPDATED_STATUS_REASON)
@@ -472,7 +484,6 @@ public class AstridProjectResourceIT {
         assertThat(testAstridProject.getShortDescription()).isEqualTo(UPDATED_SHORT_DESCRIPTION);
         assertThat(testAstridProject.getNeededAmount()).isEqualTo(UPDATED_NEEDED_AMOUNT);
         assertThat(testAstridProject.getCurrentAmount()).isEqualTo(UPDATED_CURRENT_AMOUNT);
-        assertThat(testAstridProject.getCurrency()).isEqualTo(UPDATED_CURRENCY);
         assertThat(testAstridProject.getSupporters()).isEqualTo(UPDATED_SUPPORTERS);
         assertThat(testAstridProject.getGoal()).isEqualTo(UPDATED_GOAL);
         assertThat(testAstridProject.getStatusReason()).isEqualTo(UPDATED_STATUS_REASON);

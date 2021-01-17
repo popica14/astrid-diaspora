@@ -1,0 +1,23 @@
+{
+  "projectsOverviewApp": {
+    "currency": {
+      "home": {
+        "title": "Currencies",
+        "createLabel": "Egy új Currency létrehozása",
+        "createOrEditLabel": "Hozzon létre, vagy módosítson Currencyt",
+        "notFound": "No Currencies found"
+      },
+      "created": "Egy új Currency lett létrehozva {{ param }} azonosítóval",
+      "updated": "A Currency módosítva lett {{ param }} azonosítóval",
+      "deleted": "A Currency törölve lett {{ param }} azonosítóval",
+      "delete": {
+        "question": "Biztos benne, hogy törölni szeretné az Currencyt {{ id }} azonosítóval?"
+      },
+      "detail": {
+        "title": "Currency"
+      },
+      "name": "Name",
+      "symbol": "Symbol"
+    }
+  }
+}

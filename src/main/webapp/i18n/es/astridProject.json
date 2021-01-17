@@ -20,7 +20,6 @@
       "shortDescription": "Short Description",
       "neededAmount": "Needed Amount",
       "currentAmount": "Current Amount",
-      "currency": "Currency",
       "supporters": "Supporters",
       "goal": "Goal",
       "statusReason": "Status Reason",
@@ -36,6 +35,7 @@
       "initiator": "Initiator",
       "status": "Status",
       "location": "Location",
+      "currency": "Currency",
       "implementationTeam": "Implementation Team",
       "beneficiaries": "Beneficiaries"
     }

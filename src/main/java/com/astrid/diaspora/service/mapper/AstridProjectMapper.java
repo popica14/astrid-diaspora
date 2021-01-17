@@ -9,7 +9,7 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link AstridProject} and its DTO {@link AstridProjectDTO}.
  */
-@Mapper(componentModel = "spring", uses = {EntityCreationMapper.class, EntityLastModificationMapper.class, UserMapper.class, ProjectStatusMapper.class, LocationMapper.class, BeneficiaryMapper.class})
+@Mapper(componentModel = "spring", uses = {EntityCreationMapper.class, EntityLastModificationMapper.class, UserMapper.class, ProjectStatusMapper.class, LocationMapper.class, CurrencyMapper.class, BeneficiaryMapper.class})
 public interface AstridProjectMapper extends EntityMapper<AstridProjectDTO, AstridProject> {
 
     @Mapping(source = "entityCreation.id", target = "entityCreationId")
@@ -22,6 +22,8 @@ public interface AstridProjectMapper extends EntityMapper<AstridProjectDTO, Astr
     @Mapping(source = "status.name", target = "statusName")
     @Mapping(source = "location.id", target = "locationId")
     @Mapping(source = "location.name", target = "locationName")
+    @Mapping(source = "currency.id", target = "currencyId")
+    @Mapping(source = "currency.name", target = "currencyName")
     AstridProjectDTO toDto(AstridProject astridProject);
 
     @Mapping(source = "entityCreationId", target = "entityCreation")
@@ -30,6 +32,7 @@ public interface AstridProjectMapper extends EntityMapper<AstridProjectDTO, Astr
     @Mapping(source = "initiatorId", target = "initiator")
     @Mapping(source = "statusId", target = "status")
     @Mapping(source = "locationId", target = "location")
+    @Mapping(source = "currencyId", target = "currency")
     @Mapping(target = "removeImplementationTeam", ignore = true)
     @Mapping(target = "removeBeneficiaries", ignore = true)
     AstridProject toEntity(AstridProjectDTO astridProjectDTO);

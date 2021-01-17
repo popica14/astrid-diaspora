@@ -38,9 +38,6 @@ public class AstridProject implements Serializable {
     @Column(name = "current_amount")
     private String currentAmount;
 
-    @Column(name = "currency")
-    private String currency;
-
     @Column(name = "supporters")
     private Integer supporters;
 
@@ -116,6 +113,11 @@ public class AstridProject implements Serializable {
     @JsonIgnoreProperties(value = "astridProjects", allowSetters = true)
     private Location location;
 
+    @ManyToOne(optional = false)
+    @NotNull
+    @JsonIgnoreProperties(value = "astridProjects", allowSetters = true)
+    private Currency currency;
+
     @ManyToMany
     @JoinTable(name = "astrid_project_implementation_team",
                joinColumns = @JoinColumn(name = "astrid_project_id", referencedColumnName = "id"),
@@ -187,19 +189,6 @@ public class AstridProject implements Serializable {
 
     public void setCurrentAmount(String currentAmount) {
         this.currentAmount = currentAmount;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public AstridProject currency(String currency) {
-        this.currency = currency;
-        return this;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
     }
 
     public Integer getSupporters() {
@@ -462,6 +451,19 @@ public class AstridProject implements Serializable {
         this.location = location;
     }
 
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public AstridProject currency(Currency currency) {
+        this.currency = currency;
+        return this;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
+
     public Set<User> getImplementationTeams() {
         return implementationTeams;
     }
@@ -536,7 +538,6 @@ public class AstridProject implements Serializable {
             ", shortDescription='" + getShortDescription() + "'" +
             ", neededAmount='" + getNeededAmount() + "'" +
             ", currentAmount='" + getCurrentAmount() + "'" +
-            ", currency='" + getCurrency() + "'" +
             ", supporters=" + getSupporters() +
             ", goal='" + getGoal() + "'" +
             ", statusReason='" + getStatusReason() + "'" +

@@ -22,6 +22,7 @@
     <include file="config/liquibase/changelog/20210109234302_added_entity_EntityLastModification.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210110123934_added_entity_AstridProjectSuggestion.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210116125958_added_entity_AstridUser.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210117101940_added_entity_Currency.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20210108194026_added_entity_constraints_AstridProject.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210109234202_added_entity_constraints_EntityCreation.xml" relativeToChangelogFile="false"/>

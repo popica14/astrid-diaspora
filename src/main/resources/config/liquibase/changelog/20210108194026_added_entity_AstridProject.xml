@@ -28,9 +28,6 @@
             <column name="current_amount" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="currency" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
             <column name="supporters" type="integer">
                 <constraints nullable="true" />
             </column>
@@ -91,6 +88,9 @@
             <column name="location_id" type="bigint">
                 <constraints nullable="true" />
             </column>
+            <column name="currency_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
         <dropDefaultValue tableName="astrid_project" columnName="status_deadline" columnDataType="datetime"/>
@@ -141,7 +141,6 @@
             <column name="short_description" type="clob"/>
             <column name="needed_amount" type="string"/>
             <column name="current_amount" type="string"/>
-            <column name="currency" type="string"/>
             <column name="supporters" type="numeric"/>
             <column name="goal" type="string"/>
             <column name="status_reason" type="string"/>
@@ -158,6 +157,7 @@
             <column name="documentation_5_content_type" type="string"/>
             <column name="responsible_id" type="numeric"/>
             <column name="status_id" type="numeric"/>
+            <column name="currency_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

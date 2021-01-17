@@ -25,8 +25,6 @@ public class AstridProjectDTO implements Serializable {
 
     private String currentAmount;
 
-    private String currency;
-
     private Integer supporters;
 
     @NotNull
@@ -77,6 +75,10 @@ public class AstridProjectDTO implements Serializable {
     private Long locationId;
 
     private String locationName;
+
+    private Long currencyId;
+
+    private String currencyName;
     private Set<UserDTO> implementationTeams = new HashSet<>();
     private Set<BeneficiaryDTO> beneficiaries = new HashSet<>();
     
@@ -118,14 +120,6 @@ public class AstridProjectDTO implements Serializable {
 
     public void setCurrentAmount(String currentAmount) {
         this.currentAmount = currentAmount;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
     }
 
     public Integer getSupporters() {
@@ -320,6 +314,22 @@ public class AstridProjectDTO implements Serializable {
         this.locationName = locationName;
     }
 
+    public Long getCurrencyId() {
+        return currencyId;
+    }
+
+    public void setCurrencyId(Long currencyId) {
+        this.currencyId = currencyId;
+    }
+
+    public String getCurrencyName() {
+        return currencyName;
+    }
+
+    public void setCurrencyName(String currencyName) {
+        this.currencyName = currencyName;
+    }
+
     public Set<UserDTO> getImplementationTeams() {
         return implementationTeams;
     }
@@ -362,7 +372,6 @@ public class AstridProjectDTO implements Serializable {
             ", shortDescription='" + getShortDescription() + "'" +
             ", neededAmount='" + getNeededAmount() + "'" +
             ", currentAmount='" + getCurrentAmount() + "'" +
-            ", currency='" + getCurrency() + "'" +
             ", supporters=" + getSupporters() +
             ", goal='" + getGoal() + "'" +
             ", statusReason='" + getStatusReason() + "'" +
@@ -382,6 +391,8 @@ public class AstridProjectDTO implements Serializable {
             ", statusName='" + getStatusName() + "'" +
             ", locationId=" + getLocationId() +
             ", locationName='" + getLocationName() + "'" +
+            ", currencyId=" + getCurrencyId() +
+            ", currencyName='" + getCurrencyName() + "'" +
             ", implementationTeams='" + getImplementationTeams() + "'" +
             ", beneficiaries='" + getBeneficiaries() + "'" +
             "}";

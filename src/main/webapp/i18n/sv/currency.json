@@ -1,0 +1,23 @@
+{
+  "projectsOverviewApp": {
+    "currency": {
+      "home": {
+        "title": "Currencies",
+        "createLabel": "Skapa en ny Currency",
+        "createOrEditLabel": "Skapa eller ändra en Currency",
+        "notFound": "No Currencies found"
+      },
+      "created": "En ny Currency är skapad med id {{ param }}",
+      "updated": "En Currency är uppdaterad med id  {{ param }}",
+      "deleted": "En Currency är borttagen med id  {{ param }}",
+      "delete": {
+        "question": "Är du säker på att du vill ta bort Currency {{ id }}?"
+      },
+      "detail": {
+        "title": "Currency"
+      },
+      "name": "Name",
+      "symbol": "Symbol"
+    }
+  }
+}

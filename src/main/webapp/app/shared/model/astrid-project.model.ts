@@ -8,7 +8,6 @@ export interface IAstridProject {
   shortDescription?: any;
   neededAmount?: string;
   currentAmount?: string;
-  currency?: string;
   supporters?: number;
   goal?: string;
   statusReason?: string;
@@ -33,6 +32,8 @@ export interface IAstridProject {
   statusId?: number;
   locationName?: string;
   locationId?: number;
+  currencyName?: string;
+  currencyId?: number;
   implementationTeams?: IUser[];
   beneficiaries?: IBeneficiary[];
 }
@@ -44,7 +45,6 @@ export class AstridProject implements IAstridProject {
     public shortDescription?: any,
     public neededAmount?: string,
     public currentAmount?: string,
-    public currency?: string,
     public supporters?: number,
     public goal?: string,
     public statusReason?: string,
@@ -69,6 +69,8 @@ export class AstridProject implements IAstridProject {
     public statusId?: number,
     public locationName?: string,
     public locationId?: number,
+    public currencyName?: string,
+    public currencyId?: number,
     public implementationTeams?: IUser[],
     public beneficiaries?: IBeneficiary[]
   ) {}

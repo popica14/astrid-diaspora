@@ -18,6 +18,7 @@
         "entityLastModification": "Entity Last Modification",
         "astridProjectSuggestion": "Astrid Project Suggestion",
         "astridUser": "Astrid User",
+        "currency": "Currency",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

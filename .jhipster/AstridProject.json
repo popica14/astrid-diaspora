@@ -21,10 +21,6 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "currency",
-      "fieldType": "String"
-    },
-    {
       "fieldName": "supporters",
       "fieldType": "Integer"
     },
@@ -113,6 +109,14 @@
       "otherEntityName": "location",
       "otherEntityRelationshipName": "astridProject",
       "relationshipName": "location",
+      "otherEntityField": "name"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "currency",
+      "otherEntityRelationshipName": "astridProject",
+      "relationshipValidateRules": "required",
+      "relationshipName": "currency",
       "otherEntityField": "name"
     },
     {
