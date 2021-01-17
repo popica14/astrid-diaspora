@@ -22,6 +22,13 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
           loadChildren: () => import('./admin/admin-routing.module').then(m => m.AdminRoutingModule),
         },
         {
+          path: 'about-us',
+          data: {
+            authorities: [],
+          },
+          loadChildren: () => import('./about-us/about-us-routing.module').then(m => m.AboutUsRoutingModule),
+        },
+        {
           path: 'account',
           loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
         },

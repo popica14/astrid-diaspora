@@ -63,21 +63,6 @@
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
                     <li>
-                        <a class="dropdown-item" routerLink="astrid-project" routerLinkActive="active"
-                            [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.astridProject">Astrid Project</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="astrid-project-suggestion" routerLinkActive="active"
-                            [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.astridProjectSuggestion">Astrid Project
-                                Suggestion</span>
-                        </a>
-                    </li>
-                    <li>
                         <a class="dropdown-item" routerLink="beneficiary" routerLinkActive="active"
                             [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
@@ -209,7 +194,7 @@
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="about-us-menu">
                     <li>
-                        <a class="dropdown-item" routerLink="who-are-we" routerLinkActive="active"
+                        <a class="dropdown-item" routerLink="about-us/who-are-we" routerLinkActive="active"
                             [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="question" [fixedWidth]="true"></fa-icon>
                             <span jhiTranslate="globalExtra.menu.aboutUs.whoAreWe">Wo are we</span>
