@@ -39,7 +39,7 @@ export const currencyRoute: Routes = [
     path: '',
     component: CurrencyComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.EDITOR, Authority.ADMIN],
       pageTitle: 'projectsOverviewApp.currency.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const currencyRoute: Routes = [
       currency: CurrencyResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.EDITOR, Authority.ADMIN],
       pageTitle: 'projectsOverviewApp.currency.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const currencyRoute: Routes = [
       currency: CurrencyResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.EDITOR, Authority.ADMIN],
       pageTitle: 'projectsOverviewApp.currency.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const currencyRoute: Routes = [
       currency: CurrencyResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.EDITOR, Authority.ADMIN],
       pageTitle: 'projectsOverviewApp.currency.home.title',
     },
     canActivate: [UserRouteAccessService],

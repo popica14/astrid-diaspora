@@ -39,7 +39,7 @@ export const projectStatusRoute: Routes = [
     path: '',
     component: ProjectStatusComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'projectsOverviewApp.projectStatus.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const projectStatusRoute: Routes = [
       projectStatus: ProjectStatusResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'projectsOverviewApp.projectStatus.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const projectStatusRoute: Routes = [
       projectStatus: ProjectStatusResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'projectsOverviewApp.projectStatus.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const projectStatusRoute: Routes = [
       projectStatus: ProjectStatusResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'projectsOverviewApp.projectStatus.home.title',
     },
     canActivate: [UserRouteAccessService],

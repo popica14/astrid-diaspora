@@ -63,7 +63,7 @@ export const astridProjectRoute: Routes = [
       astridProject: AstridProjectResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.EDITOR, Authority.ADMIN],
       pageTitle: 'projectsOverviewApp.astridProject.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const astridProjectRoute: Routes = [
       astridProject: AstridProjectResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.EDITOR, Authority.ADMIN],
       pageTitle: 'projectsOverviewApp.astridProject.home.title',
     },
     canActivate: [UserRouteAccessService],

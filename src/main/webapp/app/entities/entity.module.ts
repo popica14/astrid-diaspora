@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { Authority } from 'app/shared/constants/authority.constants';
 
 @NgModule({
   imports: [
@@ -10,22 +11,37 @@ import { RouterModule } from '@angular/router';
       },
       {
         path: 'beneficiary',
+        data: {
+          authorities: [Authority.ADMIN],
+        },
         loadChildren: () => import('./beneficiary/beneficiary.module').then(m => m.ProjectsOverviewBeneficiaryModule),
       },
       {
         path: 'location',
+        data: {
+          authorities: [Authority.ADMIN],
+        },
         loadChildren: () => import('./location/location.module').then(m => m.ProjectsOverviewLocationModule),
       },
       {
         path: 'project-status',
+        data: {
+          authorities: [Authority.ADMIN],
+        },
         loadChildren: () => import('./project-status/project-status.module').then(m => m.ProjectsOverviewProjectStatusModule),
       },
       {
         path: 'entity-creation',
+        data: {
+          authorities: [Authority.ADMIN],
+        },
         loadChildren: () => import('./entity-creation/entity-creation.module').then(m => m.ProjectsOverviewEntityCreationModule),
       },
       {
         path: 'entity-last-modification',
+        data: {
+          authorities: [Authority.ADMIN],
+        },
         loadChildren: () =>
           import('./entity-last-modification/entity-last-modification.module').then(m => m.ProjectsOverviewEntityLastModificationModule),
       },
@@ -40,6 +56,9 @@ import { RouterModule } from '@angular/router';
       },
       {
         path: 'currency',
+        data: {
+          authorities: [Authority.ADMIN],
+        },
         loadChildren: () => import('./currency/currency.module').then(m => m.ProjectsOverviewCurrencyModule),
       },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */

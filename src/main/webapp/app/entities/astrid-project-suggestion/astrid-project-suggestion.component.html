@@ -26,11 +26,11 @@
                     <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.name">Name</span></th>
                     <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.shortDescription">Short Description</span></th>
                     <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.goal">Goal</span></th>
-                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation1">Documentation 1</span></th>
+                    <!-- <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation1">Documentation 1</span></th>
                     <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation2">Documentation 2</span></th>
                     <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation3">Documentation 3</span></th>
                     <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation4">Documentation 4</span></th>
-                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation5">Documentation 5</span></th>
+                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.documentation5">Documentation 5</span></th> -->
                     <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.initiator">Initiator</span></th>
                     <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridProjectSuggestion.status">Status</span></th>
                     <th scope="col"></th>
@@ -42,7 +42,7 @@
                     <td>{{ astridProjectSuggestion.name }}</td>
                     <td>{{ astridProjectSuggestion.shortDescription }}</td>
                     <td>{{ astridProjectSuggestion.goal }}</td>
-                    <td>
+                    <!-- <td>
                         <a *ngIf="astridProjectSuggestion.documentation1" (click)="openFile(astridProjectSuggestion.documentation1ContentType, astridProjectSuggestion.documentation1)" jhiTranslate="entity.action.open">open</a>
                         <span *ngIf="astridProjectSuggestion.documentation1">{{ astridProjectSuggestion.documentation1ContentType }}, {{ byteSize(astridProjectSuggestion.documentation1) }}</span>
                     </td>
@@ -61,7 +61,7 @@
                     <td>
                         <a *ngIf="astridProjectSuggestion.documentation5" (click)="openFile(astridProjectSuggestion.documentation5ContentType, astridProjectSuggestion.documentation5)" jhiTranslate="entity.action.open">open</a>
                         <span *ngIf="astridProjectSuggestion.documentation5">{{ astridProjectSuggestion.documentation5ContentType }}, {{ byteSize(astridProjectSuggestion.documentation5) }}</span>
-                    </td>
+                    </td> -->
                     <td>
                         {{ astridProjectSuggestion.initiatorLogin }}
                     </td>

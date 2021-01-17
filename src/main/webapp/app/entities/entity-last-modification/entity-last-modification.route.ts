@@ -39,7 +39,7 @@ export const entityLastModificationRoute: Routes = [
     path: '',
     component: EntityLastModificationComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'projectsOverviewApp.entityLastModification.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const entityLastModificationRoute: Routes = [
       entityLastModification: EntityLastModificationResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'projectsOverviewApp.entityLastModification.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const entityLastModificationRoute: Routes = [
       entityLastModification: EntityLastModificationResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'projectsOverviewApp.entityLastModification.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const entityLastModificationRoute: Routes = [
       entityLastModification: EntityLastModificationResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'projectsOverviewApp.entityLastModification.home.title',
     },
     canActivate: [UserRouteAccessService],

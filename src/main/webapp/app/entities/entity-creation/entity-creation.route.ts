@@ -39,7 +39,7 @@ export const entityCreationRoute: Routes = [
     path: '',
     component: EntityCreationComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'projectsOverviewApp.entityCreation.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const entityCreationRoute: Routes = [
       entityCreation: EntityCreationResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'projectsOverviewApp.entityCreation.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const entityCreationRoute: Routes = [
       entityCreation: EntityCreationResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'projectsOverviewApp.entityCreation.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const entityCreationRoute: Routes = [
       entityCreation: EntityCreationResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'projectsOverviewApp.entityCreation.home.title',
     },
     canActivate: [UserRouteAccessService],

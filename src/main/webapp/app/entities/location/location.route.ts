@@ -39,7 +39,7 @@ export const locationRoute: Routes = [
     path: '',
     component: LocationComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'projectsOverviewApp.location.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const locationRoute: Routes = [
       location: LocationResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'projectsOverviewApp.location.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const locationRoute: Routes = [
       location: LocationResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'projectsOverviewApp.location.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const locationRoute: Routes = [
       location: LocationResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'projectsOverviewApp.location.home.title',
     },
     canActivate: [UserRouteAccessService],

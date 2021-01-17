@@ -39,7 +39,7 @@ export const beneficiaryRoute: Routes = [
     path: '',
     component: BeneficiaryComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.EDITOR, Authority.ADMIN],
       pageTitle: 'projectsOverviewApp.beneficiary.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const beneficiaryRoute: Routes = [
       beneficiary: BeneficiaryResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.EDITOR, Authority.ADMIN],
       pageTitle: 'projectsOverviewApp.beneficiary.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const beneficiaryRoute: Routes = [
       beneficiary: BeneficiaryResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.EDITOR, Authority.ADMIN],
       pageTitle: 'projectsOverviewApp.beneficiary.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const beneficiaryRoute: Routes = [
       beneficiary: BeneficiaryResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.EDITOR, Authority.ADMIN],
       pageTitle: 'projectsOverviewApp.beneficiary.home.title',
     },
     canActivate: [UserRouteAccessService],
