@@ -11,6 +11,9 @@
     "pages": {
       "whoAreWe": {
         "title": "Who are we"
+      },
+      "contact": {
+        "title": "Contact"
       }
     }
   }

@@ -13,7 +13,13 @@ import { RouterModule } from '@angular/router';
           pageTitle: 'globalExtra.pages.whoAreWe.title',
         },
       },
-
+      {
+        path: 'contact',
+        loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule),
+        data: {
+          pageTitle: 'globalExtra.pages.contact.title',
+        },
+      },
       /* jhipster-needle-add-admin-route - JHipster will add admin routes here */
     ]),
   ],
