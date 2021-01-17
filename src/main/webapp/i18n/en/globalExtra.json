@@ -1,0 +1,12 @@
+{
+  "globalExtra": {
+    "menu": {
+      "projects": "Projects",
+      "aboutUs": {
+        "main": "About us",
+        "contact": "Contact",
+        "whoAreWe": "Who are we"
+      }
+    }
+  }
+}
