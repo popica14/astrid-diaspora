@@ -93,7 +93,7 @@ relationship ManyToOne {
 	AstridProject{location(name)} to Location
 	EntityLastModification{lastModifiedBy(login) required} to User
 	EntityCreation{createdBy(login) required} to User
-	AstridProject{currency(name) required} to Currency
+	AstridProject{currency(name)} to Currency
 }
 
 /**

@@ -115,7 +115,6 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "currency",
       "otherEntityRelationshipName": "astridProject",
-      "relationshipValidateRules": "required",
       "relationshipName": "currency",
       "otherEntityField": "name"
     },

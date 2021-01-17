@@ -113,8 +113,7 @@ public class AstridProject implements Serializable {
     @JsonIgnoreProperties(value = "astridProjects", allowSetters = true)
     private Location location;
 
-    @ManyToOne(optional = false)
-    @NotNull
+    @ManyToOne
     @JsonIgnoreProperties(value = "astridProjects", allowSetters = true)
     private Currency currency;
 

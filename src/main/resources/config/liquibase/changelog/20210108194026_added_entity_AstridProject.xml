@@ -89,7 +89,7 @@
                 <constraints nullable="true" />
             </column>
             <column name="currency_id" type="bigint">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
@@ -157,7 +157,6 @@
             <column name="documentation_5_content_type" type="string"/>
             <column name="responsible_id" type="numeric"/>
             <column name="status_id" type="numeric"/>
-            <column name="currency_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

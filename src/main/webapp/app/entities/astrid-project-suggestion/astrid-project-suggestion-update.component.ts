@@ -13,8 +13,6 @@ import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
 import { IProjectStatus } from 'app/shared/model/project-status.model';
 import { ProjectStatusService } from 'app/entities/project-status/project-status.service';
-import { AccountService } from 'app/core/auth/account.service';
-import { Account } from 'app/core/user/account.model';
 
 type SelectableEntity = IUser | IProjectStatus;
 
@@ -45,7 +43,6 @@ export class AstridProjectSuggestionUpdateComponent implements OnInit {
     initiatorId: [],
     statusId: [],
   });
-  currentAccount: Account | undefined;
 
   constructor(
     protected dataUtils: JhiDataUtils,
@@ -54,8 +51,7 @@ export class AstridProjectSuggestionUpdateComponent implements OnInit {
     protected userService: UserService,
     protected projectStatusService: ProjectStatusService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder,
-    protected accountService: AccountService
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -65,12 +61,6 @@ export class AstridProjectSuggestionUpdateComponent implements OnInit {
       this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
 
       this.projectStatusService.query().subscribe((res: HttpResponse<IProjectStatus[]>) => (this.projectstatuses = res.body || []));
-
-      this.accountService.identity().subscribe(account => {
-        if (account) {
-          this.currentAccount = account;
-        }
-      });
     });
   }
 
@@ -90,7 +80,7 @@ export class AstridProjectSuggestionUpdateComponent implements OnInit {
       documentation4ContentType: astridProjectSuggestion.documentation4ContentType,
       documentation5: astridProjectSuggestion.documentation5,
       documentation5ContentType: astridProjectSuggestion.documentation5ContentType,
-      initiatorId: astridProjectSuggestion.initiatorLogin,
+      initiatorId: astridProjectSuggestion.initiatorId,
       statusId: astridProjectSuggestion.statusId,
     });
   }
@@ -142,7 +132,7 @@ export class AstridProjectSuggestionUpdateComponent implements OnInit {
       documentation4: this.editForm.get(['documentation4'])!.value,
       documentation5ContentType: this.editForm.get(['documentation5ContentType'])!.value,
       documentation5: this.editForm.get(['documentation5'])!.value,
-      initiatorId: this.users.find(e => e.login === this.currentAccount?.login)?.id,
+      initiatorId: this.editForm.get(['initiatorId'])!.value,
       statusId: this.editForm.get(['statusId'])!.value,
     };
   }

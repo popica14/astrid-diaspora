@@ -4,7 +4,6 @@ import com.astrid.diaspora.ProjectsOverviewApp;
 import com.astrid.diaspora.domain.AstridProject;
 import com.astrid.diaspora.domain.User;
 import com.astrid.diaspora.domain.ProjectStatus;
-import com.astrid.diaspora.domain.Currency;
 import com.astrid.diaspora.repository.AstridProjectRepository;
 import com.astrid.diaspora.service.AstridProjectService;
 import com.astrid.diaspora.service.dto.AstridProjectDTO;
@@ -162,16 +161,6 @@ public class AstridProjectResourceIT {
             projectStatus = TestUtil.findAll(em, ProjectStatus.class).get(0);
         }
         astridProject.setStatus(projectStatus);
-        // Add required entity
-        Currency currency;
-        if (TestUtil.findAll(em, Currency.class).isEmpty()) {
-            currency = CurrencyResourceIT.createEntity(em);
-            em.persist(currency);
-            em.flush();
-        } else {
-            currency = TestUtil.findAll(em, Currency.class).get(0);
-        }
-        astridProject.setCurrency(currency);
         return astridProject;
     }
     /**
@@ -215,16 +204,6 @@ public class AstridProjectResourceIT {
             projectStatus = TestUtil.findAll(em, ProjectStatus.class).get(0);
         }
         astridProject.setStatus(projectStatus);
-        // Add required entity
-        Currency currency;
-        if (TestUtil.findAll(em, Currency.class).isEmpty()) {
-            currency = CurrencyResourceIT.createUpdatedEntity(em);
-            em.persist(currency);
-            em.flush();
-        } else {
-            currency = TestUtil.findAll(em, Currency.class).get(0);
-        }
-        astridProject.setCurrency(currency);
         return astridProject;
     }
 

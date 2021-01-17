@@ -53,7 +53,7 @@ export class AstridProjectUpdateComponent implements OnInit {
     shortDescription: [null, [Validators.required]],
     neededAmount: [],
     currentAmount: [],
-    currencyId: [null, Validators.required],
+    currencyId: [],
     supporters: [],
     goal: [null, [Validators.required]],
     statusReason: [null, Validators.required],
