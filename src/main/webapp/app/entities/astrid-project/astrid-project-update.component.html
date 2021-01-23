@@ -43,7 +43,7 @@
                     <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.location"
                         for="field_location">Location</label>
                     <select class="form-control" id="field_location" name="location" formControlName="locationId">
-                        <option [ngValue]="null"></option>
+                        <!-- <option [ngValue]="null"></option> -->
                         <option [ngValue]="locationOption.id"
                             *ngFor="let locationOption of locations; trackBy: trackById">{{ locationOption.name }}
                         </option>
@@ -89,7 +89,7 @@
                                 for="field_currency">Currency</label>
                             <select class="form-control" id="field_currency" name="currency"
                                 formControlName="currencyId">
-                                <option *ngIf="!editForm.get('currencyId')!.value" [ngValue]="null" selected></option>
+                                <!-- <option *ngIf="!editForm.get('currencyId')!.value" [ngValue]="null" selected></option> -->
                                 <option [ngValue]="currencyOption.id"
                                     *ngFor="let currencyOption of currencies; trackBy: trackById">{{ currencyOption.name
                                     }}</option>
@@ -112,7 +112,7 @@
                             <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.status"
                                 for="field_status">Status</label>
                             <select class="form-control" id="field_status" name="status" formControlName="statusId">
-                                <option *ngIf="!editForm.get('statusId')!.value" [ngValue]="null" selected></option>
+                                <!-- <option *ngIf="!editForm.get('statusId')!.value" [ngValue]="null" selected></option> -->
                                 <option [ngValue]="projectStatusOption.id"
                                     *ngFor="let projectStatusOption of projectstatuses; trackBy: trackById">{{
                                     projectStatusOption.name }}</option>
@@ -299,37 +299,16 @@
                     <div class="col-sm-2"></div>
                 </div>
 
-                <div class="form-group" [hidden]="!editForm.get('id')!.value">
-                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.entityCreation"
-                        for="field_entityCreation">Entity Creation</label>
-                    <select class="form-control" id="field_entityCreation" name="entityCreation"
-                        formControlName="entityCreationId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="entityCreationOption.id"
-                            *ngFor="let entityCreationOption of entitycreations; trackBy: trackById">{{
-                            entityCreationOption.id }}</option>
-                    </select>
-                </div>
 
-                <div class="form-group" [hidden]="!editForm.get('id')!.value">
-                    <label class="form-control-label"
-                        jhiTranslate="projectsOverviewApp.astridProject.entityLastModification"
-                        for="field_entityLastModification">Entity Last Modification</label>
-                    <select class="form-control" id="field_entityLastModification" name="entityLastModification"
-                        formControlName="entityLastModificationId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="entityLastModificationOption.id"
-                            *ngFor="let entityLastModificationOption of entitylastmodifications; trackBy: trackById">{{
-                            entityLastModificationOption.id }}</option>
-                    </select>
-                </div>
+                
+
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.responsible"
                         for="field_responsible">Responsible</label>
                     <select class="form-control" id="field_responsible" name="responsible"
                         formControlName="responsibleId">
-                        <option *ngIf="!editForm.get('responsibleId')!.value" [ngValue]="null" selected></option>
+                        <!-- <option *ngIf="!editForm.get('responsibleId')!.value" [ngValue]="null" selected></option> -->
                         <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackById">{{
                             userOption.login }}</option>
                     </select>
@@ -348,12 +327,6 @@
                     <input type="text" class="form-control" id="field_initiator" name="initiator"
                         formControlName="initiatorId" readonly />
                 </div>
-
-
-
-
-
-
 
                 <div class="row">
                     <div class="col-sm-6">
@@ -382,7 +355,41 @@
                 </div>
 
             </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                        <label class="form-control-label"
+                            jhiTranslate="projectsOverviewApp.astridProject.entityLastModification"
+                            for="field_entityLastModification">Entity Last Modification</label>
+                        <!-- <select readonly class="form-control" id="field_entityLastModification" name="entityLastModification"
+            formControlName="entityLastModificationId">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="entityLastModificationOption.id"
+                *ngFor="let entityLastModificationOption of entitylastmodifications; trackBy: trackById">{{
+                entityLastModificationOption.id }}</option>
+        </select> -->
+                        <input type="text" class="form-control" id="field_entityLastModification"
+                            name="entityLastModification" formControlName="entityLastModificationId" readonly />
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                        <label class="form-control-label"
+                            jhiTranslate="projectsOverviewApp.astridProject.entityCreation"
+                            for="field_entityCreation">Entity Creation</label>
+                        <!-- <select readonly class="form-control" id="field_entityCreation" name="entityCreation"
+            formControlName="entityCreationId">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="entityCreationOption.id"
+                *ngFor="let entityCreationOption of entitycreations; trackBy: trackById">{{
+                entityCreationOption.id }}</option>
+        </select> -->
+                        <input type="text" class="form-control" id="field_entityCreation" name="entityCreation"
+                             readonly value="by {{entityLastModifications.lastModifiedByLogin}} on {{entityLastModifications.lastModified}}"/>
+                    </div>
+                </div>
 
+            </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
                     <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>

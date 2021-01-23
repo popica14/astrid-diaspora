@@ -1,18 +1,27 @@
 package com.astrid.diaspora.service.impl;
 
+import com.astrid.diaspora.domain.User;
+import com.astrid.diaspora.security.SecurityUtils;
 import com.astrid.diaspora.service.AstridProjectService;
 import com.astrid.diaspora.domain.AstridProject;
 import com.astrid.diaspora.repository.AstridProjectRepository;
+import com.astrid.diaspora.service.EntityCreationService;
+import com.astrid.diaspora.service.EntityLastModificationService;
+import com.astrid.diaspora.service.UserService;
 import com.astrid.diaspora.service.dto.AstridProjectDTO;
+import com.astrid.diaspora.service.dto.EntityCreationDTO;
+import com.astrid.diaspora.service.dto.EntityLastModificationDTO;
 import com.astrid.diaspora.service.mapper.AstridProjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 /**
@@ -28,17 +37,58 @@ public class AstridProjectServiceImpl implements AstridProjectService {
 
     private final AstridProjectMapper astridProjectMapper;
 
-    public AstridProjectServiceImpl(AstridProjectRepository astridProjectRepository, AstridProjectMapper astridProjectMapper) {
+    private final EntityCreationService entityCreationService;
+    private final EntityLastModificationService entityLastModificationService;
+    private final UserService userService;
+
+    public AstridProjectServiceImpl(AstridProjectRepository astridProjectRepository, AstridProjectMapper astridProjectMapper,
+                                    EntityCreationService entityCreationService,
+                                    EntityLastModificationService entityLastModificationService,
+                                    UserService userService) {
         this.astridProjectRepository = astridProjectRepository;
         this.astridProjectMapper = astridProjectMapper;
+        this.entityCreationService = entityCreationService;
+        this.entityLastModificationService = entityLastModificationService;
+        this.userService = userService;
     }
 
     @Override
     public AstridProjectDTO save(AstridProjectDTO astridProjectDTO) {
         log.debug("Request to save AstridProject : {}", astridProjectDTO);
+        setEntityCreationAndModification(astridProjectDTO);
         AstridProject astridProject = astridProjectMapper.toEntity(astridProjectDTO);
+
         astridProject = astridProjectRepository.save(astridProject);
         return astridProjectMapper.toDto(astridProject);
+    }
+
+    private void setEntityCreationAndModification(AstridProjectDTO astridProject) {
+        Optional<String> currentUserLogin = SecurityUtils.getCurrentUserLogin();
+
+        if (!currentUserLogin.isPresent()) {
+            throw new UsernameNotFoundException("NO_LOGIN");
+        } else {
+            ZonedDateTime now = ZonedDateTime.now();
+            Optional<User> optionalUser = userService.getUserWithAuthoritiesByLogin(currentUserLogin.get());
+            if (optionalUser.isPresent()) {
+                User loggedUser = optionalUser.get();
+                if (astridProject.getId() == null) {
+                    EntityCreationDTO entityCreationDTO = new EntityCreationDTO();
+                    entityCreationDTO.setCreated(now);
+                    entityCreationDTO.setCreatedByLogin(loggedUser.getLogin());
+                    entityCreationDTO.setCreatedById(loggedUser.getId());
+                    EntityCreationDTO created = entityCreationService.save(entityCreationDTO);
+
+                    astridProject.setEntityCreationId(created.getId());
+                }
+                EntityLastModificationDTO entityLastModificationDTO = new EntityLastModificationDTO();
+                entityLastModificationDTO.setLastModified(now);
+                entityLastModificationDTO.setLastModifiedByLogin(loggedUser.getLogin());
+                entityLastModificationDTO.setLastModifiedById(loggedUser.getId());
+                EntityLastModificationDTO modified = entityLastModificationService.save(entityLastModificationDTO);
+                astridProject.setEntityLastModificationId(modified.getId());
+            }
+        }
     }
 
     @Override
@@ -48,7 +98,6 @@ public class AstridProjectServiceImpl implements AstridProjectService {
         return astridProjectRepository.findAll(pageable)
             .map(astridProjectMapper::toDto);
     }
-
 
     public Page<AstridProjectDTO> findAllWithEagerRelationships(Pageable pageable) {
         return astridProjectRepository.findAllWithEagerRelationships(pageable).map(astridProjectMapper::toDto);

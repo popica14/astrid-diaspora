@@ -4,7 +4,6 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } from 'ng-jhipster';
@@ -40,7 +39,8 @@ type SelectableManyToManyEntity = IUser | IBeneficiary;
 export class AstridProjectUpdateComponent implements OnInit {
   isSaving = false;
   entitycreations: IEntityCreation[] = [];
-  entitylastmodifications: IEntityLastModification[] = [];
+  entityLastModifications!: IEntityLastModification;
+
   users: IUser[] = [];
   projectstatuses: IProjectStatus[] = [];
   locations: ILocation[] = [];
@@ -105,55 +105,9 @@ export class AstridProjectUpdateComponent implements OnInit {
 
       this.updateForm(astridProject);
 
-      this.entityCreationService
-        .query({ filter: 'astridproject-is-null' })
-        .pipe(
-          map((res: HttpResponse<IEntityCreation[]>) => {
-            return res.body || [];
-          })
-        )
-        .subscribe((resBody: IEntityCreation[]) => {
-          if (!astridProject.entityCreationId) {
-            this.entitycreations = resBody;
-          } else {
-            this.entityCreationService
-              .find(astridProject.entityCreationId)
-              .pipe(
-                map((subRes: HttpResponse<IEntityCreation>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: IEntityCreation[]) => (this.entitycreations = concatRes));
-          }
-        });
-
-      this.accountService.identity().subscribe(account => {
-        if (account) {
-          this.currentAccount = account;
-        }
-      });
-
       this.entityLastModificationService
-        .query({ filter: 'astridproject-is-null' })
-        .pipe(
-          map((res: HttpResponse<IEntityLastModification[]>) => {
-            return res.body || [];
-          })
-        )
-        .subscribe((resBody: IEntityLastModification[]) => {
-          if (!astridProject.entityLastModificationId) {
-            this.entitylastmodifications = resBody;
-          } else {
-            this.entityLastModificationService
-              .find(astridProject.entityLastModificationId)
-              .pipe(
-                map((subRes: HttpResponse<IEntityLastModification>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: IEntityLastModification[]) => (this.entitylastmodifications = concatRes));
-          }
-        });
+        .find(astridProject.entityLastModificationId)
+        .subscribe((res: HttpResponse<IEntityLastModification>) => (this.entityLastModifications = res.body || {}));
 
       this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
 
