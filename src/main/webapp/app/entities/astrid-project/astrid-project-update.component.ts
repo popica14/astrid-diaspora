@@ -38,8 +38,23 @@ type SelectableManyToManyEntity = IUser | IBeneficiary;
 })
 export class AstridProjectUpdateComponent implements OnInit {
   isSaving = false;
-  entitycreations: IEntityCreation[] = [];
-  entityLastModifications!: IEntityLastModification;
+  entitycreation: IEntityCreation = {
+    id: 0,
+    created: undefined,
+    createdByLogin: '',
+    createdById: 0,
+    astridProjectId: 0,
+  };
+  createdDate: String = '';
+
+  entityLastModification: IEntityLastModification = {
+    id: 0,
+    lastModified: undefined,
+    lastModifiedByLogin: '',
+    lastModifiedById: 0,
+    astridProjectId: 0,
+  };
+  lastModifiedDate: String = '';
 
   users: IUser[] = [];
   projectstatuses: IProjectStatus[] = [];
@@ -105,9 +120,17 @@ export class AstridProjectUpdateComponent implements OnInit {
 
       this.updateForm(astridProject);
 
-      this.entityLastModificationService
-        .find(astridProject.entityLastModificationId)
-        .subscribe((res: HttpResponse<IEntityLastModification>) => (this.entityLastModifications = res.body || {}));
+      if (astridProject.entityLastModificationId !== null) {
+        this.entityLastModificationService
+          .find(astridProject.entityLastModificationId)
+          .subscribe((res: HttpResponse<IEntityLastModification>) => this.processLastModifieDate(res));
+      }
+
+      if (astridProject.EntityCreation !== null) {
+        this.entityCreationService
+          .find(astridProject.entityCreationId)
+          .subscribe((res: HttpResponse<IEntityCreation>) => this.processCreatedDate(res));
+      }
 
       this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
 
@@ -119,6 +142,19 @@ export class AstridProjectUpdateComponent implements OnInit {
 
       this.currencyService.query().subscribe((res: HttpResponse<ICurrency[]>) => (this.currencies = res.body || []));
     });
+  }
+  processCreatedDate(res: HttpResponse<IEntityCreation>): void {
+    this.entitycreation = res.body || {};
+    if (this.entitycreation !== null && this.entitycreation.created !== undefined) {
+      this.createdDate = this.entitycreation.created.format(DATE_TIME_FORMAT);
+    }
+  }
+
+  processLastModifieDate(res: HttpResponse<IEntityLastModification>): void {
+    this.entityLastModification = res.body || {};
+    if (this.entityLastModification !== null && this.entityLastModification.lastModified !== undefined) {
+      this.lastModifiedDate = this.entityLastModification.lastModified.format(DATE_TIME_FORMAT);
+    }
   }
 
   updateForm(astridProject: IAstridProject): void {
