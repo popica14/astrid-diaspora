@@ -1,0 +1,15 @@
+{
+  "projectsOverviewApp": {
+    "woAreWe": {
+      "home": {
+        "title": "Who are we?",
+        "missionLabel": "Our mission:",
+        "visionLabel": "Our vision:",
+        "aboutLabel": "About Astrid:",
+        "mission": "transforming the Romanian rural space into an inclusive one, ideal for the personal and professional development of young people",
+        "vision": "social inclusion and youth development can be achieved through formal, non-formal education and through exchanges of experiences",
+        "about": "ASTRID arose from the desire to contribute to increasing opportunities and the development of young people in villages. We concentrate our activity mainly in the villages near Cluj-Napoca"
+      }
+    }
+  }
+}

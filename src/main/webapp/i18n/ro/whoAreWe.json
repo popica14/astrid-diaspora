@@ -1,0 +1,15 @@
+{
+  "projectsOverviewApp": {
+    "woAreWe": {
+      "home": {
+        "title": "Cine suntem noi?",
+        "missionLabel": "Misiunea noastra:",
+        "visionLabel": "Viziunea noastra:",
+        "aboutLabel": "Despre Astrid:",
+        "mission": "transformarea spațiului rural românesc într-unul incluziv, ideal pentru dezvoltarea personală și profesională a tinerilor",
+        "vision": "incluziunea socială și dezvoltarea tinerilor se pot obține prin educație formală, non-formală și prin schimburi de experiențe",
+        "about": "ASTRID a apărut din dorința de a contribui la creșterea oportunităților și la dezvoltarea tinerilor din sate. Ne concentrăm activitatea preponderent în satele din vecinătatea municipiului Cluj-Napoca."
+      }
+    }
+  }
+}
