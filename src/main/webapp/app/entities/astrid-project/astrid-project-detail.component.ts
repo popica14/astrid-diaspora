@@ -3,6 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { JhiDataUtils } from 'ng-jhipster';
 
 import { IAstridProject } from 'app/shared/model/astrid-project.model';
+import { EntityLastModificationService } from '../entity-last-modification/entity-last-modification.service';
+import { EntityCreationService } from '../entity-creation/entity-creation.service';
+import { IEntityLastModification } from 'app/shared/model/entity-last-modification.model';
+import { HttpResponse } from '@angular/common/http';
+import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { IEntityCreation } from 'app/shared/model/entity-creation.model';
 
 @Component({
   selector: 'jhi-astrid-project-detail',
@@ -11,10 +17,68 @@ import { IAstridProject } from 'app/shared/model/astrid-project.model';
 export class AstridProjectDetailComponent implements OnInit {
   astridProject: IAstridProject | null = null;
 
-  constructor(protected dataUtils: JhiDataUtils, protected activatedRoute: ActivatedRoute) {}
+  lastModifiedDate: String = '';
+  createdDate: String = '';
+  statusDeadline: String = '';
+
+  entitycreation: IEntityCreation = {
+    id: 0,
+    created: undefined,
+    createdByLogin: '',
+    createdById: 0,
+    astridProjectId: 0,
+  };
+
+  entityLastModification: IEntityLastModification = {
+    id: 0,
+    lastModified: undefined,
+    lastModifiedByLogin: '',
+    lastModifiedById: 0,
+    astridProjectId: 0,
+  };
+
+  constructor(
+    protected dataUtils: JhiDataUtils,
+    protected activatedRoute: ActivatedRoute,
+    protected entityCreationService: EntityCreationService,
+    protected entityLastModificationService: EntityLastModificationService
+  ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ astridProject }) => (this.astridProject = astridProject));
+    this.activatedRoute.data.subscribe(({ astridProject }) => this.handleAstridProject(astridProject));
+
+    if (this.astridProject !== null && this.astridProject.entityLastModificationId !== undefined) {
+      this.entityLastModificationService
+        .find(this.astridProject.entityLastModificationId)
+        .subscribe((res: HttpResponse<IEntityLastModification>) => this.processLastModifieDate(res));
+    }
+
+    if (this.astridProject !== null && this.astridProject.entityCreationId !== undefined) {
+      this.entityCreationService
+        .find(this.astridProject.entityCreationId)
+        .subscribe((res: HttpResponse<IEntityCreation>) => this.processCreatedDate(res));
+    }
+  }
+
+  private handleAstridProject(astridProject: any): void {
+    this.astridProject = astridProject;
+    if (this.astridProject !== null && this.astridProject.statusDeadline !== undefined) {
+      this.statusDeadline = this.astridProject.statusDeadline.format(DATE_TIME_FORMAT);
+    }
+  }
+
+  processLastModifieDate(res: HttpResponse<IEntityLastModification>): void {
+    this.entityLastModification = res.body || {};
+    if (this.entityLastModification !== null && this.entityLastModification.lastModified !== undefined) {
+      this.lastModifiedDate = this.entityLastModification.lastModified.format(DATE_TIME_FORMAT);
+    }
+  }
+
+  processCreatedDate(res: HttpResponse<IEntityCreation>): void {
+    this.entitycreation = res.body || {};
+    if (this.entitycreation !== null && this.entitycreation.created !== undefined) {
+      this.createdDate = this.entitycreation.created.format(DATE_TIME_FORMAT);
+    }
   }
 
   byteSize(base64String: string): string {

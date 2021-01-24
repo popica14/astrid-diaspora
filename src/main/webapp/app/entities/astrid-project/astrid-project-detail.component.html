@@ -1,142 +1,220 @@
 <div class="row justify-content-center">
-    <div class="col-8">
+    <div class="col-10">
         <div *ngIf="astridProject">
-            <h2><span jhiTranslate="projectsOverviewApp.astridProject.detail.title">Astrid Project</span> {{ astridProject.id }}</h2>
+            <h2><span jhiTranslate="projectsOverviewApp.astridProject.detail.title">Astrid Project</span> {{
+                astridProject.id }}</h2>
 
             <hr>
 
             <jhi-alert-error></jhi-alert-error>
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="row">
+                        <dl class="row-md jh-entity-details">
+                            <dt><span jhiTranslate="projectsOverviewApp.astridProject.name">Name</span></dt>
+                            <dd>
+                                <span>{{ astridProject.name }}</span>
+                            </dd>
+                            <dt><span jhiTranslate="projectsOverviewApp.astridProject.shortDescription">Short
+                                    Description</span>
+                            </dt>
+                            <dd>
+                                <span>{{ astridProject.shortDescription }}</span>
+                            </dd>
 
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.name">Name</span></dt>
-                <dd>
-                    <span>{{ astridProject.name }}</span>
-                </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.shortDescription">Short Description</span></dt>
-                <dd>
-                    <span>{{ astridProject.shortDescription }}</span>
-                </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.neededAmount">Needed Amount</span></dt>
-                <dd>
-                    <span>{{ astridProject.neededAmount }}</span>
-                </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.currentAmount">Current Amount</span></dt>
-                <dd>
-                    <span>{{ astridProject.currentAmount }}</span>
-                </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.supporters">Supporters</span></dt>
-                <dd>
-                    <span>{{ astridProject.supporters }}</span>
-                </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.goal">Goal</span></dt>
-                <dd>
-                    <span>{{ astridProject.goal }}</span>
-                </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.statusReason">Status Reason</span></dt>
-                <dd>
-                    <span>{{ astridProject.statusReason }}</span>
-                </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.statusDeadline">Status Deadline</span></dt>
-                <dd>
-                    <span>{{ astridProject.statusDeadline }}</span>
-                </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.documentation1">Documentation 1</span></dt>
-                <dd>
-                    <div *ngIf="astridProject.documentation1">
-                        <a (click)="openFile(astridProject.documentation1ContentType, astridProject.documentation1)" jhiTranslate="entity.action.open">open</a>
-                        {{ astridProject.documentation1ContentType }}, {{ byteSize(astridProject.documentation1) }}
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.documentation2">Documentation 2</span></dt>
-                <dd>
-                    <div *ngIf="astridProject.documentation2">
-                        <a (click)="openFile(astridProject.documentation2ContentType, astridProject.documentation2)" jhiTranslate="entity.action.open">open</a>
-                        {{ astridProject.documentation2ContentType }}, {{ byteSize(astridProject.documentation2) }}
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.documentation3">Documentation 3</span></dt>
-                <dd>
-                    <div *ngIf="astridProject.documentation3">
-                        <a (click)="openFile(astridProject.documentation3ContentType, astridProject.documentation3)" jhiTranslate="entity.action.open">open</a>
-                        {{ astridProject.documentation3ContentType }}, {{ byteSize(astridProject.documentation3) }}
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.documentation4">Documentation 4</span></dt>
-                <dd>
-                    <div *ngIf="astridProject.documentation4">
-                        <a (click)="openFile(astridProject.documentation4ContentType, astridProject.documentation4)" jhiTranslate="entity.action.open">open</a>
-                        {{ astridProject.documentation4ContentType }}, {{ byteSize(astridProject.documentation4) }}
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.documentation5">Documentation 5</span></dt>
-                <dd>
-                    <div *ngIf="astridProject.documentation5">
-                        <a (click)="openFile(astridProject.documentation5ContentType, astridProject.documentation5)" jhiTranslate="entity.action.open">open</a>
-                        {{ astridProject.documentation5ContentType }}, {{ byteSize(astridProject.documentation5) }}
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.entityCreation">Entity Creation</span></dt>
-                <dd>
-                    <div *ngIf="astridProject.entityCreationId">
-                        <a [routerLink]="['/entity-creation', astridProject.entityCreationId, 'view']">{{ astridProject.entityCreationId }}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.entityLastModification">Entity Last Modification</span></dt>
-                <dd>
-                    <div *ngIf="astridProject.entityLastModificationId">
-                        <a [routerLink]="['/entity-last-modification', astridProject.entityLastModificationId, 'view']">{{ astridProject.entityLastModificationId }}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.responsible">Responsible</span></dt>
-                <dd>
-                    {{ astridProject.responsibleLogin }}
-                </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.initiator">Initiator</span></dt>
-                <dd>
-                    {{ astridProject.initiatorLogin }}
-                </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.status">Status</span></dt>
-                <dd>
-                    <div *ngIf="astridProject.statusId">
-                        <a [routerLink]="['/project-status', astridProject.statusId, 'view']">{{ astridProject.statusName }}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.location">Location</span></dt>
-                <dd>
-                    <div *ngIf="astridProject.locationId">
-                        <a [routerLink]="['/location', astridProject.locationId, 'view']">{{ astridProject.locationName }}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.currency">Currency</span></dt>
-                <dd>
-                    <div *ngIf="astridProject.currencyId">
-                        <a [routerLink]="['/currency', astridProject.currencyId, 'view']">{{ astridProject.currencyName }}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.implementationTeam">Implementation Team</span></dt>
-                <dd>
-                    <span *ngFor="let implementationTeam of astridProject.implementationTeams; let last = last">
-                        {{ implementationTeam.login }}{{ last ? '' : ', ' }}
-                    </span>
-                </dd>
-                <dt><span jhiTranslate="projectsOverviewApp.astridProject.beneficiaries">Beneficiaries</span></dt>
-                <dd>
-                    <span *ngFor="let beneficiaries of astridProject.beneficiaries; let last = last">
-                        <a [routerLink]="['/beneficiary', beneficiaries?.id, 'view']">{{ beneficiaries.name }}</a>{{ last ? '' : ', ' }}
-                    </span>
-                </dd>
-            </dl>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
+                            <dt><span jhiTranslate="projectsOverviewApp.astridProject.goal">Goal</span></dt>
+                            <dd>
+                                <span>{{ astridProject.goal }}</span>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <dt><span jhiTranslate="projectsOverviewApp.astridProject.neededAmount">Needed Amount</span>
+                            </dt>
+                            <dd>
+                                <span>{{ astridProject.neededAmount }}</span>
+                            </dd>
+
+                        </div>
+                        <div class="col-sm-3">
+                            <dt><span jhiTranslate="projectsOverviewApp.astridProject.currentAmount">Current
+                                    Amount</span>
+                            </dt>
+                            <dd>
+                                <span>{{ astridProject.currentAmount }}</span>
+                            </dd>
+                        </div>
+                        <div class="col-sm-3">
+                            <dt><span jhiTranslate="projectsOverviewApp.astridProject.currency">Currency</span></dt>
+                            <dd>
+                                <div *ngIf="astridProject.currencyId">
+                                    <a [routerLink]="['/currency', astridProject.currencyId, 'view']">{{
+                                        astridProject.currencyName
+                                        }}</a>
+                                </div>
+                            </dd>
+                        </div>
+                        <div class="col-sm-3">
+                            <dt><span jhiTranslate="projectsOverviewApp.astridProject.supporters">Supporters</span></dt>
+                            <dd>
+                                <span>{{ astridProject.supporters }}</span>
+                            </dd>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-3">
+                    <dl class="row-md jh-entity-details">
+                        <dt><span jhiTranslate="projectsOverviewApp.astridProject.status">Status</span></dt>
+                        <dd>
+                            <div *ngIf="astridProject.statusId">
+                                <span>{{ astridProject.statusName }}</span>
+                            </div>
+                        </dd>
+                        <dt><span jhiTranslate="projectsOverviewApp.astridProject.statusReason">Status Reason</span>
+                        </dt>
+                        <dd>
+                            <span>{{ astridProject.statusReason }}</span>
+                        </dd>
+                        <dt><span jhiTranslate="projectsOverviewApp.astridProject.statusDeadline">Status Deadline</span>
+                        </dt>
+                        <dd>
+                            <input class="form-control" id="field_statusDeadline" type="datetime-local"
+                                name="statusDeadline" readonly value="{{statusDeadline}}"
+                                placeholder="YYYY-MM-DD HH:mm" />
+                            <!-- <span>{{ astridProject.statusDeadline }}</span> -->
+                        </dd>
+                        <dt *ngIf="astridProject.documentation1"><span
+                                jhiTranslate="projectsOverviewApp.astridProject.documentation1">Documentation 1</span>
+                        </dt>
+                        <dd *ngIf="astridProject.documentation1">
+                            <div>
+                                <a (click)="openFile(astridProject.documentation1ContentType, astridProject.documentation1)"
+                                    jhiTranslate="entity.action.open">open</a>
+                                {{ astridProject.documentation1ContentType }}, {{ byteSize(astridProject.documentation1)
+                                }}
+                            </div>
+                        </dd>
+                        <dt *ngIf="astridProject.documentation2"><span
+                                jhiTranslate="projectsOverviewApp.astridProject.documentation2">Documentation 2</span>
+                        </dt>
+                        <dd *ngIf="astridProject.documentation2">
+                            <div>
+                                <a (click)="openFile(astridProject.documentation2ContentType, astridProject.documentation2)"
+                                    jhiTranslate="entity.action.open">open</a>
+                                {{ astridProject.documentation2ContentType }}, {{ byteSize(astridProject.documentation2)
+                                }}
+                            </div>
+                        </dd>
+                        <dt *ngIf="astridProject.documentation3"><span
+                                jhiTranslate="projectsOverviewApp.astridProject.documentation3">Documentation 3</span>
+                        </dt>
+                        <dd *ngIf="astridProject.documentation3">
+                            <div>
+                                <a (click)="openFile(astridProject.documentation3ContentType, astridProject.documentation3)"
+                                    jhiTranslate="entity.action.open">open</a>
+                                {{ astridProject.documentation3ContentType }}, {{ byteSize(astridProject.documentation3)
+                                }}
+                            </div>
+                        </dd>
+                        <dt *ngIf="astridProject.documentation4"><span
+                                jhiTranslate="projectsOverviewApp.astridProject.documentation4">Documentation 4</span>
+                        </dt>
+                        <dd *ngIf="astridProject.documentation4">
+                            <div>
+                                <a (click)="openFile(astridProject.documentation4ContentType, astridProject.documentation4)"
+                                    jhiTranslate="entity.action.open">open</a>
+                                {{ astridProject.documentation4ContentType }}, {{ byteSize(astridProject.documentation4)
+                                }}
+                            </div>
+                        </dd>
+                        <dt *ngIf="astridProject.documentation5"><span
+                                jhiTranslate="projectsOverviewApp.astridProject.documentation5">Documentation 5</span>
+                        </dt>
+                        <dd *ngIf="astridProject.documentation5">
+                            <div>
+                                <a (click)="openFile(astridProject.documentation5ContentType, astridProject.documentation5)"
+                                    jhiTranslate="entity.action.open">open</a>
+                                {{ astridProject.documentation5ContentType }}, {{ byteSize(astridProject.documentation5)
+                                }}
+                            </div>
+                        </dd>
+                        <dt> <label class="form-control-label"
+                                jhiTranslate="projectsOverviewApp.astridProject.entityCreation">Entity Creation</label>
+
+                            <span
+                                style="font-style: oblique;font-weight: bold;">{{entitycreation.createdByLogin}}</span>
+                        </dt>
+                        <dd>
+                            <div *ngIf="astridProject.entityCreationId">
+                                <input class="form-control" id="field_entityCreation" type="datetime-local"
+                                    name="entityCreation" readonly value="{{createdDate}}"
+                                    placeholder="YYYY-MM-DD HH:mm" />
+                            </div>
+                        </dd>
+                        <dt>
+                            <span *ngIf="astridProject.entityLastModificationId"
+                                jhiTranslate="projectsOverviewApp.astridProject.entityLastModification">Entity last
+                                mofied
+                                by</span>
+                            <span style="font-style: oblique;">{{entityLastModification.lastModifiedByLogin}}</span>
+                        </dt>
+                        <dd>
+
+                            <div *ngIf="astridProject.entityLastModificationId">
+                                <input class="form-control" id="field_entityLastModification" type="datetime-local"
+                                    name="entityCreation" readonly value="{{lastModifiedDate}}"
+                                    placeholder="YYYY-MM-DD HH:mm" />
+                            </div>
+                        </dd>
+                        <dt><span jhiTranslate="projectsOverviewApp.astridProject.responsible">Responsible</span></dt>
+                        <dd>
+                            {{ astridProject.responsibleLogin }}
+                        </dd>
+                        <dt><span jhiTranslate="projectsOverviewApp.astridProject.initiator">Initiator</span></dt>
+                        <dd>
+                            {{ astridProject.initiatorLogin }}
+                        </dd>
+
+                        <dt><span jhiTranslate="projectsOverviewApp.astridProject.location">Location</span></dt>
+                        <dd>
+                            <div *ngIf="astridProject.locationId">
+                                <a [routerLink]="['/location', astridProject.locationId, 'view']">{{
+                                    astridProject.locationName
+                                    }}</a>
+                            </div>
+                        </dd>
+
+                        <dt><span jhiTranslate="projectsOverviewApp.astridProject.implementationTeam">Implementation
+                                Team</span>
+                        </dt>
+                        <dd>
+                            <span *ngFor="let implementationTeam of astridProject.implementationTeams; let last = last">
+                                {{ implementationTeam.login }}{{ last ? '' : ', ' }}
+                            </span>
+                        </dd>
+                        <dt><span jhiTranslate="projectsOverviewApp.astridProject.beneficiaries">Beneficiaries</span>
+                        </dt>
+                        <dd>
+                            <span *ngFor="let beneficiaries of astridProject.beneficiaries; let last = last">
+                                <a [routerLink]="['/beneficiary', beneficiaries?.id, 'view']">{{ beneficiaries.name
+                                    }}</a>{{
+                                last ? '' : ', ' }}
+                            </span>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+
+            <button type="submit" (click)="previousState()" class="btn btn-info">
                 <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
             </button>
 
-            <button *jhiHasAnyAuthority="'ROLE_EDITOR'"
-                    type="button"
-                    [routerLink]="['/astrid-project', astridProject.id, 'edit']"
-                    class="btn btn-primary">
+            <button *jhiHasAnyAuthority="'ROLE_EDITOR'" type="button"
+                [routerLink]="['/astrid-project', astridProject.id, 'edit']" class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>
         </div>
