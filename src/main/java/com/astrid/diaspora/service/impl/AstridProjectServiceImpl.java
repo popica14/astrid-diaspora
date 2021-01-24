@@ -55,40 +55,45 @@ public class AstridProjectServiceImpl implements AstridProjectService {
     @Override
     public AstridProjectDTO save(AstridProjectDTO astridProjectDTO) {
         log.debug("Request to save AstridProject : {}", astridProjectDTO);
-        setEntityCreationAndModification(astridProjectDTO);
+        prepareProjectBeforeSaving(astridProjectDTO);
         AstridProject astridProject = astridProjectMapper.toEntity(astridProjectDTO);
 
         astridProject = astridProjectRepository.save(astridProject);
         return astridProjectMapper.toDto(astridProject);
     }
 
-    private void setEntityCreationAndModification(AstridProjectDTO astridProject) {
+    private void prepareProjectBeforeSaving(AstridProjectDTO astridProjectDTO) {
         Optional<String> currentUserLogin = SecurityUtils.getCurrentUserLogin();
 
         if (!currentUserLogin.isPresent()) {
             throw new UsernameNotFoundException("NO_LOGIN");
         } else {
-            ZonedDateTime now = ZonedDateTime.now();
-            Optional<User> optionalUser = userService.getUserWithAuthoritiesByLogin(currentUserLogin.get());
-            if (optionalUser.isPresent()) {
-                User loggedUser = optionalUser.get();
-                if (astridProject.getId() == null) {
-                    EntityCreationDTO entityCreationDTO = new EntityCreationDTO();
-                    entityCreationDTO.setCreated(now);
-                    entityCreationDTO.setCreatedByLogin(loggedUser.getLogin());
-                    entityCreationDTO.setCreatedById(loggedUser.getId());
-                    EntityCreationDTO created = entityCreationService.save(entityCreationDTO);
-
-                    astridProject.setEntityCreationId(created.getId());
-                }
-                EntityLastModificationDTO entityLastModificationDTO = new EntityLastModificationDTO();
-                entityLastModificationDTO.setLastModified(now);
-                entityLastModificationDTO.setLastModifiedByLogin(loggedUser.getLogin());
-                entityLastModificationDTO.setLastModifiedById(loggedUser.getId());
-                EntityLastModificationDTO modified = entityLastModificationService.save(entityLastModificationDTO);
-                astridProject.setEntityLastModificationId(modified.getId());
+            User loggedUser = userService.getUserWithAuthoritiesByLogin(currentUserLogin.get()).get();
+            if (astridProjectDTO.getId() == null) {
+                setEntityCreation(astridProjectDTO, loggedUser);
             }
+            setEntityModification(astridProjectDTO, loggedUser);
         }
+    }
+
+    private void setEntityModification(AstridProjectDTO astridProjectDTO, User loggedUser) {
+        EntityLastModificationDTO entityLastModificationDTO = new EntityLastModificationDTO();
+        entityLastModificationDTO.setLastModified(ZonedDateTime.now());
+        entityLastModificationDTO.setLastModifiedByLogin(loggedUser.getLogin());
+        entityLastModificationDTO.setLastModifiedById(loggedUser.getId());
+        EntityLastModificationDTO modified = entityLastModificationService.save(entityLastModificationDTO);
+
+        astridProjectDTO.setEntityLastModificationId(modified.getId());
+    }
+
+    private void setEntityCreation(AstridProjectDTO astridProjectDTO, User loggedUser) {
+        EntityCreationDTO entityCreationDTO = new EntityCreationDTO();
+        entityCreationDTO.setCreated(ZonedDateTime.now());
+        entityCreationDTO.setCreatedByLogin(loggedUser.getLogin());
+        entityCreationDTO.setCreatedById(loggedUser.getId());
+        EntityCreationDTO created = entityCreationService.save(entityCreationDTO);
+
+        astridProjectDTO.setEntityCreationId(created.getId());
     }
 
     @Override

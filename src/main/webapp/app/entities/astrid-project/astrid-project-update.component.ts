@@ -120,13 +120,13 @@ export class AstridProjectUpdateComponent implements OnInit {
 
       this.updateForm(astridProject);
 
-      if (astridProject.entityLastModificationId !== null) {
+      if (astridProject.entityLastModificationId !== undefined) {
         this.entityLastModificationService
           .find(astridProject.entityLastModificationId)
           .subscribe((res: HttpResponse<IEntityLastModification>) => this.processLastModifieDate(res));
       }
 
-      if (astridProject.EntityCreation !== null) {
+      if (astridProject.entityCreationId !== undefined) {
         this.entityCreationService
           .find(astridProject.entityCreationId)
           .subscribe((res: HttpResponse<IEntityCreation>) => this.processCreatedDate(res));
