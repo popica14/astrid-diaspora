@@ -1,17 +1,18 @@
 package com.astrid.diaspora.service.impl;
 
-import com.astrid.diaspora.domain.ProjectStatus;
+import com.astrid.diaspora.domain.User;
 import com.astrid.diaspora.repository.ProjectStatusRepository;
+import com.astrid.diaspora.security.SecurityUtils;
 import com.astrid.diaspora.service.AstridProjectSuggestionService;
 import com.astrid.diaspora.domain.AstridProjectSuggestion;
 import com.astrid.diaspora.repository.AstridProjectSuggestionRepository;
-import com.astrid.diaspora.service.ProjectStatusService;
+import com.astrid.diaspora.service.UserService;
 import com.astrid.diaspora.service.dto.AstridProjectSuggestionDTO;
-import com.astrid.diaspora.service.dto.ProjectStatusDTO;
 import com.astrid.diaspora.service.mapper.AstridProjectSuggestionMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,26 +34,47 @@ public class AstridProjectSuggestionServiceImpl implements AstridProjectSuggesti
 
     private final AstridProjectSuggestionMapper astridProjectSuggestionMapper;
 
-    private final ProjectStatusRepository projectStatusRepository;
+    private final UserService userService;
 
     public AstridProjectSuggestionServiceImpl(AstridProjectSuggestionRepository astridProjectSuggestionRepository,
                                               AstridProjectSuggestionMapper astridProjectSuggestionMapper,
-                                              ProjectStatusRepository projectStatusRepository) {
+                                              ProjectStatusRepository projectStatusRepository,
+                                              UserService userService) {
         this.astridProjectSuggestionRepository = astridProjectSuggestionRepository;
         this.astridProjectSuggestionMapper = astridProjectSuggestionMapper;
-        this.projectStatusRepository = projectStatusRepository;
+        this.userService = userService;
     }
 
     @Override
     public AstridProjectSuggestionDTO save(AstridProjectSuggestionDTO astridProjectSuggestionDTO) {
         log.debug("Request to save AstridProjectSuggestion : {}", astridProjectSuggestionDTO);
+        prepareProjectBeforeSaving(astridProjectSuggestionDTO);
         AstridProjectSuggestion astridProjectSuggestion = astridProjectSuggestionMapper.toEntity(astridProjectSuggestionDTO);
-        if (astridProjectSuggestion.getId() == null) {
-            ProjectStatus newProjectStatus = projectStatusRepository.findByOrder(1);
-            astridProjectSuggestion.setStatus(newProjectStatus);
-        }
         astridProjectSuggestion = astridProjectSuggestionRepository.save(astridProjectSuggestion);
         return astridProjectSuggestionMapper.toDto(astridProjectSuggestion);
+    }
+
+    private void prepareProjectBeforeSaving(AstridProjectSuggestionDTO astridProjectSuggestionDTO) {
+        Optional<String> currentUserLogin = SecurityUtils.getCurrentUserLogin();
+
+        if (!currentUserLogin.isPresent()) {
+            throw new UsernameNotFoundException("NO_LOGIN");
+        } else {
+            User loggedUser = userService.getUserWithAuthoritiesByLogin(currentUserLogin.get()).get();
+            if (astridProjectSuggestionDTO.getId() == null) {
+                setNewProjectStatus(astridProjectSuggestionDTO);
+                setInitiator(astridProjectSuggestionDTO, loggedUser);
+            }
+        }
+    }
+
+    private void setInitiator(AstridProjectSuggestionDTO astridProjectSuggestionDTO, User loggedUser) {
+        astridProjectSuggestionDTO.setInitiatorId(loggedUser.getId());
+        astridProjectSuggestionDTO.setInitiatorLogin(loggedUser.getLogin());
+    }
+
+    private void setNewProjectStatus(AstridProjectSuggestionDTO astridProjectSuggestionDTO) {
+        astridProjectSuggestionDTO.setStatusId(1L);
     }
 
     @Override

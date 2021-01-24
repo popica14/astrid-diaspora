@@ -71,9 +71,15 @@ public class AstridProjectServiceImpl implements AstridProjectService {
             User loggedUser = userService.getUserWithAuthoritiesByLogin(currentUserLogin.get()).get();
             if (astridProjectDTO.getId() == null) {
                 setEntityCreation(astridProjectDTO, loggedUser);
+                setInitiator(astridProjectDTO, loggedUser);
             }
             setEntityModification(astridProjectDTO, loggedUser);
         }
+    }
+
+    private void setInitiator(AstridProjectDTO astridProjectDTO, User loggedUser) {
+        astridProjectDTO.setInitiatorId(loggedUser.getId());
+        astridProjectDTO.setInitiatorLogin(loggedUser.getLogin());
     }
 
     private void setEntityModification(AstridProjectDTO astridProjectDTO, User loggedUser) {
