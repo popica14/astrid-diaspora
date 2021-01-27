@@ -111,9 +111,9 @@
                         <div class="form-group">
                             <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridProject.status"
                                 for="field_status">Status</label>
-                            <select class="form-control" id="field_status" name="status" formControlName="statusId">
+                            <select class="form-control" id="field_status" name="status" formControlName="statusId" (change)="changeStatusDeadline($event)">
                                 <!-- <option *ngIf="!editForm.get('statusId')!.value" [ngValue]="null" selected></option> -->
-                                <option [ngValue]="projectStatusOption.id"
+                                <option value="{{projectStatusOption.id}}"
                                     *ngFor="let projectStatusOption of projectstatuses; trackBy: trackById">{{
                                     projectStatusOption.name }}</option>
                             </select>

@@ -27,6 +27,7 @@ import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
 import { ICurrency } from 'app/shared/model/currency.model';
 import { CurrencyService } from '../currency/currency.service';
+import { Moment } from 'moment';
 
 type SelectableEntity = IEntityCreation | IEntityLastModification | IUser | IProjectStatus | ICurrency | ILocation | IBeneficiary;
 
@@ -46,6 +47,7 @@ export class AstridProjectUpdateComponent implements OnInit {
     astridProjectId: 0,
   };
   createdDate: String = '';
+  nowAndStatusDeadline: Moment = moment(new Date(), DATE_TIME_FORMAT);
 
   entityLastModification: IEntityLastModification = {
     id: 0,
@@ -155,6 +157,14 @@ export class AstridProjectUpdateComponent implements OnInit {
     if (this.entityLastModification !== null && this.entityLastModification.lastModified !== undefined) {
       this.lastModifiedDate = this.entityLastModification.lastModified.format(DATE_TIME_FORMAT);
     }
+  }
+
+  changeStatusDeadline(event: any): void {
+    const daysToNotification = this.projectstatuses.find(e => e.id === Number(event?.target?.value))?.daysToNotification;
+
+    this.editForm.patchValue({
+      statusDeadline: moment().startOf('day').add(daysToNotification, 'days').format(DATE_TIME_FORMAT),
+    });
   }
 
   updateForm(astridProject: IAstridProject): void {
