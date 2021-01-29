@@ -1,0 +1,2 @@
+id;name;short_description;needed_amount;current_amount;supporters;goal;status_reason;status_deadline;documentation_1;documentation_1_content_type;documentation_2;documentation_2_content_type;documentation_3;documentation_3_content_type;documentation_4;documentation_4_content_type;documentation_5;documentation_5_content_type;responsible_id;status_id
+1;Demo Project;../fake-data/blob/short_description.txt;100000;1000;10;deploy demo project;new project;2021-01-08T07:45:12;../fake-data/blob/hipster.png;image;;;;;;;;;2;1
