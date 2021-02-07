@@ -1,13 +1,16 @@
 package com.astrid.diaspora.service;
 
 import com.astrid.diaspora.config.Constants;
+import com.astrid.diaspora.domain.AstridUser;
 import com.astrid.diaspora.domain.Authority;
 import com.astrid.diaspora.domain.User;
+import com.astrid.diaspora.repository.AstridUserRepository;
 import com.astrid.diaspora.repository.AuthorityRepository;
 import com.astrid.diaspora.repository.UserRepository;
 import com.astrid.diaspora.security.AuthoritiesConstants;
 import com.astrid.diaspora.security.SecurityUtils;
 import com.astrid.diaspora.service.dto.UserDTO;
+import com.astrid.diaspora.web.rest.vm.ManagedUserVM;
 
 import io.github.jhipster.security.RandomUtil;
 
@@ -37,14 +40,17 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    private final AstridUserRepository astridUserRepository;
+
     private final PasswordEncoder passwordEncoder;
 
     private final AuthorityRepository authorityRepository;
 
     private final CacheManager cacheManager;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
+    public UserService(UserRepository userRepository, AstridUserRepository astridUserRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
         this.userRepository = userRepository;
+        this.astridUserRepository = astridUserRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
         this.cacheManager = cacheManager;
@@ -87,7 +93,7 @@ public class UserService {
             });
     }
 
-    public User registerUser(UserDTO userDTO, String password) {
+    public User registerUser(ManagedUserVM userDTO, String password) {
         userRepository.findOneByLogin(userDTO.getLogin().toLowerCase()).ifPresent(existingUser -> {
             boolean removed = removeNonActivatedUser(existingUser);
             if (!removed) {
@@ -120,6 +126,10 @@ public class UserService {
         authorityRepository.findById(AuthoritiesConstants.USER).ifPresent(authorities::add);
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
+        AstridUser astridUser = new AstridUser();
+        astridUser.setPhoneNumber(userDTO.getPhoneNumber());
+        astridUser.setUser(newUser);
+        astridUserRepository.save(astridUser);
         this.clearUserCaches(newUser);
         log.debug("Created Information for User: {}", newUser);
         return newUser;
