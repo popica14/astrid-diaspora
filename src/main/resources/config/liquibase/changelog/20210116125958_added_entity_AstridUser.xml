@@ -19,11 +19,24 @@
             <column name="phone_number" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
+            <column name="residency" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="gender" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="birth_date" type="datetime">
+                <constraints nullable="false" />
+            </column>
+            <column name="highest_education" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
             <column name="user_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_astrid_user_user_id" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
+        <dropDefaultValue tableName="astrid_user" columnName="birth_date" columnDataType="datetime"/>
     </changeSet>
 
     <changeSet id="20210116125958-1-relations" author="jhipster">
@@ -46,6 +59,10 @@
                   tableName="astrid_user">
             <column name="id" type="numeric"/>
             <column name="phone_number" type="string"/>
+            <column name="residency" type="string"/>
+            <column name="gender" type="string"/>
+            <column name="birth_date" type="datetime"/>
+            <column name="highest_education" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

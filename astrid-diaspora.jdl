@@ -27,9 +27,11 @@ entity AstridProjectSuggestion{
 
 entity AstridUser{
 	phoneNumber String required pattern(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/)
+    residency String required
+    gender Gender required
+    birthDate ZonedDateTime required
+    highestEducation Education required
 }
-
-
 
 entity Beneficiary{
 	name String required
@@ -46,24 +48,24 @@ entity Location{
     address String
 }
 
+enum Gender{
+	FEMALE, MALE, PREFER_NOT_TO_ANSWER
+}
+
 enum BeneficiaryType{
 	PRIVATE_PERSON, PUBLIC_INSTITUTION, PRIVATE_INSTITUTION
 }
 
-// enum Gender{
-// 	FEMALE, MALE, PREFER_NOT_TO_ANSWER
-// }
-
-// enum Education{
+enum Education{
 	
-//     DOCTORATE,
-//     NO_FORMAL_EDUCATION,
-//     BACHELOR,
-//     PRIMARY,
-//     SECONDARY_HIGH_SCHOOL,
-//     MASTER,
-//     PREFER_NOT_TO_ANSWER
-// }
+    DOCTORATE,
+    NO_FORMAL_EDUCATION,
+    BACHELOR,
+    PRIMARY,
+    SECONDARY_HIGH_SCHOOL,
+    MASTER,
+    PREFER_NOT_TO_ANSWER
+}
 
 entity ProjectStatus{
 	name String required

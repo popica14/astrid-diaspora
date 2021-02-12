@@ -1,0 +1,10 @@
+{
+  "projectsOverviewApp": {
+    "Gender": {
+      "null": "",
+      "FEMALE": "FEMALE",
+      "MALE": "MALE",
+      "PREFER_NOT_TO_ANSWER": "PREFER_NOT_TO_ANSWER"
+    }
+  }
+}

@@ -17,6 +17,10 @@
         "title": "Astrid User"
       },
       "phoneNumber": "Phone Number",
+      "residency": "Residency",
+      "gender": "Gender",
+      "birthDate": "Birth Date",
+      "highestEducation": "Highest Education",
       "user": "User"
     }
   }

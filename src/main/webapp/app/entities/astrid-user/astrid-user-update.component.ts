@@ -4,6 +4,8 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import * as moment from 'moment';
+import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 
 import { IAstridUser, AstridUser } from 'app/shared/model/astrid-user.model';
 import { AstridUserService } from './astrid-user.service';
@@ -21,6 +23,10 @@ export class AstridUserUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     phoneNumber: [null, [Validators.required, Validators.pattern('^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$')]],
+    residency: [null, [Validators.required]],
+    gender: [null, [Validators.required]],
+    birthDate: [null, [Validators.required]],
+    highestEducation: [null, [Validators.required]],
     userId: [],
   });
 
@@ -33,6 +39,11 @@ export class AstridUserUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ astridUser }) => {
+      if (!astridUser.id) {
+        const today = moment().startOf('day');
+        astridUser.birthDate = today;
+      }
+
       this.updateForm(astridUser);
 
       this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
@@ -43,6 +54,10 @@ export class AstridUserUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: astridUser.id,
       phoneNumber: astridUser.phoneNumber,
+      residency: astridUser.residency,
+      gender: astridUser.gender,
+      birthDate: astridUser.birthDate ? astridUser.birthDate.format(DATE_TIME_FORMAT) : null,
+      highestEducation: astridUser.highestEducation,
       userId: astridUser.userId,
     });
   }
@@ -66,6 +81,10 @@ export class AstridUserUpdateComponent implements OnInit {
       ...new AstridUser(),
       id: this.editForm.get(['id'])!.value,
       phoneNumber: this.editForm.get(['phoneNumber'])!.value,
+      residency: this.editForm.get(['residency'])!.value,
+      gender: this.editForm.get(['gender'])!.value,
+      birthDate: this.editForm.get(['birthDate'])!.value ? moment(this.editForm.get(['birthDate'])!.value, DATE_TIME_FORMAT) : undefined,
+      highestEducation: this.editForm.get(['highestEducation'])!.value,
       userId: this.editForm.get(['userId'])!.value,
     };
   }

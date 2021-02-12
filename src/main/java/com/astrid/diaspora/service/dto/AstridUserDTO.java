@@ -1,7 +1,10 @@
 package com.astrid.diaspora.service.dto;
 
+import java.time.ZonedDateTime;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import com.astrid.diaspora.domain.enumeration.Gender;
+import com.astrid.diaspora.domain.enumeration.Education;
 
 /**
  * A DTO for the {@link com.astrid.diaspora.domain.AstridUser} entity.
@@ -13,6 +16,18 @@ public class AstridUserDTO implements Serializable {
     @NotNull
     @Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
     private String phoneNumber;
+
+    @NotNull
+    private String residency;
+
+    @NotNull
+    private Gender gender;
+
+    @NotNull
+    private ZonedDateTime birthDate;
+
+    @NotNull
+    private Education highestEducation;
 
 
     private Long userId;
@@ -31,6 +46,38 @@ public class AstridUserDTO implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getResidency() {
+        return residency;
+    }
+
+    public void setResidency(String residency) {
+        this.residency = residency;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public ZonedDateTime getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(ZonedDateTime birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public Education getHighestEducation() {
+        return highestEducation;
+    }
+
+    public void setHighestEducation(Education highestEducation) {
+        this.highestEducation = highestEducation;
     }
 
     public Long getUserId() {
@@ -64,6 +111,10 @@ public class AstridUserDTO implements Serializable {
         return "AstridUserDTO{" +
             "id=" + getId() +
             ", phoneNumber='" + getPhoneNumber() + "'" +
+            ", residency='" + getResidency() + "'" +
+            ", gender='" + getGender() + "'" +
+            ", birthDate='" + getBirthDate() + "'" +
+            ", highestEducation='" + getHighestEducation() + "'" +
             ", userId=" + getUserId() +
             "}";
     }

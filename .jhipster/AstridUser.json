@@ -6,6 +6,28 @@
       "fieldType": "String",
       "fieldValidateRules": ["required", "pattern"],
       "fieldValidateRulesPattern": "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$"
+    },
+    {
+      "fieldName": "residency",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "Gender",
+      "fieldValues": "FEMALE,MALE,PREFER_NOT_TO_ANSWER",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "birthDate",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "highestEducation",
+      "fieldType": "Education",
+      "fieldValues": "DOCTORATE,NO_FORMAL_EDUCATION,BACHELOR,PRIMARY,SECONDARY_HIGH_SCHOOL,MASTER,PREFER_NOT_TO_ANSWER",
+      "fieldValidateRules": ["required"]
     }
   ],
   "relationships": [

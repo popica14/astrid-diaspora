@@ -5,6 +5,11 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.time.ZonedDateTime;
+
+import com.astrid.diaspora.domain.enumeration.Gender;
+
+import com.astrid.diaspora.domain.enumeration.Education;
 
 /**
  * A AstridUser.
@@ -23,6 +28,24 @@ public class AstridUser implements Serializable {
     @Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
+
+    @NotNull
+    @Column(name = "residency", nullable = false)
+    private String residency;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "gender", nullable = false)
+    private Gender gender;
+
+    @NotNull
+    @Column(name = "birth_date", nullable = false)
+    private ZonedDateTime birthDate;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "highest_education", nullable = false)
+    private Education highestEducation;
 
     @OneToOne
     @JoinColumn(unique = true)
@@ -48,6 +71,58 @@ public class AstridUser implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getResidency() {
+        return residency;
+    }
+
+    public AstridUser residency(String residency) {
+        this.residency = residency;
+        return this;
+    }
+
+    public void setResidency(String residency) {
+        this.residency = residency;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public AstridUser gender(Gender gender) {
+        this.gender = gender;
+        return this;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public ZonedDateTime getBirthDate() {
+        return birthDate;
+    }
+
+    public AstridUser birthDate(ZonedDateTime birthDate) {
+        this.birthDate = birthDate;
+        return this;
+    }
+
+    public void setBirthDate(ZonedDateTime birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public Education getHighestEducation() {
+        return highestEducation;
+    }
+
+    public AstridUser highestEducation(Education highestEducation) {
+        this.highestEducation = highestEducation;
+        return this;
+    }
+
+    public void setHighestEducation(Education highestEducation) {
+        this.highestEducation = highestEducation;
     }
 
     public User getUser() {
@@ -86,6 +161,10 @@ public class AstridUser implements Serializable {
         return "AstridUser{" +
             "id=" + getId() +
             ", phoneNumber='" + getPhoneNumber() + "'" +
+            ", residency='" + getResidency() + "'" +
+            ", gender='" + getGender() + "'" +
+            ", birthDate='" + getBirthDate() + "'" +
+            ", highestEducation='" + getHighestEducation() + "'" +
             "}";
     }
 }

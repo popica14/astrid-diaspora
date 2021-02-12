@@ -17,13 +17,20 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
+import java.time.Instant;
+import java.time.ZonedDateTime;
+import java.time.ZoneOffset;
+import java.time.ZoneId;
 import java.util.List;
 
+import static com.astrid.diaspora.web.rest.TestUtil.sameInstant;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.astrid.diaspora.domain.enumeration.Gender;
+import com.astrid.diaspora.domain.enumeration.Education;
 /**
  * Integration tests for the {@link AstridUserResource} REST controller.
  */
@@ -32,8 +39,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class AstridUserResourceIT {
 
-    private static final String DEFAULT_PHONE_NUMBER = "+18 689) 128-5516";
-    private static final String UPDATED_PHONE_NUMBER = "(489-981-6614";
+    private static final String DEFAULT_PHONE_NUMBER = "+29 (422.385-3132";
+    private static final String UPDATED_PHONE_NUMBER = "+9 (245) 140 0617";
+
+    private static final String DEFAULT_RESIDENCY = "AAAAAAAAAA";
+    private static final String UPDATED_RESIDENCY = "BBBBBBBBBB";
+
+    private static final Gender DEFAULT_GENDER = Gender.FEMALE;
+    private static final Gender UPDATED_GENDER = Gender.MALE;
+
+    private static final ZonedDateTime DEFAULT_BIRTH_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
+    private static final ZonedDateTime UPDATED_BIRTH_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+
+    private static final Education DEFAULT_HIGHEST_EDUCATION = Education.DOCTORATE;
+    private static final Education UPDATED_HIGHEST_EDUCATION = Education.NO_FORMAL_EDUCATION;
 
     @Autowired
     private AstridUserRepository astridUserRepository;
@@ -60,7 +79,11 @@ public class AstridUserResourceIT {
      */
     public static AstridUser createEntity(EntityManager em) {
         AstridUser astridUser = new AstridUser()
-            .phoneNumber(DEFAULT_PHONE_NUMBER);
+            .phoneNumber(DEFAULT_PHONE_NUMBER)
+            .residency(DEFAULT_RESIDENCY)
+            .gender(DEFAULT_GENDER)
+            .birthDate(DEFAULT_BIRTH_DATE)
+            .highestEducation(DEFAULT_HIGHEST_EDUCATION);
         return astridUser;
     }
     /**
@@ -71,7 +94,11 @@ public class AstridUserResourceIT {
      */
     public static AstridUser createUpdatedEntity(EntityManager em) {
         AstridUser astridUser = new AstridUser()
-            .phoneNumber(UPDATED_PHONE_NUMBER);
+            .phoneNumber(UPDATED_PHONE_NUMBER)
+            .residency(UPDATED_RESIDENCY)
+            .gender(UPDATED_GENDER)
+            .birthDate(UPDATED_BIRTH_DATE)
+            .highestEducation(UPDATED_HIGHEST_EDUCATION);
         return astridUser;
     }
 
@@ -96,6 +123,10 @@ public class AstridUserResourceIT {
         assertThat(astridUserList).hasSize(databaseSizeBeforeCreate + 1);
         AstridUser testAstridUser = astridUserList.get(astridUserList.size() - 1);
         assertThat(testAstridUser.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
+        assertThat(testAstridUser.getResidency()).isEqualTo(DEFAULT_RESIDENCY);
+        assertThat(testAstridUser.getGender()).isEqualTo(DEFAULT_GENDER);
+        assertThat(testAstridUser.getBirthDate()).isEqualTo(DEFAULT_BIRTH_DATE);
+        assertThat(testAstridUser.getHighestEducation()).isEqualTo(DEFAULT_HIGHEST_EDUCATION);
     }
 
     @Test
@@ -141,6 +172,86 @@ public class AstridUserResourceIT {
 
     @Test
     @Transactional
+    public void checkResidencyIsRequired() throws Exception {
+        int databaseSizeBeforeTest = astridUserRepository.findAll().size();
+        // set the field null
+        astridUser.setResidency(null);
+
+        // Create the AstridUser, which fails.
+        AstridUserDTO astridUserDTO = astridUserMapper.toDto(astridUser);
+
+
+        restAstridUserMockMvc.perform(post("/api/astrid-users")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(astridUserDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<AstridUser> astridUserList = astridUserRepository.findAll();
+        assertThat(astridUserList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkGenderIsRequired() throws Exception {
+        int databaseSizeBeforeTest = astridUserRepository.findAll().size();
+        // set the field null
+        astridUser.setGender(null);
+
+        // Create the AstridUser, which fails.
+        AstridUserDTO astridUserDTO = astridUserMapper.toDto(astridUser);
+
+
+        restAstridUserMockMvc.perform(post("/api/astrid-users")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(astridUserDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<AstridUser> astridUserList = astridUserRepository.findAll();
+        assertThat(astridUserList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkBirthDateIsRequired() throws Exception {
+        int databaseSizeBeforeTest = astridUserRepository.findAll().size();
+        // set the field null
+        astridUser.setBirthDate(null);
+
+        // Create the AstridUser, which fails.
+        AstridUserDTO astridUserDTO = astridUserMapper.toDto(astridUser);
+
+
+        restAstridUserMockMvc.perform(post("/api/astrid-users")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(astridUserDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<AstridUser> astridUserList = astridUserRepository.findAll();
+        assertThat(astridUserList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkHighestEducationIsRequired() throws Exception {
+        int databaseSizeBeforeTest = astridUserRepository.findAll().size();
+        // set the field null
+        astridUser.setHighestEducation(null);
+
+        // Create the AstridUser, which fails.
+        AstridUserDTO astridUserDTO = astridUserMapper.toDto(astridUser);
+
+
+        restAstridUserMockMvc.perform(post("/api/astrid-users")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(astridUserDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<AstridUser> astridUserList = astridUserRepository.findAll();
+        assertThat(astridUserList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllAstridUsers() throws Exception {
         // Initialize the database
         astridUserRepository.saveAndFlush(astridUser);
@@ -150,7 +261,11 @@ public class AstridUserResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(astridUser.getId().intValue())))
-            .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER)));
+            .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER)))
+            .andExpect(jsonPath("$.[*].residency").value(hasItem(DEFAULT_RESIDENCY)))
+            .andExpect(jsonPath("$.[*].gender").value(hasItem(DEFAULT_GENDER.toString())))
+            .andExpect(jsonPath("$.[*].birthDate").value(hasItem(sameInstant(DEFAULT_BIRTH_DATE))))
+            .andExpect(jsonPath("$.[*].highestEducation").value(hasItem(DEFAULT_HIGHEST_EDUCATION.toString())));
     }
     
     @Test
@@ -164,7 +279,11 @@ public class AstridUserResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(astridUser.getId().intValue()))
-            .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER));
+            .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER))
+            .andExpect(jsonPath("$.residency").value(DEFAULT_RESIDENCY))
+            .andExpect(jsonPath("$.gender").value(DEFAULT_GENDER.toString()))
+            .andExpect(jsonPath("$.birthDate").value(sameInstant(DEFAULT_BIRTH_DATE)))
+            .andExpect(jsonPath("$.highestEducation").value(DEFAULT_HIGHEST_EDUCATION.toString()));
     }
     @Test
     @Transactional
@@ -187,7 +306,11 @@ public class AstridUserResourceIT {
         // Disconnect from session so that the updates on updatedAstridUser are not directly saved in db
         em.detach(updatedAstridUser);
         updatedAstridUser
-            .phoneNumber(UPDATED_PHONE_NUMBER);
+            .phoneNumber(UPDATED_PHONE_NUMBER)
+            .residency(UPDATED_RESIDENCY)
+            .gender(UPDATED_GENDER)
+            .birthDate(UPDATED_BIRTH_DATE)
+            .highestEducation(UPDATED_HIGHEST_EDUCATION);
         AstridUserDTO astridUserDTO = astridUserMapper.toDto(updatedAstridUser);
 
         restAstridUserMockMvc.perform(put("/api/astrid-users")
@@ -200,6 +323,10 @@ public class AstridUserResourceIT {
         assertThat(astridUserList).hasSize(databaseSizeBeforeUpdate);
         AstridUser testAstridUser = astridUserList.get(astridUserList.size() - 1);
         assertThat(testAstridUser.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
+        assertThat(testAstridUser.getResidency()).isEqualTo(UPDATED_RESIDENCY);
+        assertThat(testAstridUser.getGender()).isEqualTo(UPDATED_GENDER);
+        assertThat(testAstridUser.getBirthDate()).isEqualTo(UPDATED_BIRTH_DATE);
+        assertThat(testAstridUser.getHighestEducation()).isEqualTo(UPDATED_HIGHEST_EDUCATION);
     }
 
     @Test

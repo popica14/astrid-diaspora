@@ -24,6 +24,10 @@
                 <tr>
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
                     <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridUser.phoneNumber">Phone Number</span></th>
+                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridUser.residency">Residency</span></th>
+                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridUser.gender">Gender</span></th>
+                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridUser.birthDate">Birth Date</span></th>
+                    <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridUser.highestEducation">Highest Education</span></th>
                     <th scope="col" ><span jhiTranslate="projectsOverviewApp.astridUser.user">User</span></th>
                     <th scope="col"></th>
                 </tr>
@@ -32,6 +36,10 @@
                 <tr *ngFor="let astridUser of astridUsers ;trackBy: trackId">
                     <td><a [routerLink]="['/astrid-user', astridUser.id, 'view']">{{ astridUser.id }}</a></td>
                     <td>{{ astridUser.phoneNumber }}</td>
+                    <td>{{ astridUser.residency }}</td>
+                    <td jhiTranslate="{{ 'projectsOverviewApp.Gender.' + astridUser.gender }}">{{ astridUser.gender }}</td>
+                    <td>{{ astridUser.birthDate | date:'medium' }}</td>
+                    <td jhiTranslate="{{ 'projectsOverviewApp.Education.' + astridUser.highestEducation }}">{{ astridUser.highestEducation }}</td>
                     <td>
                         {{ astridUser.userId }}
                     </td>
