@@ -67,10 +67,26 @@ export class RegisterComponent implements AfterViewInit {
       const login = this.registerForm.get(['login'])!.value;
       const email = this.registerForm.get(['email'])!.value;
       const phoneNumber = this.registerForm.get(['phoneNumber'])!.value;
-      this.registerService.save({ login, email, phoneNumber, password, langKey: this.languageService.getCurrentLanguage() }).subscribe(
-        () => (this.success = true),
-        response => this.processError(response)
-      );
+      const birthDate = this.registerForm.get(['birthDate'])!.value;
+      const residency = this.registerForm.get(['residency'])!.value;
+      const highestEducation = this.registerForm.get(['highestEducation'])!.value;
+      const gender = this.registerForm.get(['gender'])!.value;
+      this.registerService
+        .save({
+          birthDate,
+          residency,
+          highestEducation,
+          gender,
+          login,
+          email,
+          phoneNumber,
+          password,
+          langKey: this.languageService.getCurrentLanguage(),
+        })
+        .subscribe(
+          () => (this.success = true),
+          response => this.processError(response)
+        );
     }
   }
 

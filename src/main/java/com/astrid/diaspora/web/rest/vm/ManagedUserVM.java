@@ -1,5 +1,10 @@
 package com.astrid.diaspora.web.rest.vm;
 
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
+
+import com.astrid.diaspora.domain.enumeration.Education;
+import com.astrid.diaspora.domain.enumeration.Gender;
 import com.astrid.diaspora.service.dto.UserDTO;
 import javax.validation.constraints.Size;
 
@@ -16,6 +21,42 @@ public class ManagedUserVM extends UserDTO {
     private String password;
 
     private String phoneNumber;
+    private String residency;
+    private Gender gender;
+    private LocalDate birthDate;
+    private Education highestEducation;
+
+    public String getResidency() {
+        return residency;
+    }
+
+    public void setResidency(String residency) {
+        this.residency = residency;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public Education getHighestEducation() {
+        return highestEducation;
+    }
+
+    public void setHighestEducation(Education highestEducation) {
+        this.highestEducation = highestEducation;
+    }
 
     public ManagedUserVM() {
         // Empty constructor needed for Jackson.

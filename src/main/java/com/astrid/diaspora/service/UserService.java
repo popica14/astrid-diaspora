@@ -128,6 +128,10 @@ public class UserService {
         userRepository.save(newUser);
         AstridUser astridUser = new AstridUser();
         astridUser.setPhoneNumber(userDTO.getPhoneNumber());
+        astridUser.setBirthDate(userDTO.getBirthDate());
+        astridUser.setGender(userDTO.getGender());
+        astridUser.setHighestEducation(userDTO.getHighestEducation());
+        astridUser.setResidency(userDTO.getResidency());
         astridUser.setUser(newUser);
         astridUserRepository.save(astridUser);
         this.clearUserCaches(newUser);
