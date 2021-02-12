@@ -5,7 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
 
 import com.astrid.diaspora.domain.enumeration.Gender;
 
@@ -25,7 +25,6 @@ public class AstridUser implements Serializable {
     private Long id;
 
     @NotNull
-    @Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
@@ -40,7 +39,7 @@ public class AstridUser implements Serializable {
 
     @NotNull
     @Column(name = "birth_date", nullable = false)
-    private ZonedDateTime birthDate;
+    private LocalDate birthDate;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -99,16 +98,16 @@ public class AstridUser implements Serializable {
         this.gender = gender;
     }
 
-    public ZonedDateTime getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public AstridUser birthDate(ZonedDateTime birthDate) {
+    public AstridUser birthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
         return this;
     }
 
-    public void setBirthDate(ZonedDateTime birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 

@@ -38,7 +38,7 @@
                     <td>{{ astridUser.phoneNumber }}</td>
                     <td>{{ astridUser.residency }}</td>
                     <td jhiTranslate="{{ 'projectsOverviewApp.Gender.' + astridUser.gender }}">{{ astridUser.gender }}</td>
-                    <td>{{ astridUser.birthDate | date:'medium' }}</td>
+                    <td>{{ astridUser.birthDate | date:'mediumDate' }}</td>
                     <td jhiTranslate="{{ 'projectsOverviewApp.Education.' + astridUser.highestEducation }}">{{ astridUser.highestEducation }}</td>
                     <td>
                         {{ astridUser.userId }}

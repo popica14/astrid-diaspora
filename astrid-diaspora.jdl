@@ -26,10 +26,10 @@ entity AstridProjectSuggestion{
 }
 
 entity AstridUser{
-	phoneNumber String required pattern(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/)
+	phoneNumber String required
     residency String required
     gender Gender required
-    birthDate ZonedDateTime required
+    birthDate LocalDate required
     highestEducation Education required
 }
 

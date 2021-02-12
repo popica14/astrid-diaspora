@@ -1,6 +1,6 @@
 package com.astrid.diaspora.service.dto;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import com.astrid.diaspora.domain.enumeration.Gender;
@@ -14,7 +14,6 @@ public class AstridUserDTO implements Serializable {
     private Long id;
 
     @NotNull
-    @Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
     private String phoneNumber;
 
     @NotNull
@@ -24,7 +23,7 @@ public class AstridUserDTO implements Serializable {
     private Gender gender;
 
     @NotNull
-    private ZonedDateTime birthDate;
+    private LocalDate birthDate;
 
     @NotNull
     private Education highestEducation;
@@ -64,11 +63,11 @@ public class AstridUserDTO implements Serializable {
         this.gender = gender;
     }
 
-    public ZonedDateTime getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(ZonedDateTime birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 

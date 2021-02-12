@@ -1,7 +1,7 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import * as moment from 'moment';
-import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { AstridUserService } from 'app/entities/astrid-user/astrid-user.service';
 import { IAstridUser, AstridUser } from 'app/shared/model/astrid-user.model';
 import { Gender } from 'app/shared/model/enumerations/gender.model';
@@ -33,7 +33,7 @@ describe('Service Tests', () => {
       it('should find an element', () => {
         const returnedFromService = Object.assign(
           {
-            birthDate: currentDate.format(DATE_TIME_FORMAT),
+            birthDate: currentDate.format(DATE_FORMAT),
           },
           elemDefault
         );
@@ -49,7 +49,7 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             id: 0,
-            birthDate: currentDate.format(DATE_TIME_FORMAT),
+            birthDate: currentDate.format(DATE_FORMAT),
           },
           elemDefault
         );
@@ -74,7 +74,7 @@ describe('Service Tests', () => {
             phoneNumber: 'BBBBBB',
             residency: 'BBBBBB',
             gender: 'BBBBBB',
-            birthDate: currentDate.format(DATE_TIME_FORMAT),
+            birthDate: currentDate.format(DATE_FORMAT),
             highestEducation: 'BBBBBB',
           },
           elemDefault
@@ -100,7 +100,7 @@ describe('Service Tests', () => {
             phoneNumber: 'BBBBBB',
             residency: 'BBBBBB',
             gender: 'BBBBBB',
-            birthDate: currentDate.format(DATE_TIME_FORMAT),
+            birthDate: currentDate.format(DATE_FORMAT),
             highestEducation: 'BBBBBB',
           },
           elemDefault

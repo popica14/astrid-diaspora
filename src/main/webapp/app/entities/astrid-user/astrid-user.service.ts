@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 
+import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { IAstridUser } from 'app/shared/model/astrid-user.model';
@@ -50,7 +51,7 @@ export class AstridUserService {
 
   protected convertDateFromClient(astridUser: IAstridUser): IAstridUser {
     const copy: IAstridUser = Object.assign({}, astridUser, {
-      birthDate: astridUser.birthDate && astridUser.birthDate.isValid() ? astridUser.birthDate.toJSON() : undefined,
+      birthDate: astridUser.birthDate && astridUser.birthDate.isValid() ? astridUser.birthDate.format(DATE_FORMAT) : undefined,
     });
     return copy;
   }

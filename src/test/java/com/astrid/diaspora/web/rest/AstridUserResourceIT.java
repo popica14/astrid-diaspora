@@ -17,13 +17,10 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
-import java.time.Instant;
-import java.time.ZonedDateTime;
-import java.time.ZoneOffset;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
-import static com.astrid.diaspora.web.rest.TestUtil.sameInstant;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -39,8 +36,8 @@ import com.astrid.diaspora.domain.enumeration.Education;
 @WithMockUser
 public class AstridUserResourceIT {
 
-    private static final String DEFAULT_PHONE_NUMBER = "+29 (422.385-3132";
-    private static final String UPDATED_PHONE_NUMBER = "+9 (245) 140 0617";
+    private static final String DEFAULT_PHONE_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_PHONE_NUMBER = "BBBBBBBBBB";
 
     private static final String DEFAULT_RESIDENCY = "AAAAAAAAAA";
     private static final String UPDATED_RESIDENCY = "BBBBBBBBBB";
@@ -48,8 +45,8 @@ public class AstridUserResourceIT {
     private static final Gender DEFAULT_GENDER = Gender.FEMALE;
     private static final Gender UPDATED_GENDER = Gender.MALE;
 
-    private static final ZonedDateTime DEFAULT_BIRTH_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_BIRTH_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+    private static final LocalDate DEFAULT_BIRTH_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_BIRTH_DATE = LocalDate.now(ZoneId.systemDefault());
 
     private static final Education DEFAULT_HIGHEST_EDUCATION = Education.DOCTORATE;
     private static final Education UPDATED_HIGHEST_EDUCATION = Education.NO_FORMAL_EDUCATION;
@@ -264,7 +261,7 @@ public class AstridUserResourceIT {
             .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER)))
             .andExpect(jsonPath("$.[*].residency").value(hasItem(DEFAULT_RESIDENCY)))
             .andExpect(jsonPath("$.[*].gender").value(hasItem(DEFAULT_GENDER.toString())))
-            .andExpect(jsonPath("$.[*].birthDate").value(hasItem(sameInstant(DEFAULT_BIRTH_DATE))))
+            .andExpect(jsonPath("$.[*].birthDate").value(hasItem(DEFAULT_BIRTH_DATE.toString())))
             .andExpect(jsonPath("$.[*].highestEducation").value(hasItem(DEFAULT_HIGHEST_EDUCATION.toString())));
     }
     
@@ -282,7 +279,7 @@ public class AstridUserResourceIT {
             .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER))
             .andExpect(jsonPath("$.residency").value(DEFAULT_RESIDENCY))
             .andExpect(jsonPath("$.gender").value(DEFAULT_GENDER.toString()))
-            .andExpect(jsonPath("$.birthDate").value(sameInstant(DEFAULT_BIRTH_DATE)))
+            .andExpect(jsonPath("$.birthDate").value(DEFAULT_BIRTH_DATE.toString()))
             .andExpect(jsonPath("$.highestEducation").value(DEFAULT_HIGHEST_EDUCATION.toString()));
     }
     @Test

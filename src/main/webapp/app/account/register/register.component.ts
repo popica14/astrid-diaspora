@@ -32,9 +32,13 @@ export class RegisterComponent implements AfterViewInit {
       ],
     ],
     email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email]],
-    phoneNumber: ['', Validators.required],
     password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
     confirmPassword: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
+    phoneNumber: [null, [Validators.required]],
+    residency: [null, [Validators.required]],
+    gender: [null, [Validators.required]],
+    birthDate: [null, [Validators.required]],
+    highestEducation: [null, [Validators.required]],
   });
 
   constructor(

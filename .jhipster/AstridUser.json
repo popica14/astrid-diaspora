@@ -4,8 +4,7 @@
     {
       "fieldName": "phoneNumber",
       "fieldType": "String",
-      "fieldValidateRules": ["required", "pattern"],
-      "fieldValidateRulesPattern": "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$"
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "residency",
@@ -20,7 +19,7 @@
     },
     {
       "fieldName": "birthDate",
-      "fieldType": "ZonedDateTime",
+      "fieldType": "LocalDate",
       "fieldValidateRules": ["required"]
     },
     {
