@@ -22,6 +22,8 @@ export class RegisterComponent implements AfterViewInit {
   success = false;
 
   registerForm = this.fb.group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
     login: [
       '',
       [
@@ -71,8 +73,13 @@ export class RegisterComponent implements AfterViewInit {
       const residency = this.registerForm.get(['residency'])!.value;
       const highestEducation = this.registerForm.get(['highestEducation'])!.value;
       const gender = this.registerForm.get(['gender'])!.value;
+      const lastName = this.registerForm.get(['lastName'])!.value;
+      const firstName = this.registerForm.get(['firstName'])!.value;
+
       this.registerService
         .save({
+          firstName,
+          lastName,
           birthDate,
           residency,
           highestEducation,
