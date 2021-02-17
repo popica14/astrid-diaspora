@@ -61,6 +61,14 @@ public class AstridUserServiceImpl implements AstridUserService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public Optional<AstridUserDTO> findOneByUserId(Long id) {
+        log.debug("Request to get AstridUser : {}", id);
+        return astridUserRepository.findByUserId(id)
+            .map(astridUserMapper::toDto);
+    }
+
+    @Override
     public void delete(Long id) {
         log.debug("Request to delete AstridUser : {}", id);
         astridUserRepository.deleteById(id);

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption, Pagination } from 'app/shared/util/request-util';
 import { IUser } from './user.model';
+import { IUserExtended } from './user-extended.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -12,11 +13,11 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  create(user: IUser): Observable<IUser> {
+  create(user: IUserExtended): Observable<IUser> {
     return this.http.post<IUser>(this.resourceUrl, user);
   }
 
-  update(user: IUser): Observable<IUser> {
+  update(user: IUserExtended): Observable<IUser> {
     return this.http.put<IUser>(this.resourceUrl, user);
   }
 

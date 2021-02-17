@@ -9,8 +9,7 @@
                 <dt><span jhiTranslate="userManagement.login">Login</span></dt>
                 <dd>
                     <span>{{ user.login }}</span>
-                    <jhi-boolean
-                        [value]="user.activated ? true : false"
+                    <jhi-boolean [value]="user.activated ? true : false"
                         [textTrue]="'userManagement.activated' | translate"
                         [textFalse]="'userManagement.deactivated' | translate">
                     </jhi-boolean>
@@ -48,6 +47,32 @@
                         </li>
                     </ul>
                 </dd>
+                <div *ngIf="astridUser">
+                    <dt><span jhiTranslate="projectsOverviewApp.astridUser.phoneNumber">Phone Number</span></dt>
+                    <dd>
+                        <span>{{ astridUser.phoneNumber }}</span>
+                    </dd>
+                    <dt><span jhiTranslate="projectsOverviewApp.astridUser.residency">Residency</span></dt>
+                    <dd>
+                        <span>{{ astridUser.residency }}</span>
+                    </dd>
+                    <dt><span jhiTranslate="projectsOverviewApp.astridUser.gender">Gender</span></dt>
+                    <dd>
+                        <span jhiTranslate="{{ 'projectsOverviewApp.Gender.' + astridUser.gender }}">{{
+                            astridUser.gender }}</span>
+                    </dd>
+                    <dt><span jhiTranslate="projectsOverviewApp.astridUser.birthDate">Birth Date</span></dt>
+                    <dd>
+                      
+                        {{ astridUser.birthDate | date:'dd/MM/yy' }}
+                    </dd>
+                    <dt><span jhiTranslate="projectsOverviewApp.astridUser.highestEducation">Highest Education</span>
+                    </dt>
+                    <dd>
+                        <span jhiTranslate="{{ 'projectsOverviewApp.Education.' + astridUser.highestEducation }}">{{
+                            astridUser.highestEducation }}</span>
+                    </dd>
+                </div>
             </dl>
 
             <button type="submit" routerLink="../../" class="btn btn-info">

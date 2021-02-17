@@ -7,7 +7,6 @@ import { EntityLastModificationService } from '../entity-last-modification/entit
 import { EntityCreationService } from '../entity-creation/entity-creation.service';
 import { IEntityLastModification } from 'app/shared/model/entity-last-modification.model';
 import { HttpResponse } from '@angular/common/http';
-import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { IEntityCreation } from 'app/shared/model/entity-creation.model';
 
 @Component({
@@ -62,23 +61,14 @@ export class AstridProjectDetailComponent implements OnInit {
 
   private handleAstridProject(astridProject: any): void {
     this.astridProject = astridProject;
-    if (this.astridProject !== null && this.astridProject.statusDeadline !== undefined) {
-      this.statusDeadline = this.astridProject.statusDeadline.format(DATE_TIME_FORMAT);
-    }
   }
 
   processLastModifieDate(res: HttpResponse<IEntityLastModification>): void {
     this.entityLastModification = res.body || {};
-    if (this.entityLastModification !== null && this.entityLastModification.lastModified !== undefined) {
-      this.lastModifiedDate = this.entityLastModification.lastModified.format(DATE_TIME_FORMAT);
-    }
   }
 
   processCreatedDate(res: HttpResponse<IEntityCreation>): void {
     this.entitycreation = res.body || {};
-    if (this.entitycreation !== null && this.entitycreation.created !== undefined) {
-      this.createdDate = this.entitycreation.created.format(DATE_TIME_FORMAT);
-    }
   }
 
   byteSize(base64String: string): string {

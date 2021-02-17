@@ -103,6 +103,19 @@ public class AstridUserResource {
     }
 
     /**
+     * {@code GET  /astrid-users/:id} : get the "id" astridUser.
+     *
+     * @param id the id of the astridUserDTO to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the astridUserDTO, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/astrid-users/byUserId/{id}")
+    public ResponseEntity<AstridUserDTO> getAstridUserByUserId(@PathVariable Long id) {
+        log.debug("REST request to get AstridUser : {}", id);
+        Optional<AstridUserDTO> astridUserDTO = astridUserService.findOneByUserId(id);
+        return ResponseUtil.wrapOrNotFound(astridUserDTO);
+    }
+
+    /**
      * {@code DELETE  /astrid-users/:id} : delete the "id" astridUser.
      *
      * @param id the id of the astridUserDTO to delete.

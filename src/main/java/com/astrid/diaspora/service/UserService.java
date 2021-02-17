@@ -9,7 +9,9 @@ import com.astrid.diaspora.repository.AuthorityRepository;
 import com.astrid.diaspora.repository.UserRepository;
 import com.astrid.diaspora.security.AuthoritiesConstants;
 import com.astrid.diaspora.security.SecurityUtils;
+import com.astrid.diaspora.service.dto.AstridUserDTO;
 import com.astrid.diaspora.service.dto.UserDTO;
+import com.astrid.diaspora.service.dto.UserExtendedDTO;
 import com.astrid.diaspora.web.rest.vm.ManagedUserVM;
 
 import io.github.jhipster.security.RandomUtil;
@@ -45,14 +47,18 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     private final AuthorityRepository authorityRepository;
+    private final AstridUserService astridUserService;
 
     private final CacheManager cacheManager;
 
-    public UserService(UserRepository userRepository, AstridUserRepository astridUserRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
+    public UserService(UserRepository userRepository, AstridUserRepository astridUserRepository, PasswordEncoder passwordEncoder,
+                       AuthorityRepository authorityRepository, AstridUserService astridUserService,
+                       CacheManager cacheManager) {
         this.userRepository = userRepository;
         this.astridUserRepository = astridUserRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
+        this.astridUserService = astridUserService;
         this.cacheManager = cacheManager;
     }
 
@@ -141,7 +147,7 @@ public class UserService {
 
     private boolean removeNonActivatedUser(User existingUser) {
         if (existingUser.getActivated()) {
-             return false;
+            return false;
         }
         userRepository.delete(existingUser);
         userRepository.flush();
@@ -149,7 +155,7 @@ public class UserService {
         return true;
     }
 
-    public User createUser(UserDTO userDTO) {
+    public User createUser(UserExtendedDTO userDTO) {
         User user = new User();
         user.setLogin(userDTO.getLogin().toLowerCase());
         user.setFirstName(userDTO.getFirstName());
@@ -176,7 +182,16 @@ public class UserService {
                 .collect(Collectors.toSet());
             user.setAuthorities(authorities);
         }
-        userRepository.save(user);
+        User newUser = userRepository.save(user);
+        AstridUser astridUser = new AstridUser();
+        astridUser.setPhoneNumber(userDTO.getPhoneNumber());
+        astridUser.setBirthDate(userDTO.getBirthDate());
+        astridUser.setGender(userDTO.getGender());
+        astridUser.setHighestEducation(userDTO.getHighestEducation());
+        astridUser.setResidency(userDTO.getResidency());
+        astridUser.setUser(newUser);
+        astridUserRepository.save(astridUser);
+
         this.clearUserCaches(user);
         log.debug("Created Information for User: {}", user);
         return user;
@@ -188,7 +203,7 @@ public class UserService {
      * @param userDTO user to update.
      * @return updated user.
      */
-    public Optional<UserDTO> updateUser(UserDTO userDTO) {
+    public Optional<UserDTO> updateUser(UserExtendedDTO userDTO) {
         return Optional.of(userRepository
             .findById(userDTO.getId()))
             .filter(Optional::isPresent)
@@ -216,6 +231,26 @@ public class UserService {
                 return user;
             })
             .map(UserDTO::new);
+    }
+
+    /**
+     * Update all information for a specific user, and return the modified user.
+     *
+     * @param userDTO user to update.
+     * @return updated user.
+     */
+    public void updateExtendedUser(UserExtendedDTO userDTO) {
+        Optional<AstridUserDTO> oneByUserId = astridUserService.findOneByUserId(userDTO.getId());
+        if (oneByUserId.isPresent()) {
+            AstridUserDTO astridUserDTO = oneByUserId.get();
+            astridUserDTO.setBirthDate(userDTO.getBirthDate());
+            astridUserDTO.setGender(userDTO.getGender());
+            astridUserDTO.setHighestEducation(userDTO.getHighestEducation());
+            astridUserDTO.setPhoneNumber(userDTO.getPhoneNumber());
+            astridUserDTO.setResidency(userDTO.getResidency());
+
+            astridUserService.save(astridUserDTO);
+        }
     }
 
     public void deleteUser(String login) {
@@ -250,7 +285,6 @@ public class UserService {
                 log.debug("Changed Information for User: {}", user);
             });
     }
-
 
     @Transactional
     public void changePassword(String currentClearTextPassword, String newPassword) {
@@ -301,13 +335,13 @@ public class UserService {
 
     /**
      * Gets a list of all the authorities.
+     *
      * @return a list of all the authorities.
      */
     @Transactional(readOnly = true)
     public List<String> getAuthorities() {
         return authorityRepository.findAll().stream().map(Authority::getName).collect(Collectors.toList());
     }
-
 
     private void clearUserCaches(User user) {
         Objects.requireNonNull(cacheManager.getCache(UserRepository.USERS_BY_LOGIN_CACHE)).evict(user.getLogin());

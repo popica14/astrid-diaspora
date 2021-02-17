@@ -103,6 +103,80 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridUser.phoneNumber" for="field_phoneNumber">Phone Number</label>
+                    <input type="text" class="form-control" name="phoneNumber" id="field_phoneNumber"
+                           formControlName="phoneNumber"/>
+                    <div *ngIf="editForm.get('phoneNumber')!.invalid && (editForm.get('phoneNumber')!.dirty || editForm.get('phoneNumber')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('phoneNumber')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridUser.residency" for="field_residency">Residency</label>
+                    <input type="text" class="form-control" name="residency" id="field_residency"
+                           formControlName="residency"/>
+                    <div *ngIf="editForm.get('residency')!.invalid && (editForm.get('residency')!.dirty || editForm.get('residency')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('residency')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridUser.gender" for="field_gender">Gender</label>
+                    <select class="form-control" name="gender" formControlName="gender" id="field_gender">
+                        <option value="FEMALE">{{ 'projectsOverviewApp.Gender.FEMALE' | translate }}</option>
+                        <option value="MALE">{{ 'projectsOverviewApp.Gender.MALE' | translate }}</option>
+                        <option value="PREFER_NOT_TO_ANSWER">{{ 'projectsOverviewApp.Gender.PREFER_NOT_TO_ANSWER' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('gender')!.invalid && (editForm.get('gender')!.dirty || editForm.get('gender')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('gender')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridUser.birthDate" for="field_birthDate">Birth Date</label>
+                    <div class="input-group">
+                        <input id="field_birthDate" type="text" class="form-control" name="birthDate" ngbDatepicker #birthDateDp="ngbDatepicker" formControlName="birthDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="birthDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('birthDate')!.invalid && (editForm.get('birthDate')!.dirty || editForm.get('birthDate')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('birthDate')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="projectsOverviewApp.astridUser.highestEducation" for="field_highestEducation">Highest Education</label>
+                    <select class="form-control" name="highestEducation" formControlName="highestEducation" id="field_highestEducation">
+                        <option value="DOCTORATE">{{ 'projectsOverviewApp.Education.DOCTORATE' | translate }}</option>
+                        <option value="NO_FORMAL_EDUCATION">{{ 'projectsOverviewApp.Education.NO_FORMAL_EDUCATION' | translate }}</option>
+                        <option value="BACHELOR">{{ 'projectsOverviewApp.Education.BACHELOR' | translate }}</option>
+                        <option value="PRIMARY">{{ 'projectsOverviewApp.Education.PRIMARY' | translate }}</option>
+                        <option value="SECONDARY_HIGH_SCHOOL">{{ 'projectsOverviewApp.Education.SECONDARY_HIGH_SCHOOL' | translate }}</option>
+                        <option value="MASTER">{{ 'projectsOverviewApp.Education.MASTER' | translate }}</option>
+                        <option value="PREFER_NOT_TO_ANSWER">{{ 'projectsOverviewApp.Education.PREFER_NOT_TO_ANSWER' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('highestEducation')!.invalid && (editForm.get('highestEducation')!.dirty || editForm.get('highestEducation')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('highestEducation')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
                 <div class="form-check">
                     <label class="form-check-label" for="activated">
                         <input class="form-check-input" [attr.disabled]="user.id === undefined ? 'disabled' : null"

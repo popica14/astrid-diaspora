@@ -81,10 +81,9 @@
                         <dt><span jhiTranslate="projectsOverviewApp.astridProject.statusDeadline">Status Deadline</span>
                         </dt>
                         <dd>
-                            <input class="form-control" id="field_statusDeadline" type="datetime-local"
-                                name="statusDeadline" readonly value="{{statusDeadline}}"
-                                placeholder="YYYY-MM-DD HH:mm" />
-                            <!-- <span>{{ astridProject.statusDeadline }}</span> -->
+                            
+                            <span>{{ astridProject.statusDeadline | date:'dd/MM/yy HH:mm'}}</span>
+                            
                         </dd>
                         <dt *ngIf="astridProject.documentation1"><span
                                 jhiTranslate="projectsOverviewApp.astridProject.documentation1">Documentation 1</span>
@@ -149,9 +148,10 @@
                         </dt>
                         <dd>
                             <div *ngIf="astridProject.entityCreationId">
-                                <input class="form-control" id="field_entityCreation" type="datetime-local"
+                                <!-- <input class="form-control" id="field_entityCreation" type="datetime-local"
                                     name="entityCreation" readonly value="{{createdDate}}"
-                                    placeholder="YYYY-MM-DD HH:mm" />
+                                    placeholder="YYYY-MM-DD HH:mm" /> -->
+                                    <span>{{ entitycreation.created | date:'dd/MM/yy HH:mm'}}</span>
                             </div>
                         </dd>
                         <dt>
@@ -164,9 +164,11 @@
                         <dd>
 
                             <div *ngIf="astridProject.entityLastModificationId">
-                                <input class="form-control" id="field_entityLastModification" type="datetime-local"
+                                <!-- <input class="form-control" id="field_entityLastModification" type="datetime-local"
                                     name="entityCreation" readonly value="{{lastModifiedDate}}"
-                                    placeholder="YYYY-MM-DD HH:mm" />
+                                    placeholder="YYYY-MM-DD HH:mm" /> -->
+                                    <span>{{ entityLastModification.lastModified | date:'dd/MM/yy HH:mm'}}</span>
+                                    
                             </div>
                         </dd>
                         <dt><span jhiTranslate="projectsOverviewApp.astridProject.responsible">Responsible</span></dt>

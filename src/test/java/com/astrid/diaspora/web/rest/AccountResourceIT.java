@@ -9,6 +9,7 @@ import com.astrid.diaspora.security.AuthoritiesConstants;
 import com.astrid.diaspora.service.UserService;
 import com.astrid.diaspora.service.dto.PasswordChangeDTO;
 import com.astrid.diaspora.service.dto.UserDTO;
+import com.astrid.diaspora.service.dto.UserExtendedDTO;
 import com.astrid.diaspora.web.rest.vm.KeyAndPasswordVM;
 import com.astrid.diaspora.web.rest.vm.ManagedUserVM;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -82,7 +83,7 @@ public class AccountResourceIT {
         Set<String> authorities = new HashSet<>();
         authorities.add(AuthoritiesConstants.ADMIN);
 
-        UserDTO user = new UserDTO();
+        UserExtendedDTO user = new UserExtendedDTO();
         user.setLogin(TEST_USER_LOGIN);
         user.setFirstName("john");
         user.setLastName("doe");
@@ -359,7 +360,7 @@ public class AccountResourceIT {
         assertThat(testUser4.get().getEmail()).isEqualTo("test-register-duplicate-email@example.com");
 
         testUser4.get().setActivated(true);
-        userService.updateUser((new UserDTO(testUser4.get())));
+        userService.updateUser((new UserExtendedDTO(testUser4.get())));
 
         // Register 4th (already activated) user
         restAccountMockMvc.perform(

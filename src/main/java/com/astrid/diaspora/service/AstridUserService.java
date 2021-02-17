@@ -35,6 +35,14 @@ public interface AstridUserService {
     Optional<AstridUserDTO> findOne(Long id);
 
     /**
+     * Get the "id" astridUser.
+     *
+     * @param id the id of the entity.
+     * @return the entity.
+     */
+    Optional<AstridUserDTO> findOneByUserId(Long id);
+
+    /**
      * Delete the "id" astridUser.
      *
      * @param id the id of the entity.

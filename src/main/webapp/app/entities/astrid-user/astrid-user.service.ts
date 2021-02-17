@@ -38,6 +38,12 @@ export class AstridUserService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
+  findExtendedUserByUserId(userId: number): Observable<EntityResponseType> {
+    return this.http
+      .get<IAstridUser>(`${this.resourceUrl}/byUserId/${userId}`, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http
