@@ -3,8 +3,13 @@ package com.astrid.diaspora.service;
 import com.astrid.diaspora.ProjectsOverviewApp;
 import com.astrid.diaspora.config.Constants;
 import com.astrid.diaspora.domain.User;
+import com.astrid.diaspora.domain.enumeration.Education;
+import com.astrid.diaspora.domain.enumeration.Gender;
 import com.astrid.diaspora.repository.UserRepository;
+import com.astrid.diaspora.security.AuthoritiesConstants;
 import com.astrid.diaspora.service.dto.UserDTO;
+import com.astrid.diaspora.service.dto.UserExtendedDTO;
+import com.astrid.diaspora.web.rest.vm.ManagedUserVM;
 
 import io.github.jhipster.security.RandomUtil;
 
@@ -21,8 +26,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,6 +97,31 @@ public class UserServiceIT {
         assertThat(maybeUser.orElse(null).getEmail()).isEqualTo(user.getEmail());
         assertThat(maybeUser.orElse(null).getResetDate()).isNotNull();
         assertThat(maybeUser.orElse(null).getResetKey()).isNotNull();
+    }
+
+    @Test
+    @Transactional
+    public void assertThatUserCanBeSuccessfullyDeleted() {
+        UserExtendedDTO user = new UserExtendedDTO();
+        user.setLogin("test-delete-user");
+        user.setFirstName("Alice");
+        user.setLastName("Test");
+        user.setEmail("test-register-duplicate-email@example.com");
+        user.setImageUrl("http://placehold.it/50x50");
+        user.setLangKey(Constants.DEFAULT_LANGUAGE);
+        user.setAuthorities(Collections.singleton(AuthoritiesConstants.USER));
+
+        user.setBirthDate(LocalDate.now());
+        user.setGender(Gender.PREFER_NOT_TO_ANSWER);
+        user.setHighestEducation(Education.NO_FORMAL_EDUCATION);
+        user.setPhoneNumber("+40Test");
+        user.setResidency("Residency Test");
+
+        User user1 = userService.createUser(user);
+
+        userService.deleteUser(user1.getLogin());
+        Optional<User> maybeUser = userService.getUserWithAuthoritiesByLogin(user1.getLogin());
+        assertThat(maybeUser).isNotPresent();
     }
 
     @Test

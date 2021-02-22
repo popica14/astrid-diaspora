@@ -149,11 +149,8 @@ public class UserService {
         if (existingUser.getActivated()) {
             return false;
         }
-        Optional<AstridUser> byUserId = astridUserRepository.findByUserId(existingUser.getId());
-        if(byUserId.isPresent()){
-            astridUserRepository.delete(byUserId.get());
-            astridUserRepository.flush();
-        }
+        astridUserRepository.findByUserId(existingUser.getId()).ifPresent(astridUser -> astridUserRepository.delete(astridUser));
+
         userRepository.delete(existingUser);
         userRepository.flush();
         this.clearUserCaches(existingUser);
@@ -260,6 +257,10 @@ public class UserService {
 
     public void deleteUser(String login) {
         userRepository.findOneByLogin(login).ifPresent(user -> {
+            astridUserRepository.findByUserId(user.getId()).ifPresent(astridUser -> {
+                astridUserRepository.delete(astridUser);
+                log.debug("Deleted AstridUser: {}", astridUser);
+            });
             userRepository.delete(user);
             this.clearUserCaches(user);
             log.debug("Deleted User: {}", user);
