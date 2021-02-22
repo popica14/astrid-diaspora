@@ -3,6 +3,8 @@ package com.astrid.diaspora.web.rest;
 import com.astrid.diaspora.ProjectsOverviewApp;
 import com.astrid.diaspora.domain.Authority;
 import com.astrid.diaspora.domain.User;
+import com.astrid.diaspora.domain.enumeration.Education;
+import com.astrid.diaspora.domain.enumeration.Gender;
 import com.astrid.diaspora.repository.UserRepository;
 import com.astrid.diaspora.security.AuthoritiesConstants;
 import com.astrid.diaspora.service.dto.UserDTO;
@@ -22,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.function.Consumer;
 
@@ -127,6 +130,12 @@ public class UserResourceIT {
         managedUserVM.setImageUrl(DEFAULT_IMAGEURL);
         managedUserVM.setLangKey(DEFAULT_LANGKEY);
         managedUserVM.setAuthorities(Collections.singleton(AuthoritiesConstants.USER));
+
+        managedUserVM.setBirthDate(LocalDate.now());
+        managedUserVM.setGender(Gender.PREFER_NOT_TO_ANSWER);
+        managedUserVM.setHighestEducation(Education.NO_FORMAL_EDUCATION);
+        managedUserVM.setPhoneNumber("+40Test");
+        managedUserVM.setResidency("Residency Test");
 
         restUserMockMvc.perform(post("/api/users")
             .contentType(MediaType.APPLICATION_JSON)
@@ -315,6 +324,12 @@ public class UserResourceIT {
         managedUserVM.setLastModifiedDate(updatedUser.getLastModifiedDate());
         managedUserVM.setAuthorities(Collections.singleton(AuthoritiesConstants.USER));
 
+        managedUserVM.setBirthDate(LocalDate.now());
+        managedUserVM.setGender(Gender.PREFER_NOT_TO_ANSWER);
+        managedUserVM.setHighestEducation(Education.NO_FORMAL_EDUCATION);
+        managedUserVM.setPhoneNumber("+40Test");
+        managedUserVM.setResidency("Residency Test");
+
         restUserMockMvc.perform(put("/api/users")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(managedUserVM)))
@@ -357,6 +372,12 @@ public class UserResourceIT {
         managedUserVM.setLastModifiedBy(updatedUser.getLastModifiedBy());
         managedUserVM.setLastModifiedDate(updatedUser.getLastModifiedDate());
         managedUserVM.setAuthorities(Collections.singleton(AuthoritiesConstants.USER));
+
+        managedUserVM.setBirthDate(LocalDate.now());
+        managedUserVM.setGender(Gender.PREFER_NOT_TO_ANSWER);
+        managedUserVM.setHighestEducation(Education.NO_FORMAL_EDUCATION);
+        managedUserVM.setPhoneNumber("+40Test");
+        managedUserVM.setResidency("Residency Test");
 
         restUserMockMvc.perform(put("/api/users")
             .contentType(MediaType.APPLICATION_JSON)
