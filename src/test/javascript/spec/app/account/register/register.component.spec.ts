@@ -53,10 +53,17 @@ describe('Component Tests', () => {
         tick();
 
         expect(service.save).toHaveBeenCalledWith({
+          birthDate: null,
           email: '',
-          password: 'password',
-          login: '',
+          firstName: '',
+          gender: null,
+          highestEducation: null,
           langKey: 'en',
+          lastName: '',
+          login: '',
+          password: 'password',
+          phoneNumber: null,
+          residency: null,
         });
         expect(comp.success).toBe(true);
         expect(mockTranslate.getCurrentLanguageSpy).toHaveBeenCalled();

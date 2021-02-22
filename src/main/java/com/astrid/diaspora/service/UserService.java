@@ -99,7 +99,7 @@ public class UserService {
             });
     }
 
-    public User registerUser(ManagedUserVM userDTO, String password) {
+    public User registerUser(UserExtendedDTO userDTO, String password) {
         userRepository.findOneByLogin(userDTO.getLogin().toLowerCase()).ifPresent(existingUser -> {
             boolean removed = removeNonActivatedUser(existingUser);
             if (!removed) {
@@ -131,14 +131,14 @@ public class UserService {
         Set<Authority> authorities = new HashSet<>();
         authorityRepository.findById(AuthoritiesConstants.USER).ifPresent(authorities::add);
         newUser.setAuthorities(authorities);
-        userRepository.save(newUser);
+        User savedUser = userRepository.save(newUser);
         AstridUser astridUser = new AstridUser();
         astridUser.setPhoneNumber(userDTO.getPhoneNumber());
         astridUser.setBirthDate(userDTO.getBirthDate());
         astridUser.setGender(userDTO.getGender());
         astridUser.setHighestEducation(userDTO.getHighestEducation());
         astridUser.setResidency(userDTO.getResidency());
-        astridUser.setUser(newUser);
+        astridUser.setUser(savedUser);
         astridUserRepository.save(astridUser);
         this.clearUserCaches(newUser);
         log.debug("Created Information for User: {}", newUser);
@@ -148,6 +148,11 @@ public class UserService {
     private boolean removeNonActivatedUser(User existingUser) {
         if (existingUser.getActivated()) {
             return false;
+        }
+        Optional<AstridUser> byUserId = astridUserRepository.findByUserId(existingUser.getId());
+        if(byUserId.isPresent()){
+            astridUserRepository.delete(byUserId.get());
+            astridUserRepository.flush();
         }
         userRepository.delete(existingUser);
         userRepository.flush();

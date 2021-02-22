@@ -3,6 +3,8 @@ package com.astrid.diaspora.web.rest;
 import com.astrid.diaspora.ProjectsOverviewApp;
 import com.astrid.diaspora.config.Constants;
 import com.astrid.diaspora.domain.User;
+import com.astrid.diaspora.domain.enumeration.Education;
+import com.astrid.diaspora.domain.enumeration.Gender;
 import com.astrid.diaspora.repository.AuthorityRepository;
 import com.astrid.diaspora.repository.UserRepository;
 import com.astrid.diaspora.security.AuthoritiesConstants;
@@ -12,6 +14,7 @@ import com.astrid.diaspora.service.dto.UserDTO;
 import com.astrid.diaspora.service.dto.UserExtendedDTO;
 import com.astrid.diaspora.web.rest.vm.KeyAndPasswordVM;
 import com.astrid.diaspora.web.rest.vm.ManagedUserVM;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,6 +29,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -91,6 +95,13 @@ public class AccountResourceIT {
         user.setImageUrl("http://placehold.it/50x50");
         user.setLangKey("en");
         user.setAuthorities(authorities);
+
+        user.setBirthDate(LocalDate.now());
+        user.setGender(Gender.PREFER_NOT_TO_ANSWER);
+        user.setHighestEducation(Education.NO_FORMAL_EDUCATION);
+        user.setPhoneNumber("+40Test");
+        user.setResidency("Residency Test");
+
         userService.createUser(user);
 
         restAccountMockMvc.perform(get("/api/account")
@@ -125,6 +136,13 @@ public class AccountResourceIT {
         validUser.setImageUrl("http://placehold.it/50x50");
         validUser.setLangKey(Constants.DEFAULT_LANGUAGE);
         validUser.setAuthorities(Collections.singleton(AuthoritiesConstants.USER));
+
+        validUser.setBirthDate(LocalDate.now());
+        validUser.setGender(Gender.PREFER_NOT_TO_ANSWER);
+        validUser.setHighestEducation(Education.NO_FORMAL_EDUCATION);
+        validUser.setPhoneNumber("+40Test");
+        validUser.setResidency("Residency Test");
+
         assertThat(userRepository.findOneByLogin("test-register-valid").isPresent()).isFalse();
 
         restAccountMockMvc.perform(
@@ -246,6 +264,12 @@ public class AccountResourceIT {
         firstUser.setLangKey(Constants.DEFAULT_LANGUAGE);
         firstUser.setAuthorities(Collections.singleton(AuthoritiesConstants.USER));
 
+        firstUser.setBirthDate(LocalDate.now());
+        firstUser.setGender(Gender.PREFER_NOT_TO_ANSWER);
+        firstUser.setHighestEducation(Education.NO_FORMAL_EDUCATION);
+        firstUser.setPhoneNumber("+40Test");
+        firstUser.setResidency("Residency Test");
+
         // Duplicate login, different email
         ManagedUserVM secondUser = new ManagedUserVM();
         secondUser.setLogin(firstUser.getLogin());
@@ -260,6 +284,13 @@ public class AccountResourceIT {
         secondUser.setLastModifiedBy(firstUser.getLastModifiedBy());
         secondUser.setLastModifiedDate(firstUser.getLastModifiedDate());
         secondUser.setAuthorities(new HashSet<>(firstUser.getAuthorities()));
+
+        secondUser.setBirthDate(LocalDate.now());
+        secondUser.setGender(Gender.PREFER_NOT_TO_ANSWER);
+        secondUser.setHighestEducation(Education.NO_FORMAL_EDUCATION);
+        secondUser.setPhoneNumber("+40Test");
+        secondUser.setResidency("Residency Test");
+
 
         // First user
         restAccountMockMvc.perform(
@@ -302,6 +333,12 @@ public class AccountResourceIT {
         firstUser.setLangKey(Constants.DEFAULT_LANGUAGE);
         firstUser.setAuthorities(Collections.singleton(AuthoritiesConstants.USER));
 
+        firstUser.setBirthDate(LocalDate.now());
+        firstUser.setGender(Gender.PREFER_NOT_TO_ANSWER);
+        firstUser.setHighestEducation(Education.NO_FORMAL_EDUCATION);
+        firstUser.setPhoneNumber("+40Test");
+        firstUser.setResidency("Residency Test");
+
         // Register first user
         restAccountMockMvc.perform(
             post("/api/register")
@@ -322,6 +359,12 @@ public class AccountResourceIT {
         secondUser.setImageUrl(firstUser.getImageUrl());
         secondUser.setLangKey(firstUser.getLangKey());
         secondUser.setAuthorities(new HashSet<>(firstUser.getAuthorities()));
+
+        secondUser.setBirthDate(LocalDate.now());
+        secondUser.setGender(Gender.PREFER_NOT_TO_ANSWER);
+        secondUser.setHighestEducation(Education.NO_FORMAL_EDUCATION);
+        secondUser.setPhoneNumber("+40Test");
+        secondUser.setResidency("Residency Test");
 
         // Register second (non activated) user
         restAccountMockMvc.perform(
@@ -347,6 +390,12 @@ public class AccountResourceIT {
         userWithUpperCaseEmail.setImageUrl(firstUser.getImageUrl());
         userWithUpperCaseEmail.setLangKey(firstUser.getLangKey());
         userWithUpperCaseEmail.setAuthorities(new HashSet<>(firstUser.getAuthorities()));
+
+        userWithUpperCaseEmail.setBirthDate(LocalDate.now());
+        userWithUpperCaseEmail.setGender(Gender.PREFER_NOT_TO_ANSWER);
+        userWithUpperCaseEmail.setHighestEducation(Education.NO_FORMAL_EDUCATION);
+        userWithUpperCaseEmail.setPhoneNumber("+40Test");
+        userWithUpperCaseEmail.setResidency("Residency Test");
 
         // Register third (not activated) user
         restAccountMockMvc.perform(
@@ -383,6 +432,12 @@ public class AccountResourceIT {
         validUser.setImageUrl("http://placehold.it/50x50");
         validUser.setLangKey(Constants.DEFAULT_LANGUAGE);
         validUser.setAuthorities(Collections.singleton(AuthoritiesConstants.ADMIN));
+
+        validUser.setBirthDate(LocalDate.now());
+        validUser.setGender(Gender.PREFER_NOT_TO_ANSWER);
+        validUser.setHighestEducation(Education.NO_FORMAL_EDUCATION);
+        validUser.setPhoneNumber("+40Test");
+        validUser.setResidency("Residency Test");
 
         restAccountMockMvc.perform(
             post("/api/register")
@@ -575,8 +630,8 @@ public class AccountResourceIT {
 
         restAccountMockMvc.perform(post("/api/account/change-password")
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(new PasswordChangeDTO("1"+currentPassword, "new password")))
-)
+            .content(TestUtil.convertObjectToJsonBytes(new PasswordChangeDTO("1" + currentPassword, "new password")))
+        )
             .andExpect(status().isBadRequest());
 
         User updatedUser = userRepository.findOneByLogin("change-password-wrong-existing-password").orElse(null);
@@ -598,7 +653,7 @@ public class AccountResourceIT {
         restAccountMockMvc.perform(post("/api/account/change-password")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(new PasswordChangeDTO(currentPassword, "new password")))
-)
+        )
             .andExpect(status().isOk());
 
         User updatedUser = userRepository.findOneByLogin("change-password").orElse(null);
@@ -621,7 +676,7 @@ public class AccountResourceIT {
         restAccountMockMvc.perform(post("/api/account/change-password")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(new PasswordChangeDTO(currentPassword, newPassword)))
-)
+        )
             .andExpect(status().isBadRequest());
 
         User updatedUser = userRepository.findOneByLogin("change-password-too-small").orElse(null);
@@ -644,7 +699,7 @@ public class AccountResourceIT {
         restAccountMockMvc.perform(post("/api/account/change-password")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(new PasswordChangeDTO(currentPassword, newPassword)))
-)
+        )
             .andExpect(status().isBadRequest());
 
         User updatedUser = userRepository.findOneByLogin("change-password-too-long").orElse(null);
@@ -665,7 +720,7 @@ public class AccountResourceIT {
         restAccountMockMvc.perform(post("/api/account/change-password")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(new PasswordChangeDTO(currentPassword, "")))
-)
+        )
             .andExpect(status().isBadRequest());
 
         User updatedUser = userRepository.findOneByLogin("change-password-empty").orElse(null);
@@ -684,7 +739,7 @@ public class AccountResourceIT {
 
         restAccountMockMvc.perform(post("/api/account/reset-password/init")
             .content("password-reset@example.com")
-)
+        )
             .andExpect(status().isOk());
     }
 
@@ -700,7 +755,7 @@ public class AccountResourceIT {
 
         restAccountMockMvc.perform(post("/api/account/reset-password/init")
             .content("password-reset-upper-case@EXAMPLE.COM")
-)
+        )
             .andExpect(status().isOk());
     }
 

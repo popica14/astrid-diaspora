@@ -7,6 +7,7 @@ import com.astrid.diaspora.service.MailService;
 import com.astrid.diaspora.service.UserService;
 import com.astrid.diaspora.service.dto.PasswordChangeDTO;
 import com.astrid.diaspora.service.dto.UserDTO;
+import com.astrid.diaspora.service.dto.UserExtendedDTO;
 import com.astrid.diaspora.web.rest.errors.*;
 import com.astrid.diaspora.web.rest.vm.KeyAndPasswordVM;
 import com.astrid.diaspora.web.rest.vm.ManagedUserVM;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.*;
+
+import liquibase.pro.packaged.U;
 
 /**
  * REST controller for managing the current user's account.
@@ -63,7 +66,8 @@ public class AccountResource {
         if (!checkPasswordLength(managedUserVM.getPassword())) {
             throw new InvalidPasswordException();
         }
-        User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
+        UserExtendedDTO fromMangedUserVM = getExtendedUserFromManagedUserVM(managedUserVM);
+        User user = userService.registerUser(fromMangedUserVM, managedUserVM.getPassword());
         mailService.sendActivationEmail(user);
     }
 
@@ -183,5 +187,26 @@ public class AccountResource {
         return !StringUtils.isEmpty(password) &&
             password.length() >= ManagedUserVM.PASSWORD_MIN_LENGTH &&
             password.length() <= ManagedUserVM.PASSWORD_MAX_LENGTH;
+    }
+
+    private UserExtendedDTO getExtendedUserFromManagedUserVM(ManagedUserVM managedUserVM) {
+        return new UserExtendedDTO(
+            managedUserVM.getId(),
+            managedUserVM.getLogin(),
+            managedUserVM.getFirstName(),
+            managedUserVM.getLastName(),
+            managedUserVM.getEmail(),
+            managedUserVM.getImageUrl(),
+            managedUserVM.getLangKey(),
+            managedUserVM.getCreatedBy(),
+            managedUserVM.getCreatedDate(),
+            managedUserVM.getLastModifiedBy(),
+            managedUserVM.getLastModifiedDate(),
+            managedUserVM.getAuthorities(),
+            managedUserVM.getBirthDate(),
+            managedUserVM.getGender(),
+            managedUserVM.getHighestEducation(),
+            managedUserVM.getPhoneNumber(),
+            managedUserVM.getResidency());
     }
 }
