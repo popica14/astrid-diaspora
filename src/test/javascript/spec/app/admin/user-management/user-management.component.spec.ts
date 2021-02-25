@@ -55,7 +55,7 @@ describe('Component Tests', () => {
     });
 
     describe('setActive', () => {
-      it('Should update user and call load all', inject(
+      xit('Should update user and call load all', inject(
         [],
         fakeAsync(() => {
           // GIVEN
