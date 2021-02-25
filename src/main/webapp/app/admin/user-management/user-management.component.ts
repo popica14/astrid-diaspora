@@ -11,6 +11,9 @@ import { Account } from 'app/core/user/account.model';
 import { UserService } from 'app/core/user/user.service';
 import { User } from 'app/core/user/user.model';
 import { UserManagementDeleteDialogComponent } from './user-management-delete-dialog.component';
+import { UserExtended } from 'app/core/user/user-extended.model';
+import { AstridUserService } from 'app/entities/astrid-user/astrid-user.service';
+import { IAstridUser } from 'app/shared/model/astrid-user.model';
 
 @Component({
   selector: 'jhi-user-mgmt',
@@ -32,7 +35,8 @@ export class UserManagementComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private eventManager: JhiEventManager,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private astridUserService: AstridUserService
   ) {}
 
   ngOnInit(): void {
@@ -47,7 +51,23 @@ export class UserManagementComponent implements OnInit, OnDestroy {
     }
   }
 
-  setActive(user: User, isActivated: boolean): void {
+  setActive(user: UserExtended, isActivated: boolean): void {
+    if (user !== null && user.id !== null) {
+      this.astridUserService
+        .findExtendedUserByUserId(user.id)
+        .subscribe((res: HttpResponse<IAstridUser>) => this.processWithExtendedUser(res, user, isActivated));
+    }
+  }
+  processWithExtendedUser(res: HttpResponse<IAstridUser>, user: UserExtended, isActivated: boolean): void {
+    const astridUser = res.body || {};
+    if (astridUser != null) {
+      user.birthDate = astridUser.birthDate;
+      user.residency = astridUser.residency;
+      user.highestEducation = astridUser.highestEducation;
+      user.phoneNumber = astridUser.phoneNumber;
+      user.gender = astridUser.gender;
+    }
+
     this.userService.update({ ...user, activated: isActivated }).subscribe(() => this.loadAll());
   }
 

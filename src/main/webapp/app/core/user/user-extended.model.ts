@@ -1,5 +1,6 @@
 import { Education } from 'app/shared/model/enumerations/education.model';
 import { Gender } from 'app/shared/model/enumerations/gender.model';
+import { Moment } from 'moment';
 
 export interface IUserExtended {
   id?: any;
@@ -17,7 +18,7 @@ export interface IUserExtended {
   lastModifiedDate?: Date;
   password?: string;
   residency?: string;
-  birthDate?: Date;
+  birthDate?: Moment;
   highestEducation?: Education;
   gender?: Gender;
 }
@@ -39,7 +40,7 @@ export class UserExtended implements IUserExtended {
     public lastModifiedDate?: Date,
     public password?: string,
     public residency?: string,
-    public birthDate?: Date,
+    public birthDate?: Moment,
     public highestEducation?: Education,
     public gender?: Gender
   ) {}
