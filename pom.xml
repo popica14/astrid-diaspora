@@ -5,7 +5,7 @@
 
     <groupId>com.astrid.diaspora</groupId>
     <artifactId>projects-overview</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+`    <version>0.0.1-Test Version</version>
     <packaging>jar</packaging>
     <name>Projects Overview</name>
 
